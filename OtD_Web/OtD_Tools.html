@@ -1,0 +1,145 @@
+
+<html ng-app="marijn-teaching" class="ng-scope">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
+</style>
+	<meta charset="UTF-8&quot;">
+	<meta name="language" content="en">
+	<meta name="description" content="Teaching page of Object to Data Course, UvA">
+	<meta name="keywords" content="Academic courses, Teaching, University of Amsterdam, Digital Humanities, Information Retrieval">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Object to Data</title>
+	<link href="./OtD_DataSets_files/styles.css" type="text/css" rel="stylesheet">
+	<link href="./OtD_DataSets_files/bootstrap.min.css" type="text/css" rel="stylesheet">
+	<script src="./OtD_DataSets_files/jquery-1.11.1.min.js"></script>
+	<script src="./OtD_DataSets_files/bootstrap.min.js"></script>
+	<script src="./OtD_DataSets_files/tab.js"></script>
+	<script src="./OtD_DataSets_files/angular.js"></script>
+	<script src="./OtD_DataSets_files/angular-route.min.js"></script>
+	<script type="text/javascript" src="./OtD_DataSets_files/teaching.js"></script>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style>
+</head>
+<body ng-controller="MainCtrl" class="ng-scope">
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-8">
+			<div class="page" id="page-datasets">
+				<div class="navbar">
+					<h1 class="ng-binding">From Objects to Data (2016/2017)</h1>
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Home.html">overview</a></li>
+						<li role="presentation" class="active"><a href="http://www.rorofi.co.uk/OtD_Web/Slides/">slides</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Exercises.html">exercises</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Deliverables.html">deliverables</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Tools.html">tools</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_DataSets.html">data sets</a></li>
+					</ul>
+				</div>
+
+	<div class="page" id="page-tools">
+
+		<div class="section" id="tools-prepare">
+			<h2>Preparing your laptop</h2>
+
+			<p>Below are instructions to install the tools used in this course and for windows users a set of command line tools. </p>
+
+			<p>Tools to install:</p>
+			<ul>
+				<li><a href="http://cran.xl-mirror.nl/" target="_blank">R</a> and <a href="https://www.rstudio.com/">RStudio Desktop</a> (select RStudio in the Products menu, then download RStudio Desktop) </li>
+				<li><a href="http://stedolan.github.io/jq/" target="_blank">jq</a>: a lightweight JSON query tool. Cygwin users and Koding.com users should </li>
+					<ol>
+						<li>download the following script to their environments with 'wget http://humanities.uva.nl/~mkoolen1/teaching/data/FOtD/2015/scripts/get_jq.sh',</li>
+						<li>make the script executable with 'chmod u+x get_jq.sh'</li>
+						<li>run the script as administrator with 'sudo ./get_jq.sh'</li>
+					</ol>
+				<li><a href="https://git-scm.com/downloads" target="_blank">git</a>: a version control system for safely storing and sharing your work. (<a href="http://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">git installing instructions</a>) </li>
+			</ul>
+
+			<div class="section" id="tools-prepare-windows">
+				<h3>Windows users</h3>
+
+				<p>Windows users need to install Cygwin (and include the Git package)</p>
+
+				<ul>
+					<li>Go to the <a href="https://cygwin.com/">Cygwin website</a></li>
+					<li>Download the setup file (the 32-bit or 64-bit version, depending on the processor in your computer, which is either a 32-bit or 64 bit processor)</li>
+					<li>Double click the setup file and choose the default options.</li>
+					<li>For the mirror site, look for <a href="ftp://ftp.snt.utwente.nl/">ftp://ftp.snt.utwente.nl</a></li>
+					<li>In the <em>Select Packages</em> screen, include the following packages:
+					<ul>
+						<li>Devel</li>
+						<ul>
+							<li>automake</li>
+							<li>cmake</li>
+							<li>cygport</li>
+							<li>gcc-core</li>
+							<li>gccmakedep</li>
+							<li>git</li>
+							<li>make</li>
+						</ul>
+						<li>Net</li>
+						<ul>
+							<li>Curl</li>
+						</ul>
+						<li>Perl</li>
+						<ul>
+							<li>Perl</li>
+						</ul>
+						<li>Utils</li>
+						<ul>
+							<li>bzip2</li>
+							<li>dos2unix</li>
+							<li>time</li>
+							<li>WordNet</li>
+						</ul>
+						<li>Web</li>
+						<ul>
+							<li>links</li>
+							<li>lynx</li>
+							<li>wget</li>
+						</ul>
+						<li>Python</li>
+						<ul>
+							<li>Python</li>
+						</ul>
+						<li>Science</li>
+						<ul>
+							<li>R</li>
+						</ul>
+					</ul>
+				</li></ul>
+			</div>
+		</div>
+		<div class="section" id="software-additional">
+			<p>Have a look at</p>
+			<ul>
+				<li>analyse large sets of images: <a href="http://rsbweb.nih.gov/ij/">ImageJ</a>, <a href="http://lab.softwarestudies.com/p/imageplot.html">ImagePlot]</a> or <a href="https://github.com/culturevis/imageplot/archive/master.zip">ImageJ, ImagePlot and sample data</a>.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+
+<p>&nbsp</p><p>&nbsp</p><p>&nbsp</p>
+		</div>
+
+	</div>
+
+
+
+</body></html>

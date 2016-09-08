@@ -1,0 +1,372 @@
+<html class="ng-scope">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
+</style>
+	<meta charset="UTF-8&quot;">
+	<meta name="language" content="en">
+	<meta name="description" content="Teaching page of Object to Data Course, UvA">
+	<meta name="keywords" content="Academic courses, Teaching, University of Amsterdam, Digital Humanities, Information Retrieval">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Object to Data</title>
+	<link href="./OtD_DataSets_files/styles.css" type="text/css" rel="stylesheet">
+	<link href="./OtD_DataSets_files/bootstrap.min.css" type="text/css" rel="stylesheet">
+	<script src="./OtD_DataSets_files/jquery-1.11.1.min.js"></script>
+	<script src="./OtD_DataSets_files/bootstrap.min.js"></script>
+	<script src="./OtD_DataSets_files/tab.js"></script>
+	<script src="./OtD_DataSets_files/angular.js"></script>
+	<script src="./OtD_DataSets_files/angular-route.min.js"></script>
+	<script type="text/javascript" src="./OtD_DataSets_files/teaching.js"></script>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style>
+</head>
+<body ng-controller="MainCtrl" class="ng-scope">
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-8">
+			<div class="page" id="page-datasets">
+				<div class="navbar">
+					<h1 class="ng-binding">From Objects to Data (2016/2017)</h1>
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Home.html">overview</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Slides.html">slides</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Exercises.html">exercises</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Deliverables.html">deliverables</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Tools.html">tools</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_DataSets.html">data sets</a></li>
+					</ul>
+				</div>
+				
+	<div class="main" id"main-overview"="">
+		<div class="section" id="overview-description">
+			<h2>Course Description</h2>
+			<!-- ngRepeat: paragraph in admin.courseDescription --><div ng-repeat="paragraph in admin.courseDescription" class="ng-scope">
+				<p class="ng-binding">All humanities disciplines are confronted with more and more digital material. This digital material can be studied as individual objects or descriptions of events, but from a digital perspective they can also be considered as data points. Digital methods allow researchers to study relations between objects form a different perspective and on a larger scale.</p>
+			</div><!-- end ngRepeat: paragraph in admin.courseDescription --><div ng-repeat="paragraph in admin.courseDescription" class="ng-scope">
+				<p class="ng-binding">How can humanities researchers use digital data to support their research? What digital tools are at their disposal and how can these tools provide new perspectives and research questions? This course looks at digital data sources and tools that are relevant to the humanities from a programmatic perspective.</p>
+			</div><!-- end ngRepeat: paragraph in admin.courseDescription -->
+		</div>
+		<div class="section" id="overview-goals">
+			<h2>Course Goals</h2>
+			<p>After completing this course the student is able to:</p>
+			<ol>
+				<!-- ngRepeat: goal in admin.courseGoals --><li ng-repeat="goal in admin.courseGoals" class="ng-binding ng-scope">
+					explain how a shift in perspective on humanities material from objects as objects to objects as data points affects humanities research;
+				</li><!-- end ngRepeat: goal in admin.courseGoals --><li ng-repeat="goal in admin.courseGoals" class="ng-binding ng-scope">
+					explain the relevance of data-oriented research for humanities disciplines;
+				</li><!-- end ngRepeat: goal in admin.courseGoals --><li ng-repeat="goal in admin.courseGoals" class="ng-binding ng-scope">
+					describe and apply digital and programmatic concepts for working with humanities data;
+				</li><!-- end ngRepeat: goal in admin.courseGoals --><li ng-repeat="goal in admin.courseGoals" class="ng-binding ng-scope">
+					create a methodologically sound data-oriented humanities research proposal;
+				</li><!-- end ngRepeat: goal in admin.courseGoals --><li ng-repeat="goal in admin.courseGoals" class="ng-binding ng-scope">
+					structure and conduct digital research around a research question with humanities materials
+				</li><!-- end ngRepeat: goal in admin.courseGoals -->
+			</ol>
+		</div>
+		<div class="section" id="overview-teachers">
+			<h2>Teachers</h2>
+			<ul>
+				<!-- ngRepeat: teacher in admin.teachers --><li ng-repeat="teacher in admin.teachers" class="ng-binding ng-scope">
+					Robin Boast
+				</li><!-- end ngRepeat: teacher in admin.teachers --><li ng-repeat="teacher in admin.teachers" class="ng-binding ng-scope">
+					Alan Berg
+				</li><!-- end ngRepeat: teacher in admin.teachers -->
+			</ul>
+			<p>For questions, email <a mailto="marijn.koolen@uva.nl">marijn.koolen@uva.nl</a>.</p>
+		</div>
+		<div class="section" id="overview-grading">
+			<h2>Grading</h2>
+			<p>Students build up a portfolio of scripts and documentation that together form a coherent data-driven research project.</p> 
+			<ul>
+				<li>Each student writes a short proposal for a collaborative  research project for a given data set. The proposal will be graded. </li>
+				<li>Students form groups and choose one of their proposals as group project. Each group creates a project portfolio, which will be graded twice: in week 5 and in the exam week (week 8). </li>
+				<li>The final grade will be based on a weighted average: </li>
+				<ul>
+					<!-- ngRepeat: deliverable in admin.deliverables --><li ng-repeat="deliverable in admin.deliverables" class="ng-binding ng-scope">
+						project proposal - 20%
+					</li><!-- end ngRepeat: deliverable in admin.deliverables --><li ng-repeat="deliverable in admin.deliverables" class="ng-binding ng-scope">
+						project portfolio, first version - 20%
+					</li><!-- end ngRepeat: deliverable in admin.deliverables --><li ng-repeat="deliverable in admin.deliverables" class="ng-binding ng-scope">
+						project portfolio, final version - 60%
+					</li><!-- end ngRepeat: deliverable in admin.deliverables -->
+				</ul>
+				<li>Students may update and improve on any aspect of their portfolios between weeks 5 and 8. </li>
+			</ul>
+		</div>
+		<div class="section" id="overview-sessions">
+			<h2>Sessions</h2>
+
+			<p>There are two types of sessions:</p>
+			<ul>
+				<!-- ngRepeat: session in admin.sessions --><li ng-repeat="session in admin.sessions" class="ng-binding ng-scope">
+					Lectures will take place in OMHP A0.08 on Mondays, 13:00-15:00. <strong class="ng-binding"></strong>
+				</li><!-- end ngRepeat: session in admin.sessions --><li ng-repeat="session in admin.sessions" class="ng-binding ng-scope">
+					Lab sessions will take place in BG1 0.13 on Wednesdays, 15:00-17:00. <strong class="ng-binding">During the lab sessions students should bring laptops to work on the exercises and projects.</strong>
+				</li><!-- end ngRepeat: session in admin.sessions -->
+			</ul>
+			<h2>Course Overview Per Week</h2>
+			<!-- ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				<h3 class="ng-binding">Week 1</h3>
+				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
+					<p class="ng-binding">Lecture: From Object to Data</p>
+					<ul>
+						<li class="ng-binding">Date: 31/08/2015</li>
+						<li>Reading: </li>
+						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
+							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">John Unsworth - <a href="http://people.brandeis.edu/~unsworth/Kings.5-00/primitives.html" target="_blank" class="ng-binding">Scholarly Primitives</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">John Bradley - <a href="http://texttechnology.mcmaster.ca/pdf/vol14_2/bradley14-2.pdf" target="_blank" class="ng-binding">What You (Fore)see is What You Get</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading -->
+						</div>
+						<!-- ngSwitchWhen: no -->
+						<!-- ngSwitchDefault:  -->
+					</ul>
+				</div><!-- end ngRepeat: session in week.sessions -->
+				<li>Topics: </li>
+				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">digital objects</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">digital data</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">data-driven research</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">methods and techniques</li>
+				</ul><!-- end ngRepeat: topic in week.topics -->
+				<li>Tools: </li>
+				<!-- ngRepeat: tool in week.tools -->
+			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				<h3 class="ng-binding">Week 2</h3>
+				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
+					<p class="ng-binding">Lecture: Acquiring data: APIs</p>
+					<ul>
+						<li class="ng-binding">Date: 05/11/2015</li>
+						<li>Reading: </li>
+						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
+							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">Ben Fry - <a href="https://docs.google.com/file/d/0Bw6gfqK2v6PjbXlwcDJFcXBYT3c" target="_blank" class="ng-binding">Seven stages of visualizing data</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading -->
+						</div>
+						<!-- ngSwitchWhen: no -->
+						<!-- ngSwitchDefault:  -->
+					</ul>
+				</div><!-- end ngRepeat: session in week.sessions -->
+				<li>Topics: </li>
+				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Gathering data</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">APIs</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Data criticism</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Scholarly Primitives</li>
+				</ul><!-- end ngRepeat: topic in week.topics -->
+				<li>Tools: </li>
+				<!-- ngRepeat: tool in week.tools -->
+			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				<h3 class="ng-binding">Week 3</h3>
+				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
+					<p class="ng-binding">Lecture: Parsing Data</p>
+					<ul>
+						<li class="ng-binding">Date: 14/09/2015</li>
+						<li>Reading: </li>
+						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
+							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/2009/10/17/humanities-apis/" target="_blank" class="ng-binding">Humanities APIs</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading -->
+						</div>
+						<!-- ngSwitchWhen: no -->
+						<!-- ngSwitchDefault:  -->
+					</ul>
+				</div><!-- end ngRepeat: session in week.sessions -->
+				<li>Topics: </li>
+				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Introduction</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Course setup</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Using Koding, GitHub and Slack</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Create webpages with HTML and CSS</li>
+				</ul><!-- end ngRepeat: topic in week.topics -->
+				<li>Tools: </li>
+				<!-- ngRepeat: tool in week.tools -->
+			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				<h3 class="ng-binding">Week 4</h3>
+				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
+					<p class="ng-binding">Lab: Data structures and getting data</p>
+					<ul>
+						<li class="ng-binding">Date: 29/10/2015</li>
+						<li>Reading: </li>
+						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
+							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/2012/06/10/learning-to-program/" target="_blank" class="ng-binding">Learning to Program</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/text/2011/01/11/on-building/" target="_blank" class="ng-binding">On Building</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading -->
+						</div>
+						<!-- ngSwitchWhen: no -->
+						<!-- ngSwitchDefault:  -->
+					</ul>
+				</div><!-- end ngRepeat: session in week.sessions -->
+				<li>Topics: </li>
+				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Datastructures</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">APIs</li>
+				</ul><!-- end ngRepeat: topic in week.topics -->
+				<li>Tools: </li>
+				<!-- ngRepeat: tool in week.tools -->
+			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				<h3 class="ng-binding">Week 5</h3>
+				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
+					<p class="ng-binding">Lab: Introduction to coding</p>
+					<ul>
+						<li class="ng-binding">Date: 29/10/2015</li>
+						<li>Reading: </li>
+						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
+							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/2012/06/10/learning-to-program/" target="_blank" class="ng-binding">Learning to Program</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/text/2011/01/11/on-building/" target="_blank" class="ng-binding">On Building</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading -->
+						</div>
+						<!-- ngSwitchWhen: no -->
+						<!-- ngSwitchDefault:  -->
+					</ul>
+				</div><!-- end ngRepeat: session in week.sessions -->
+				<li>Topics: </li>
+				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Introduction</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Course setup</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Using Koding, GitHub and Slack</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Create webpages with HTML and CSS</li>
+				</ul><!-- end ngRepeat: topic in week.topics -->
+				<li>Tools: </li>
+				<!-- ngRepeat: tool in week.tools -->
+			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				<h3 class="ng-binding">Week 6</h3>
+				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
+					<p class="ng-binding">Lab: Introduction to coding</p>
+					<ul>
+						<li class="ng-binding">Date: 29/10/2015</li>
+						<li>Reading: </li>
+						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
+							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/2012/06/10/learning-to-program/" target="_blank" class="ng-binding">Learning to Program</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
+								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/text/2011/01/11/on-building/" target="_blank" class="ng-binding">On Building</a></li>
+							</ul><!-- end ngRepeat: resource in session.reading -->
+						</div>
+						<!-- ngSwitchWhen: no -->
+						<!-- ngSwitchDefault:  -->
+					</ul>
+				</div><!-- end ngRepeat: session in week.sessions -->
+				<li>Topics: </li>
+				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Introduction</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Course setup</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Using Koding, GitHub and Slack</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Create webpages with HTML and CSS</li>
+				</ul><!-- end ngRepeat: topic in week.topics -->
+				<li>Tools: </li>
+				<!-- ngRepeat: tool in week.tools -->
+			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				<h3 class="ng-binding">Week 7</h3>
+				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
+					<p class="ng-binding">Lab: Student Presentations</p>
+					<ul>
+						<li class="ng-binding">Date: 10/12/2015</li>
+						<li>Reading: </li>
+						<!-- ngSwitchWhen: yes -->
+						<!-- ngSwitchWhen: no --><div ng-switch-when="no" class="ng-scope">
+							<li>No reading material</li>
+						</div>
+						<!-- ngSwitchDefault:  -->
+					</ul>
+				</div><!-- end ngRepeat: session in week.sessions -->
+				<li>Topics: </li>
+				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Interpretation of data vs. interpretation of objects</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Digital Hermeneutics</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Project presentations</li>
+				</ul><!-- end ngRepeat: topic in week.topics -->
+				<li>Tools: </li>
+				<!-- ngRepeat: tool in week.tools -->
+			</div><!-- end ngRepeat: week in weeks -->
+		</div>
+		<div class="section" id="overview-reading">
+			<h2 id="more-reading-material">More reading material</h2>
+			<p>Technical</p>
+			<ul>
+				<li>Huge list of tutorials on all kinds of DH tools and topics:</li>
+				<ul>
+					<li><a href="http://dhresourcesforprojectbuilding.pbworks.com/w/page/69244314/Tutorials%20for%20DH%20Tools%20and%20Methods">Tutorials for DH Tools and Methods</a></li>
+				</ul>
+				<li>Command Line Tutorials and books
+				<ul>
+					<li><a href="http://www.drbunsen.org/explorations-in-unix/">Explorations in Unix</a></li>
+					<li><a href="http://blog.comsysto.com/2013/04/25/data-analysis-with-the-unix-shell/">Data Analysis in the Unix Shell</a></li>
+					<li><a href="http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html">Seven Command Line Tools for Data Science</a></li>
+					<li><a href="http://gibrown.wordpress.com/2013/01/26/unix-bi-grams-tri-grams-and-topic-modeling/">Unix Bi-grams, Tri-grams and Topic Modelling</a></li>
+					<li><a href="http://www.gregreda.com/2013/07/15/unix-commands-for-data-science/">Unix Commands for Data Science</a></li>
+					<li><a href="http://shop.oreilly.com/product/0636920032823.do">Data Science at the Command Line</a></li>
+				</ul>
+				</li>
+				<li>Topic Modelling
+				<ul>
+					<li>Riddell - <a href="https://ariddell.org/simple-topic-model.html">A Simple Topic Model</a></li>
+				</ul>
+				</li>
+				<li>Linked Data
+				<ul>
+					<li>Bizer, Heath &amp; Berners-Lee - <a href="http://tomheath.com/papers/bizer-heath-berners-lee-ijswis-linked-data.pdf">Linked Data</a></li>
+					<li>Heath &amp; Bizer - <a href="http://linkeddatabook.com/editions/1.0/">Linked Data: Evolving the Web into a Global Data Space</a></li>
+				</ul>
+				</li>
+				<li>APIs
+				<ul>
+					<li><a href="http://mith.umd.edu/apiworkshop/further-resources/">MITH API Workshop</a></li>
+				</ul>
+				</li>
+				<li>Algorithms
+				<ul>
+					<li>Jeremy Kubica - <a href="http://computationaltales.blogspot.nl/">Computational Fairy Tales</a></li>
+					<li>Miller, Ranum - <a href="http://interactivepython.org/runestone/static/pythonds/index.html">Problem Solving with Algorithms and Data Structures</a></li>
+				</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+
+
+		</div>
+
+	</div>
+
+
+
+</body></html>

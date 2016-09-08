@@ -1,0 +1,917 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Object to Data - Lecture 2</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  background-color: #f7f7f7;
+  font-size: 100%;
+}
+
+#wrapper {
+  width: 850px;
+  height: 600px;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+}
+
+.slide {
+  width: auto;
+  height: 540px;
+  padding: 30px;
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.controls .arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.controls .prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.controls .next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.controls .prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.controls .next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+.slide h1 {
+  font-size: 200%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 100px 0 0;
+}
+
+.slide h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+.slide h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+.slide ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.slide .author h1.name {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.slide .author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.1s ease-out;
+  -moz-transition: width 0.1s ease-out;
+  -o-transition: width 0.1s ease-out;
+  transition: width 0.1s ease-out;
+}
+
+@media (max-width: 850px) {
+  #wrapper {
+    width: auto;
+  }
+
+  body {
+    font-size: 70%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .slide h1 {
+    margin-top: 120px;
+  }
+
+  .controls .prev, .controls .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .controls .next, .controls .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  #wrapper {
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  .slide {
+    padding: 10px;
+    height: 340px;
+  }
+
+  .slide h1 {
+    margin-top: 50px;
+  }
+
+  .slide ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  #wrapper {
+    overflow: visible;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .slide {
+    border: 1px solid #222;
+    margin-bottom: 40px;
+    height: 3.5in;
+  }
+
+  .slide:nth-child(odd) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+code, pre {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: auto;
+  padding: 6px 10px;
+}
+
+code {
+  padding: 0 5px;
+}
+
+pre>code {
+  margin: 0; padding: 0;
+  border: none;
+  background: transparent;
+}
+
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+  color: #333;
+  font-weight: bold
+}
+
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+  color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14
+}
+
+pre .title,
+pre .id {
+  color: #900;
+  font-weight: bold
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+  font-weight: normal
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+  color: #008080
+}
+
+pre .regexp {
+  color: #009926
+}
+
+pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+  color: #990073
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+  color: #0086b3
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre .deletion {
+  background: #fdd
+}
+
+pre .addition {
+  background: #dfd
+}
+
+pre .diff .change {
+  background: #0086b3
+}
+
+pre .chunk {
+  color: #aaa
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+<div id="wrapper">
+    <section class="slide"><h1 id="from-object-to-data">From Object to Data</h1>
+<h2 id="marijn-koolen-jan-hein-hoogstad">Robin Boast, Alan Berg</h2>
+<h2 id="digital-humanities-minor-2015-2016">Information Culture, Digital Humanities Minor 2016/2017</h2>
+<h2 id="week-2-07-09-2015">Week 2 - 12/09/2015</h2>
+</section>
+    <section class="slide"><h3 id="today">Today</h3>
+<ul>
+<li>Part 1:<ul>
+<li>Fry&#39;s Seven Steps</li>
+<li>Primitives</li>
+<li>Source Criticism</li>
+</ul>
+</li>
+<li>Part 2:<ul>
+<li>Acquiring Data</li>
+<li>Data Structures</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="question">Question</h3>
+<ul>
+<li>Question from Honours student at DH course:<ul>
+<li>Did painters paint outdoors more after invention of paint tubes?</li>
+</ul>
+</li>
+<li>How would you go about answering this?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="what-is-the-question">What Is The Question</h3>
+<ul>
+<li>Ben Fry:<ul>
+<li>&quot;All data problems begin with a question and end with a narrative construct that provides a clear answer.&quot;</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="what-is-the-question">What Is The Question</h3>
+<ul>
+<li>Ben Fry:<ul>
+<li>&quot;All data problems begin with a question and end with a narrative construct that provides a clear answer.&quot;</li>
+<li>&quot;One of the most important (and least technical) skills in understanding data is asking good questions.&quot;</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="from-question-to-narrative">From Question to Narrative</h3>
+<ul>
+<li>This is the hard part<ul>
+<li>think of necessary steps</li>
+<li>translate thinking steps in performative steps</li>
+<li>critically analyse performative steps</li>
+<li>interpret and reflect on results</li>
+</ul>
+</li>
+<li>This is a non-linear process! <ul>
+<li>Also: empirical science 101</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="algorithmic-thinking">Algorithmic Thinking</h3>
+<ul>
+<li>Seven steps according to Fry<ul>
+<li>Step 0: <strong>question</strong></li>
+<li>Step 1: <strong>acquiring data</strong></li>
+<li>Steps 2-4: parsing, filtering, mining </li>
+<li>Steps 5-7: representing, refining, interacting</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="questions-primitives-narratives">Questions, Primitives, Narratives</h3>
+<ul>
+<li>Question from Honours student at DH course:<ul>
+<li>Did painters paint outdoors more after invention of paint tubes?</li>
+</ul>
+</li>
+<li>Use primitives to work towards an answer<ul>
+<li>small building blocks lead to <em>impressive things</em></li>
+<li>building blocks shape narrative</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="primitives">Primitives</h3>
+<ul>
+<li><strong>Unsworth</strong>: selecting, sampling, representing, annotating, comparing, discovering, referring, illustrating</li>
+<li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="primitives">Primitives</h3>
+<ul>
+<li><strong>Unsworth</strong>: selecting, sampling, representing, annotating, comparing, discovering, referring, illustrating</li>
+<li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
+<li><strong>Fry</strong>: acquiring, parsing, filtering, mining, representing, refining, interacting</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="primitives">Primitives</h3>
+<ul>
+<li><strong>Unsworth</strong>: selecting, sampling, representing, annotating, comparing, discovering, referring, illustrating</li>
+<li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
+<li><strong>Fry</strong>: acquiring, parsing, filtering, mining, representing, refining, interacting</li>
+<li><strong>Unix</strong>: curl, wget, awk, sed, grep, find, sort, uniq</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="source-criticism">Source Criticism</h3>
+<ul>
+<li>Source: <ul>
+<li>materials you study</li>
+<li>or provider of materials</li>
+<li>both need to be scrutinised</li>
+</ul>
+</li>
+<li>Critically look at method of acquiring data<ul>
+<li>what did you get?</li>
+<li>what didn&#39;t you get and why? </li>
+<li>missing, not existing, wrong method, ...</li>
+<li>interesting example: <a href="http://orbis.stanford.edu/">Orbis</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="google-n-gram-viewer">Google N-gram Viewer</h3>
+<ul>
+<li>Google Books corpus reflects cultural history<ul>
+<li><a href="https://books.google.com/ngrams/graph?content=pizza%2Chamburger%2Chot+dog&amp;year_start=1800&amp;year_end=2000&amp;corpus=15&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Cpizza%3B%2Cc0%3B.t1%3B%2Chamburger%3B%2Cc0%3B.t1%3B%2Chot%20dog%3B%2Cc0">Ngram Viewer</a> to study word usage over time</li>
+<li>Why is N-gram viewer a good/bad source for such studies?</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="google-n-gram-viewer">Google N-gram Viewer</h3>
+<ul>
+<li>Google Books corpus reflects cultural history<ul>
+<li><a href="https://books.google.com/ngrams/graph?content=pizza%2Chamburger%2Chot+dog&amp;year_start=1800&amp;year_end=2000&amp;corpus=15&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Cpizza%3B%2Cc0%3B.t1%3B%2Chamburger%3B%2Cc0%3B.t1%3B%2Chot%20dog%3B%2Cc0">Ngram Viewer</a> to study word usage over time</li>
+<li>Why is N-gram viewer a good/bad source for such studies?</li>
+<li>Joanna Guldi studied <a href="https://books.google.com/ngrams/graph?content=lounging%2Cstrolling%2Clurching%2Cdodging%2Cwaddling%2Ctrudging&amp;year_start=1700&amp;year_end=2000&amp;corpus=0&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Clounging%3B%2Cc0%3B.t1%3B%2Cstrolling%3B%2Cc0%3B.t1%3B%2Clurching%3B%2Cc0%3B.t1%3B%2Cdodging%3B%2Cc0%3B.t1%3B%2Cwaddling%3B%2Cc0%3B.t1%3B%2Ctrudging%3B%2Cc0">variants of &#39;to walk&#39; in literature of 1700-1900</a> </li>
+<li><a href="http://corpus.byu.edu/coha/">COHA</a> offers more control</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="selecting-sampling">Selecting &amp; Sampling</h3>
+<ul>
+<li>Scholarly primitives<ul>
+<li>difference between selecting and sampling?</li>
+<li>related to another primitive: <em>representing</em></li>
+</ul>
+</li>
+<li>How to select/sample paintings for the following question:<ul>
+<li>Did painters paint outdoors more after invention of paint tubes?</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="selection-problem">Selection Problem</h3>
+<ul>
+<li><a href="http://ckcc.huygens.knaw.nl/epistolarium/#">ePistolarium</a><ul>
+<li>investigate circulation of knowledge in network of 17th scientiests</li>
+<li><a href="http://nodegoat.net/">Nodegoat</a>: software for dynamic network mapping</li>
+<li><a href="http://web.stanford.edu/group/toolingup/rplviz/">Mapping the Republic of Letters</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="part-2-acquiring-data">Part 2: Acquiring Data</h1>
+</section>
+    <section class="slide"><h3 id="getting-data">Getting Data</h3>
+<ul>
+<li>Many methods<ul>
+<li>download packaged data set</li>
+<li>modify/merge existing corpora/datasets</li>
+<li>create data (generators, algorithmic art)</li>
+<li>scrape web pages</li>
+<li>use APIs</li>
+<li>crowdsourcing</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="web-scraping">Web Scraping</h3>
+<ul>
+<li>Scraping<ul>
+<li>The &#39;old way&#39;, but...</li>
+<li>APIs often limited to metadata</li>
+<li>standard scraping tool: <a href="https://www.gnu.org/software/wget/">Wget</a></li>
+<li>mirror website: <ul>
+<li>wget -w 2 -m <a href="http://www.lyricsfreak.com">http://www.lyricsfreak.com</a></li>
+</ul>
+</li>
+<li>serious tool: <a href="https://webarchive.jira.com/wiki/display/Heritrix/Heritrix">Heritrix</a></li>
+<li><a href="http://scrapy.org/">Scrapy</a> (Python library)</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="scraping-etiquette">Scraping Etiquette</h3>
+<ul>
+<li>Good behaviour:<ul>
+<li>limit bandwidth and requests/second</li>
+<li>sites have own rules on what is acceptable</li>
+<li>f.i. look at robots.txt (<a href="http://www.lyricsfreak.com/robots.txt">http://www.lyricsfreak.com/robots.txt</a>)</li>
+<li>continued bad behaviour often results in blocked IP</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="apis">APIs</h3>
+<ul>
+<li>programmatic access (preferred by most sites)<ul>
+<li>data returned in structured form (JSON, XML)</li>
+<li>example from <a href="https://www.rijksmuseum.nl/api/nl/collection/sk-c-5?format=json&amp;key=TZ6co7v8">Rijksmuseum</a></li>
+<li>request: URL with query parameters</li>
+<li>format: api_url?param1=value1&amp;param2=value2</li>
+<li>example: <a href="http://api.nytimes.com/svc/search/v2/articlesearch.json?q=humanities&amp;api-key=6c208c379cac770e9c0900819ad9ad74:10:67186206"><a href="http://api.nytimes.com/svc/search/v2/articlesearch.json?q=humanities&amp;api-key=6c208c379cac770e9c0900819ad9ad74:10:67186206">http://api.nytimes.com/svc/search/v2/articlesearch.json?q=humanities&amp;api-key=6c208c379cac770e9c0900819ad9ad74:10:67186206</a></a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="application-programmers-interface">Application Programmers Interface</h3>
+<ul>
+<li>Broad range of sources:<ul>
+<li><a href="http://developer.nytimes.com/docs">NY Times</a> (newspaper archive 1850--2014)</li>
+<li><a href="http://developer.echonest.com/docs/v4/index.html">EchoNest</a> (music database)</li>
+<li><a href="http://www.loc.gov/standards/sru/">Koninklijke Bibliotheek</a> (historical collections)</li>
+<li><a href="http://developer.marvel.com/documentation/generalinfo">Marvel Comics</a> (comics, characters, stories)</li>
+<li><a href="http://rijksmuseum.github.io/">Rijksmuseum</a> (collection, events)</li>
+<li>Many, many more: Europeana, Facebook, Twitter, governments, ...</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="koninklijke-bibliotheek">Koninklijke Bibliotheek</h3>
+<ul>
+<li><a href="http://www.loc.gov/standards/sru/">SRU</a> (Search/Retrieve via URL)<ul>
+<li><a href="http://www.earlydutchbooksonline.nl/en/edbo">Early Dutch Books Online</a></li>
+<li>KB SRU <a href="http://jsru.kb.nl/sru/sru?version=1.2&amp;maximumRecords=50&amp;operation=searchRetrieve&amp;startRecord=1&amp;recordSchema=ddd&amp;x-collection=DPO_boekdeel&amp;query=%28date%20within%20%221760%201791%22%29">returns XML</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="command-line-interface">Command Line Interface</h3>
+<ul>
+<li>The terminal is an API<ul>
+<li>interface to applications and data on your computer</li>
+<li>Commands provide programmatic interface to Unix tools</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="crowdsourcing">Crowdsourcing</h3>
+<ul>
+<li>let crowd create data around objects<ul>
+<li>gather annotations, links</li>
+<li>gather images: <a href="http://www.govangogh.org">Go Van Gogh</a></li>
+<li>General platforms: <a href="http://www.crowdflower.com/">Crowdflower</a>, <a href="https://www.mturk.com/mturk/welcome">Mechanical Turk</a></li>
+<li>Research-oriented: <a href="https://www.zooniverse.org/#humanities">Zooniverse</a>, <a href="https://velehanden.nl/">Vele Handen</a></li>
+<li>Source crticism?</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="storing-data">Storing Data</h3>
+<ul>
+<li>JSON:<ul>
+<li>online or offline database</li>
+<li>online DBs: <a href="http://redis.io/">Redis</a>, <a href="https://www.firebase.com/">Firebase</a></li>
+<li>or in files (use <a href="http://stedolan.github.io/jq/">jq</a> to parse from command line)</li>
+</ul>
+</li>
+<li>CSV</li>
+<li>XML/HTML, TXT</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="data-structures">Data Structures</h3>
+<ul>
+<li>Tree-based formats<ul>
+<li><a href="http://msdn.microsoft.com/en-us/library/hf9hbf87%28v=vs.110%29.aspx">XML</a>, <a href="http://www.clearboth.org/wp-content/uploads/2011/06/A-visual-DOM-tree-representation-of-an-HTML-document.gif">HTML</a>, <a href="https://www.rijksmuseum.nl/api/nl/collection/sk-c-5?format=json&amp;key=TZ6co7v8">JSON</a>, Books, films?</li>
+</ul>
+</li>
+<li>Matrix/table format<ul>
+<li>CSV/TSV, spreadsheets</li>
+</ul>
+</li>
+<li>Sequential/linear data formats<ul>
+<li>text, audio video, data streams (MPEG, ...)</li>
+</ul>
+</li>
+<li><em>Rhizomatic</em><ul>
+<li>networks</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="navigating-trees">Navigating Trees</h3>
+<ul>
+<li>Folder structure on hard drive is a tree<ul>
+<li><em>cd</em> command: jump from branch to branch</li>
+<li>working directory versus data directory</li>
+</ul>
+</li>
+<li>URLs on the web are paths in trees<ul>
+<li><a href="http://www.nos.nl/economie/">http://www.nos.nl/economie/</a></li>
+<li><a href="http://www.nos.nl/sport/">http://www.nos.nl/sport/</a></li>
+<li><a href="http://www.nos.nl/sport/voetbal">http://www.nos.nl/sport/voetbal</a></li>
+</ul>
+</li>
+<li>Hyperlinks allow jumping, connect branches in same or different tree</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="paths-in-json-xml-html">Paths in JSON/XML/HTML</h3>
+<ul>
+<li>How do you refer to elements in JSON or XML data?<ul>
+<li>there is always a <em>root</em> element</li>
+<li>elements inside are descendents/children</li>
+<li>parent/child relationships form tree with branches and leaves</li>
+<li>JSON: <a href="https://www.rijksmuseum.nl/api/nl/collection/sk-c-5?format=json&amp;key=TZ6co7v8">artObject.makers[0].name</a></li>
+<li>XML: <a href="http://msdn.microsoft.com/en-us/library/hf9hbf87%28v=vs.110%29.aspx">/books/book/pubdate</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="csv-tsv">CSV/TSV</h3>
+<ul>
+<li>Rows and Columns<ul>
+<li>lines with field separators for Unix command line tools</li>
+<li>grep works on whole line</li>
+<li>awk can work in individal columns</li>
+<li>see last week’s <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab1_exercise3">tutorial on analysing film reviews</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="next">Next</h3>
+<ul>
+<li>Week 2<ul>
+<li>09/09 No lab, <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab2_exercise2">tutorial online: scripting, iteration</a></li>
+<li>If installing doesn’t work: <a href="https://koding.com">Koding.com</a></li>
+<li>Additional materials: <a href="http://programminghistorian.org/lessons/">Programming Historian</a>, <a href="http://williamjturkel.net/how-to/">Digital research with Unix command line tools</a> by William J, Turkel</li>
+</ul>
+</li>
+<li>Week 3<ul>
+<li>14/09 Parsing objects into sebments</li>
+<li>16/09 Lab: R, text analysis and mapping</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Takes the last slide and places it at the front.
+ */
+function goBack() {
+  var wrapper = document.querySelector('#wrapper');
+  var lastSlide = wrapper.lastChild;
+  while (lastSlide != null && lastSlide.nodeType !== 1) {
+    lastSlide = lastSlide.previousSibling;
+  }
+
+  wrapper.removeChild(lastSlide);
+  wrapper.insertBefore(lastSlide, wrapper.firstChild);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Takes the first slide and places it at the end.
+ */
+function goForward() {
+  var wrapper = document.querySelector('#wrapper');
+  var firstSlide = wrapper.firstChild;
+  while (firstSlide != null && firstSlide.nodeType !== 1) {
+    firstSlide = firstSlide.nextSibling;
+  }
+
+  wrapper.removeChild(firstSlide);
+  wrapper.appendChild(firstSlide);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  window.history.replaceState({} , null, '#' + currentPage());
+}
+
+/**
+ * Returns the current page number of the presentation.
+ */
+function currentPage() {
+  return document.querySelector('#wrapper .slide').dataset.page;
+}
+
+/**
+ * Returns a NodeList of each .slide element.
+ */
+function allSlides() {
+  return document.querySelectorAll('#wrapper .slide');
+}
+
+/**
+ * Give each slide a "page" data attribute.
+ */
+function setPageNumbers() {
+  var wrapper = document.querySelector('#wrapper');
+  var pages   = wrapper.querySelectorAll('section');
+  var page;
+
+  for (var i = 0; i < pages.length; ++i) {
+    page = pages[i];
+    page.dataset.page = i;
+  }
+}
+
+/**
+ * Set the current progress indicator.
+ */
+function setCurrentProgress() {
+  var wrapper = document.querySelector('#wrapper');
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var pagesNumber    = wrapper.querySelectorAll('section').length;
+    var currentNumber  = parseInt(currentPage());
+    var currentPercent = pagesNumber === 1 ? 100 : 100 * currentNumber / (pagesNumber - 1);
+    progressBar.style.width = currentPercent.toString() + '%';
+  }
+}
+
+/**
+ * Go to the specified page of content.
+ */
+function goToPage(page) {
+  // Try to find the target slide.
+  var targetSlide = document.querySelector('#wrapper .slide[data-page="' + page + '"]');
+
+  // If it actually exists, go forward until we find it.
+  if (targetSlide) {
+    var numSlides = allSlides().length;
+
+    for (var i = 0; currentPage() != page && i < numSlides; i++) {
+      goForward();
+    }
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var currentPageLinks = document.querySelector('.slide').querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    allLinks[i].removeAttribute('tabindex');
+  }
+}
+
+window.onload = function () {
+
+  // Give each slide a "page" data attribute.
+  setPageNumbers();
+
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) goToPage(page);
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, enter, PgDn - FORWARD
+    if (kc == 37 || kc == 40 || kc == 8 || kc == 72 || kc == 74 || kc == 33) {
+      goBack();
+    } else if (kc == 38 || kc == 39 || kc == 13 || kc == 32 || kc == 75 || kc == 76 || kc == 34) {
+      goForward();
+    }
+  }
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      goForward();
+    }
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      goBack();
+    }
+  }
+
+}
+
+
+  </script>
+</body>
+</html>

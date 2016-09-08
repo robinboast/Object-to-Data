@@ -1,0 +1,847 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Object to Data - Lecture 3</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  background-color: #f7f7f7;
+  font-size: 100%;
+}
+
+#wrapper {
+  width: 850px;
+  height: 600px;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+}
+
+.slide {
+  width: auto;
+  height: 540px;
+  padding: 30px;
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.controls .arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.controls .prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.controls .next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.controls .prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.controls .next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+.slide h1 {
+  font-size: 200%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 100px 0 0;
+}
+
+.slide h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+.slide h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+.slide ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.slide .author h1.name {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.slide .author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.1s ease-out;
+  -moz-transition: width 0.1s ease-out;
+  -o-transition: width 0.1s ease-out;
+  transition: width 0.1s ease-out;
+}
+
+@media (max-width: 850px) {
+  #wrapper {
+    width: auto;
+  }
+
+  body {
+    font-size: 70%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .slide h1 {
+    margin-top: 120px;
+  }
+
+  .controls .prev, .controls .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .controls .next, .controls .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  #wrapper {
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  .slide {
+    padding: 10px;
+    height: 340px;
+  }
+
+  .slide h1 {
+    margin-top: 50px;
+  }
+
+  .slide ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  #wrapper {
+    overflow: visible;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .slide {
+    border: 1px solid #222;
+    margin-bottom: 40px;
+    height: 3.5in;
+  }
+
+  .slide:nth-child(odd) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+code, pre {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: auto;
+  padding: 6px 10px;
+}
+
+code {
+  padding: 0 5px;
+}
+
+pre>code {
+  margin: 0; padding: 0;
+  border: none;
+  background: transparent;
+}
+
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+  color: #333;
+  font-weight: bold
+}
+
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+  color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14
+}
+
+pre .title,
+pre .id {
+  color: #900;
+  font-weight: bold
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+  font-weight: normal
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+  color: #008080
+}
+
+pre .regexp {
+  color: #009926
+}
+
+pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+  color: #990073
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+  color: #0086b3
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre .deletion {
+  background: #fdd
+}
+
+pre .addition {
+  background: #dfd
+}
+
+pre .diff .change {
+  background: #0086b3
+}
+
+pre .chunk {
+  color: #aaa
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+<div id="wrapper">
+    <section class="slide"><h1 id="from-object-to-data">From Object to Data</h1>
+<h2 id="parsing-data-and-evaluation">Parsing Data and Evaluation</h2>
+<h2 id="marijn-koolen-jan-hein-hoogstad">Robin Boast, Alan Berg</h2>
+<h2 id="digital-humanities-minor-2015-2016">Information Culture, Digital Humanities Minor 2016/2017</h2>
+<h2 id="week-3-14-09-2015">Week 3 - 19/09/2015</h2>
+</section>
+    <section class="slide"><h3 id="programme">Programme</h3>
+<ul>
+<li>Part 1: Lab Tutorials</li>
+<li>Part 2: Parsing</li>
+<li>Part 3: Ramsey and Patterns</li>
+<li>Part 4: Regular Expressions</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="part-1-lab-tutorials">Part 1. Lab Tutorials</h1>
+</section>
+    <section class="slide"><h3 id="tutorials">Tutorials</h3>
+<ul>
+<li>What did people find in the Lost In Translation reviews?</li>
+<li>Problems in the API tutorial?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="tutorials">Tutorials</h3>
+<ul>
+<li>What did people find in the Lost In Translation reviews?</li>
+<li>Problems in the API tutorial?</li>
+<li>This week: R tutorials<ul>
+<li>General R tutorial: <a href="https://www.datacamp.com/">DataCamp</a></li>
+<li>Geocoding: <a href="https://rpubs.com/nickbearman/r-google-map-making">R and Google Map Making</a></li>
+<li>Text Analysis: <a href="http://www.chlt.org/StatisticalMethods/">Statistical Methods for Studying Literature Using R</a></li>
+<li>Advanced: <a href="https://sites.google.com/site/computationalstylistics/home">Stylometry in R</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="proposals">Proposals</h3>
+<ul>
+<li>Deadline next Monday</li>
+<li>Plan and draft proposal early<ul>
+<li>ask questions!</li>
+<li>test on peers!</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="part-2-parsing">Part 2. Parsing</h1>
+</section>
+    <section class="slide"><h3 id="parsing">Parsing</h3>
+<ul>
+<li>Segmenting data into meaningful units<ul>
+<li><a href="http://cdn.londonandpartners.com/images/explorer-map/tubemap-2012-12.png">removing irrelevant data</a></li>
+<li>many decisions (and interpretations)</li>
+<li>consequences? justifications?</li>
+<li>meaningful unit isn’t stable unit, depends on interpretation</li>
+</ul>
+</li>
+<li>Which Unix tools perform parsing?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="parsing-and-hermeneutics">Parsing and Hermeneutics</h3>
+<ul>
+<li>Does parsing happen in traditional humanities research?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="parsing-and-hermeneutics">Parsing and Hermeneutics</h3>
+<ul>
+<li>Does parsing happen in traditional humanities research?<ul>
+<li>focus in specific aspects</li>
+<li>choose specific perspective</li>
+<li>a form of parsing and filtering?</li>
+</ul>
+</li>
+<li>Digital approach explicates technique</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="representation">Representation</h3>
+<ul>
+<li>How do you represent objects?<ul>
+<li>text by words, phrases, concepts, themes, motifs, ...</li>
+<li>film by scenes, shots, frames, characters</li>
+<li>music by rhythm, beat, pitch, phrases</li>
+<li>painting by regions, figures, colours</li>
+<li>event by subevents, time frames, locations, agents, patients, activities</li>
+</ul>
+</li>
+<li>all have &#39;syntactical&#39; structure?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="parsing-structured-data">Parsing Structured Data</h3>
+<ul>
+<li>NY Times API data is ‘structured’<ul>
+<li>data with fields and values</li>
+<li>meaning added with field names</li>
+<li>easy for machines to read</li>
+</ul>
+</li>
+<li>Tools allow easy manipulation</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="parsing-text-data">Parsing Text Data</h3>
+<ul>
+<li>Text data is messy<ul>
+<li>&#39;unstructured&#39;</li>
+<li>difficult for machines to read</li>
+<li>hard to parse (=segment into meaningful units)</li>
+</ul>
+</li>
+<li>But there are many great tools:<ul>
+<li><a href="http://nlp.stanford.edu/software/lex-parser.shtml">Stanford parser</a>, <a href="http://www.nltk.org/">Python NLTK</a>, <a href="http://tm.r-forge.r-project.org/">R Text Mining</a></li>
+<li>API: <a href="http://www.opener-project.eu/">OpeNER</a></li>
+</ul>
+</li>
+<li>With <a href="http://dh2011abstracts.stanford.edu/xtf/view?docId=tei/ab-168.xml;query=;brand=default">surprising applications</a></li>
+<li>More on Wednesday</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="evaluation">Evaluation</h3>
+<ul>
+<li>Parsing allows qualitative and quantitative analysis<ul>
+<li>does accuracy of parsing matter?</li>
+<li>how do we establish accuracy?</li>
+</ul>
+</li>
+<li>E.g. word frequency counts and usage over time<ul>
+<li>what margin of errors is acceptable?</li>
+<li>depends on what you’re using data for</li>
+<li>systematic errors introduce bias</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="precision-and-recall">Precision and Recall</h3>
+<ul>
+<li>Quantitative indicators of accuracy<ul>
+<li><strong>Precision</strong>: what fraction of parsed segments is correct unit?</li>
+<li><strong>Recall</strong>: what fraction of units in the data is parsed correctly?</li>
+</ul>
+</li>
+<li>Tool criticism:<ul>
+<li>does output of alternative versions of tool results in same interpretation of output?</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="beyond-text">Beyond Text</h3>
+<ul>
+<li>Parse music as pitch intervals between subsequent notes<ul>
+<li>can classify genres according to interval distribution</li>
+<li>project by Aline Honingh and Rens Bod</li>
+</ul>
+</li>
+<li>Concept Detection in Video<ul>
+<li><a href="https://ivi.fnwi.uva.nl/isis/mediamill/index.php">Mediamill</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="part-3-ramsey-and-patterns">Part 3. Ramsey and Patterns</h1>
+</section>
+    <section class="slide"><h3 id="ramsay-s-stagegraph">Ramsay’s StageGraph</h3>
+<ul>
+<li>Tool built for specific purpose<ul>
+<li>explore scenes in plays as networks</li>
+<li>allow interaction, zoom, refine, filter (!)</li>
+<li>requires choices</li>
+<li>requires transparency of choices and assumptions</li>
+<li>not a neutral tool (do they exist?)</li>
+</ul>
+</li>
+<li><a href="http://gephi.github.io/">Gephi</a> is generic network visualization tool<ul>
+<li><a href="http://humanities.uva.nl/~mkoolen1/materials/Historical_Networks_2015/actors.50s_70s.html">American Actor networks in 50s and 70s</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="fishing-expeditions">Fishing Expeditions</h3>
+<ul>
+<li>Scientific method:<ul>
+<li><strong>Potter</strong>: “... go to the data only when one is testing a clearly stated hypothesis”</li>
+</ul>
+</li>
+<li>Actual scientific practice<ul>
+<li><strong>Ramsay</strong>: “I tried to think of things that naturally form themselves into graph structures.”</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="dubious-methodology">Dubious Methodology</h3>
+<ul>
+<li>Ramsay: fishing dubious for science, not for humanities<ul>
+<li><em>serendipity is the process</em></li>
+<li>fishing is actually exploration?</li>
+<li>why dubious for science?</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="algorithms">Algorithms</h3>
+<ul>
+<li><strong>Hockey</strong>: provide concrete evidence for/against hypotheses/interpretations</li>
+<li><strong>Ramsay</strong>: provide perspective for making hypotheses/interpretations<ul>
+<li>interpretation occurs in between most/all computational steps</li>
+<li>concrete evidence rarely proves anything</li>
+<li>proving is rarely the goal in humanities</li>
+<li>operatives: <em>challenge</em>, <em>modify</em>, <em>contend with</em></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="data-mining">Data mining</h3>
+<ul>
+<li>searching for suggestive patterns?<ul>
+<li>exploration, discovery</li>
+<li>inexact science</li>
+<li>topic modelling (week 5)</li>
+</ul>
+</li>
+<li><a href="http://watson-pi-demo.mybluemix.net/">Author profiling</a></li>
+</ul>
+</section>
+    <section class="slide"><h3 id="connecting-the-levels">Connecting the Levels</h3>
+<ul>
+<li>‘How do low-level matters of dramaturgy relate to high-level matters of genre?’</li>
+<li>How do low-level structural features relate to high-level categorisations?<ul>
+<li>somewhere we make the jump from <em>something given</em> to <em>something understood</em></li>
+<li>from <em>data</em> to <em>interpretation</em></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="part-4-regular-expressions">Part 4. Regular Expressions</h1>
+</section>
+    <section class="slide"><h3 id="regular-expressions">Regular Expressions</h3>
+<ul>
+<li>Pattern matching alphabet<ul>
+<li>search, filter, replace</li>
+<li>tr/[A-Z]/[a-z]/</li>
+<li>tr -sc ‘[A-Z][a-z]’ ‘[\012*]’</li>
+<li>Unix tool <em>grep</em></li>
+</ul>
+</li>
+<li>First developed in 1950s<ul>
+<li>used by many data manipulation tools</li>
+</ul>
+</li>
+<li>Many tutorials, including: <a href="http://regex.learncodethehardway.org/book/">Learn Regex the hard way</a></li>
+</ul>
+</section>
+    <section class="slide"><h3 id="short-regex-tutorial">Short Regex Tutorial</h3>
+<ul>
+<li>To convince you that this is useful<ul>
+<li>a short <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab3_grep_commands">Regular Expressions tutorial</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="wrap-up">Wrap Up</h3>
+<ul>
+<li>Parsing is the process of segmenting data in meaningful units<ul>
+<li>many tools for text</li>
+<li>some for music, speech, video, images</li>
+</ul>
+</li>
+<li>Quality of parsing determines upper-bound quality of research</li>
+<li>Regular Expressions used worldwide for data analysis</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="next">Next</h3>
+<ul>
+<li>Wednesday 16/09/2014:<ul>
+<li>R tutorials, mapping, geocoding, text analysis</li>
+</ul>
+</li>
+<li>Monday 21/09/2014:<ul>
+<li>Introducing DH projects: Charles van den Heuvel</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Takes the last slide and places it at the front.
+ */
+function goBack() {
+  var wrapper = document.querySelector('#wrapper');
+  var lastSlide = wrapper.lastChild;
+  while (lastSlide != null && lastSlide.nodeType !== 1) {
+    lastSlide = lastSlide.previousSibling;
+  }
+
+  wrapper.removeChild(lastSlide);
+  wrapper.insertBefore(lastSlide, wrapper.firstChild);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Takes the first slide and places it at the end.
+ */
+function goForward() {
+  var wrapper = document.querySelector('#wrapper');
+  var firstSlide = wrapper.firstChild;
+  while (firstSlide != null && firstSlide.nodeType !== 1) {
+    firstSlide = firstSlide.nextSibling;
+  }
+
+  wrapper.removeChild(firstSlide);
+  wrapper.appendChild(firstSlide);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  window.history.replaceState({} , null, '#' + currentPage());
+}
+
+/**
+ * Returns the current page number of the presentation.
+ */
+function currentPage() {
+  return document.querySelector('#wrapper .slide').dataset.page;
+}
+
+/**
+ * Returns a NodeList of each .slide element.
+ */
+function allSlides() {
+  return document.querySelectorAll('#wrapper .slide');
+}
+
+/**
+ * Give each slide a "page" data attribute.
+ */
+function setPageNumbers() {
+  var wrapper = document.querySelector('#wrapper');
+  var pages   = wrapper.querySelectorAll('section');
+  var page;
+
+  for (var i = 0; i < pages.length; ++i) {
+    page = pages[i];
+    page.dataset.page = i;
+  }
+}
+
+/**
+ * Set the current progress indicator.
+ */
+function setCurrentProgress() {
+  var wrapper = document.querySelector('#wrapper');
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var pagesNumber    = wrapper.querySelectorAll('section').length;
+    var currentNumber  = parseInt(currentPage());
+    var currentPercent = pagesNumber === 1 ? 100 : 100 * currentNumber / (pagesNumber - 1);
+    progressBar.style.width = currentPercent.toString() + '%';
+  }
+}
+
+/**
+ * Go to the specified page of content.
+ */
+function goToPage(page) {
+  // Try to find the target slide.
+  var targetSlide = document.querySelector('#wrapper .slide[data-page="' + page + '"]');
+
+  // If it actually exists, go forward until we find it.
+  if (targetSlide) {
+    var numSlides = allSlides().length;
+
+    for (var i = 0; currentPage() != page && i < numSlides; i++) {
+      goForward();
+    }
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var currentPageLinks = document.querySelector('.slide').querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    allLinks[i].removeAttribute('tabindex');
+  }
+}
+
+window.onload = function () {
+
+  // Give each slide a "page" data attribute.
+  setPageNumbers();
+
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) goToPage(page);
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, enter, PgDn - FORWARD
+    if (kc == 37 || kc == 40 || kc == 8 || kc == 72 || kc == 74 || kc == 33) {
+      goBack();
+    } else if (kc == 38 || kc == 39 || kc == 13 || kc == 32 || kc == 75 || kc == 76 || kc == 34) {
+      goForward();
+    }
+  }
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      goForward();
+    }
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      goBack();
+    }
+  }
+
+}
+
+
+  </script>
+</body>
+</html>

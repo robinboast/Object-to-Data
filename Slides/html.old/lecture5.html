@@ -1,0 +1,1075 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Object to Data - Lecture 5</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  background-color: #f7f7f7;
+  font-size: 100%;
+}
+
+#wrapper {
+  width: 850px;
+  height: 600px;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+}
+
+.slide {
+  width: auto;
+  height: 540px;
+  padding: 30px;
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.controls .arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.controls .prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.controls .next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.controls .prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.controls .next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+.slide h1 {
+  font-size: 200%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 100px 0 0;
+}
+
+.slide h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+.slide h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+.slide ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.slide .author h1.name {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.slide .author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.1s ease-out;
+  -moz-transition: width 0.1s ease-out;
+  -o-transition: width 0.1s ease-out;
+  transition: width 0.1s ease-out;
+}
+
+@media (max-width: 850px) {
+  #wrapper {
+    width: auto;
+  }
+
+  body {
+    font-size: 70%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .slide h1 {
+    margin-top: 120px;
+  }
+
+  .controls .prev, .controls .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .controls .next, .controls .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  #wrapper {
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  .slide {
+    padding: 10px;
+    height: 340px;
+  }
+
+  .slide h1 {
+    margin-top: 50px;
+  }
+
+  .slide ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  #wrapper {
+    overflow: visible;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .slide {
+    border: 1px solid #222;
+    margin-bottom: 40px;
+    height: 3.5in;
+  }
+
+  .slide:nth-child(odd) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+code, pre {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: auto;
+  padding: 6px 10px;
+}
+
+code {
+  padding: 0 5px;
+}
+
+pre>code {
+  margin: 0; padding: 0;
+  border: none;
+  background: transparent;
+}
+
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+  color: #333;
+  font-weight: bold
+}
+
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+  color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14
+}
+
+pre .title,
+pre .id {
+  color: #900;
+  font-weight: bold
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+  font-weight: normal
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+  color: #008080
+}
+
+pre .regexp {
+  color: #009926
+}
+
+pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+  color: #990073
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+  color: #0086b3
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre .deletion {
+  background: #fdd
+}
+
+pre .addition {
+  background: #dfd
+}
+
+pre .diff .change {
+  background: #0086b3
+}
+
+pre .chunk {
+  color: #aaa
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+<div id="wrapper">
+    <section class="slide"><h1 id="from-object-to-data">From Object to Data</h1>
+<h2 id="topic-modelling">Topic Modelling</h2>
+<h2 id="marijn-koolen">Robin Boast, Alan Berg</h2>
+<h2 id="digital-humanities-minor-2015-2016">Information Culture, Digital Humanities Minor 2016/2017</h2>
+<h2 id="week-5-28-09-2015">Week 5 - 03/10/2015</h2>
+</section>
+    <section class="slide"><h3 id="programme">Programme</h3>
+<ol>
+<li>What are topic models?</li>
+<li>Why use topic models?</li>
+<li>How do topic models work?</li>
+</ol>
+</section>
+    <section class="slide"><h1 id="part-1-what-are-topic-models-">Part 1: What Are Topic Models?</h1>
+<h2 id="a-general-overview">a general overview</h2>
+</section>
+    <section class="slide"><h3 id="topic-models">Topic Models</h3>
+<ul>
+<li>Representing topics in collection of documents<ul>
+<li>Use statistics to find topics represented by groups of words</li>
+<li>Document is a mix of topics</li>
+<li>Topic is a mix of words</li>
+</ul>
+</li>
+<li>Documents and words can be directly observed<ul>
+<li>topics are latent</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="illustration-1">Illustration 1</h3>
+<p><img src="http://www.4four.us/wordpress/wp-content/uploads/2010/10/result.png" alt="image not found"></p>
+<ul>
+<li>source: <a href="http://www.4four.us/wordpress/wp-content/uploads/2010/10/result.png"><a href="http://www.4four.us/wordpress/wp-content/uploads/2010/10/result.png">http://www.4four.us/wordpress/wp-content/uploads/2010/10/result.png</a></a></li>
+</ul>
+</section>
+    <section class="slide"><h3 id="illustration-2">Illustration 2</h3>
+<p><img src="http://dig-eh.org/files/2014/07/circ_disciplines-700x386.png" alt="image not found"></p>
+<ul>
+<li>source: <a href="http://dig-eh.org/files/2014/07/circ_disciplines-700x386.png"><a href="http://dig-eh.org/files/2014/07/circ_disciplines-700x386.png">http://dig-eh.org/files/2014/07/circ_disciplines-700x386.png</a></a></li>
+</ul>
+</section>
+    <section class="slide"><h3 id="assumptions">Assumptions</h3>
+<ul>
+<li>Two documents with the same topics will have overlap in words<ul>
+<li>not literally true, but probabilistically true</li>
+</ul>
+</li>
+<li>Single document can consist of many topics<ul>
+<li>but to different degrees</li>
+</ul>
+</li>
+<li>Three elements: words, topics, documents<ul>
+<li>topics are formed by a selection of words</li>
+<li>documents are formed by a selection of topics</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="statistical-modeling">Statistical Modeling</h3>
+<ul>
+<li>Given a collection of documents (text or otherwise), the modeling process does two things:<ol>
+<li>create word probability distribution for topics</li>
+<li>create topic probability distribution for documents</li>
+</ol>
+</li>
+<li>Both are purely based on frequency and co-occurrence of words</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="topic-modelling-software">Topic Modelling Software</h3>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/lda/index.html">R LDA package</a> and <a href="https://github.com/cpsievert/LDAvis">LDAvis</a> for visual exploration</li>
+<li><a href="http://mallet.cs.umass.edu/index.php">Mallet</a>:<ul>
+<li>popular in Digital Humanities community</li>
+<li>also does classification, information extraction</li>
+</ul>
+</li>
+<li><a href="https://code.google.com/p/topic-modeling-tool/">topic-modeling-tool</a>: GUI for Mallet, <a href="https://github.com/ulbstic/topic-modeling-tool-FR">TMT with RegEx</a></li>
+<li>Other options:<ul>
+<li><a href="http://radimrehurek.com/gensim/index.html">GenSim</a> (Python library)</li>
+<li><a href="http://nlp.stanford.edu/software/tmt/tmt-0.4/">Stanford Topic Modeling Toolbox</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="part-2-why-use-topic-models-">Part 2: Why Use Topic Models?</h1>
+<h2 id="relevance-for-research">relevance for research</h2>
+</section>
+    <section class="slide"><h3 id="suggestive-patterns">Suggestive Patterns</h3>
+<ul>
+<li>Overcomes problems of keyword search<ul>
+<li>search with whole dictionary</li>
+<li>but words weighted by topical importance</li>
+</ul>
+</li>
+<li>Gives insight in topical nature of collection</li>
+<li>Advantages:<ul>
+<li>Great for finding suggestive patterns</li>
+</ul>
+</li>
+<li>Disadvantages:<ul>
+<li>Topics can be hard to interpret</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="topic-modelling-in-digital-humanities">Topic Modelling in Digital Humanities</h3>
+<ul>
+<li>Extremely popular, especially in Historical Sciences<ul>
+<li><a href="http://historying.org/2010/04/01/topic-modeling-martha-ballards-diary/">Cameron Blevins: Martha Ballard’s diary</a></li>
+<li><a href="http://dsl.richmond.edu/dispatch/">Robert K. Nelson: Mining the Dispatch</a></li>
+<li><a href="http://www.scottbot.net/HIAL/?p=19113">Scott Weingart: guided tour on TM</a></li>
+<li><a href="http://journalofdigitalhumanities.org/2-1/topic-modeling-a-basic-introduction-by-megan-r-brett/">Megan Brett: Intro on TM</a></li>
+<li><a href="http://www.matthewjockers.net/2011/09/29/the-lda-buffet-is-now-open-or-latent-dirichlet-allocation-for-english-majors/">Matthew Jockers: blog</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="kb-newspaper-archive">KB Newspaper Archive</h3>
+<ul>
+<li>Over 80 million articles<ul>
+<li>organised via formal metadata</li>
+<li><em>date</em>, <em>newspaper title</em>, <em>article type</em></li>
+</ul>
+</li>
+<li>How organised in terms of topics?</li>
+<li>Sampled collection:<ul>
+<li>100,000 articles matching: <em>groote oorlog</em> OR <em>wereldoorlog</em> OR <em>europeesche oorlog</em> OR <em>1914-1918</em></li>
+<li>Constrained to period 1918-1940</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="examples-with-kb-newspaper-archive">Examples with KB Newspaper Archive</h3>
+<ul>
+<li>Topics modelled by Mallet:<ul>
+<li><a href="http://cleverdon.hum.uva.nl/marijn/workshops/KB_Mallet_2015/topics/WOI.article.100000.top.200.stopped_dutch_all.topics">topics modelled from World War I</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="topics-in-newspapers">Topics in Newspapers</h3>
+<ul>
+<li>Newsarticles on World War One, published during the Interbellum<ul>
+<li>timeline with three topics:</li>
+<li><a href="http://humanities.uva.nl/~mkoolen1/materials/Visualisation_Antwerp_2015/KB_topic_model_images.html">socialism, neutrality, secret documents</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="interpreting-topics">Interpreting Topics</h3>
+<p><img src="http://problemsolvingpackard.weebly.com/uploads/1/1/0/2/11023248/6886977_orig.jpg" alt="Image not found"></p>
+</section>
+    <section class="slide"><h1 id="part-3-how-do-topic-models-work-">Part 3: How Do Topic Models Work?</h1>
+<h2 id="the-technical-details">the technical details</h2>
+</section>
+    <section class="slide"><h3 id="two-parts-of-technicalities">Two Parts of Technicalities</h3>
+<ul>
+<li>Lots of statistics<ul>
+<li>we’ll only scratch the surface!</li>
+</ul>
+</li>
+<li>Lots of transformations<ul>
+<li>most of these steps are easy to understand</li>
+<li>but also important to understand</li>
+<li>need to be aware of them to gain control</li>
+</ul>
+</li>
+<li>Do experiments to get feel for what’s meaningful</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="transformations">Transformations</h3>
+<ul>
+<li>Four major steps:<ol>
+<li><strong>Text</strong> &gt; preprocessing &gt; <strong>Words</strong></li>
+<li><strong>Words</strong> &gt; indexing &gt; <strong>Numbers</strong></li>
+<li><strong>Numbers</strong> &gt; modeling &gt; <strong>Topics</strong></li>
+<li><strong>Topics</strong> &gt; analysing &gt; <strong>Compositions</strong></li>
+</ol>
+</li>
+<li>We’ll encounter specifc transformations on the way</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="1-preprocessing-text">1. Preprocessing Text</h3>
+<ul>
+<li>What do the newspaper articles look like?<ul>
+<li><a href="http://www.delpher.nl/nl/kranten/view?coll=ddd&amp;identifier=ddd:010669603:mpeg21:a0038">scanned page</a></li>
+<li><a href="http://resolver.kb.nl/resolve?urn=ddd:010669603:mpeg21:a0038:ocr">after OCR</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="2-indexing-text">2. Indexing Text</h3>
+<ul>
+<li>From words to vectors to indexes</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="2a-text-as-vectors">2a. Text as Vectors</h3>
+<ul>
+<li>text is linear sequence of words</li>
+<li>can be represented as <ul>
+<li><a href="http://cleverdon.hum.uva.nl/marijn/workshops/KB_Mallet_2015/tables/fiets.10.stop.text.html">text’</a></li>
+<li><a href="http://cleverdon.hum.uva.nl/marijn/workshops/KB_Mallet_2015/tables/fiets.10.stop.termlist.html">list of words</a></li>
+</ul>
+</li>
+<li>or as a vector of words<ul>
+<li><a href="http://cleverdon.hum.uva.nl/marijn/workshops/KB_Mallet_2015/tables/fiets.10.stop.doc_index.html">vectors</a></li>
+</ul>
+</li>
+<li>‘Easy’ to see which <em>texts</em> have <em>overlap</em> in words</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="2b-inverted-index">2b. Inverted Index</h3>
+<ul>
+<li>Term-document index:<ul>
+<li>word lists which texts it appears in</li>
+<li>index becomes rows of <em>text vectors</em></li>
+<li><a href="http://cleverdon.hum.uva.nl/marijn/workshops/KB_Mallet_2015/tables/fiets.10.stop.inverted_index.html">inverted index</a></li>
+<li>interesting aside: search engine use this for quick lookup!</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="parsing-units-of-data">Parsing &amp; Units of Data</h3>
+<ul>
+<li>Usually words as units<ul>
+<li>can be anything, but features need high enough frequency of units</li>
+<li>trigrams and longer phrases often too sparse</li>
+</ul>
+</li>
+<li>Bag of words:<ul>
+<li>ignores word order, syntax, sentence or paragraph boundaries</li>
+<li>same with other kinds of data (colours, objects, melodies)</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="stopwords">Stopwords</h3>
+<ul>
+<li>Function words and other frequent words carry little meaning in modelled topics<ul>
+<li><a href="http://cleverdon.hum.uva.nl/marijn/workshops/KB_Mallet_2015/tables/fiets.10.no_stop.inverted_index.html">dominate the inverted index</a></li>
+<li>remove them to focus on meaningful terms</li>
+</ul>
+</li>
+<li>But which words are stopwords?<ul>
+<li>standard list <a href="http://snowball.tartarus.org/algorithms/dutch/stop.txt">Snowball Dutch stopword list</a></li>
+<li>domain dependent: make your own</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="3-modeling">3. Modeling</h3>
+<ul>
+<li>Topics are latent<ul>
+<li>Reduce high-dimensional term vector space to low-dimensional &#39;latent&#39; topic space</li>
+<li>Topics represented by prob. dist. over words</li>
+<li>Texts represented by prob. dist. over topics</li>
+</ul>
+</li>
+<li>Established models:<ul>
+<li>LSA: Latent Semantic Analysis</li>
+<li>LDA: Latent Dirichlet Allocation</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="semantic-relatedness">Semantic Relatedness</h3>
+<ul>
+<li>Two words co-occurring in a text<ul>
+<li>signal that they are related</li>
+<li>document frequency determines strength of signal</li>
+<li><a href="http://cleverdon.hum.uva.nl/marijn/workshops/KB_Mallet_2015/tables/WOI.para.1000.stop.cooc_index.html">co-occurrence index</a></li>
+</ul>
+</li>
+<li>Easy to see which <em>words</em> are <em>related</em></li>
+</ul>
+</section>
+    <section class="slide"><h3 id="frequency-vs-importance">Frequency vs. Importance</h3>
+<ul>
+<li>How can statistics help identify important words?</li>
+<li><strong>TF * IDF</strong> indicates importance of term relative to the document</li>
+<li><strong>TF</strong>: Term Frequency<ul>
+<li>terms <em>more</em> frequently in document are more important</li>
+</ul>
+</li>
+<li><strong>IDF</strong>: Inverted Document Frequency<ul>
+<li>terms in <em>fewer</em> documents are more specific</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="lda">LDA</h3>
+<ul>
+<li>LDA = Latent Dirichlet Allocation<ul>
+<li>Diri-what?</li>
+<li>generative model</li>
+<li><a href="http://en.wikipedia.org/wiki/Latent_Dirichlet_allocation#Inference">iterative sampling</a> to establish topics, word-topic dist. and topic-document dist.</li>
+</ul>
+</li>
+<li>After so many iterations, distributions are stable<ul>
+<li>done: topics are modelled</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="4-analysing-compositions">4. Analysing Compositions</h3>
+<ul>
+<li><a href="https://github.com/cpsievert/LDAvis">LDAvis</a> is a wonderful tool to visually explore generated topics<ul>
+<li><a href="http://cpsievert.github.io/LDAvis/reviews/reviews.html">tutorial for visualising topics in film reviews</a></li>
+</ul>
+</li>
+<li><a href="https://code.google.com/p/topic-modeling-tool/">topic-modeling-tool</a> gives handy output for <a href="http://cleverdon.hum.uva.nl/marijn/OtD/TMT_output/output_html/all_topics.html">analysing compositions</a></li>
+</ul>
+</section>
+    <section class="slide"><h3 id="wrap-up">Wrap Up</h3>
+<ul>
+<li>Topic models are hot in Digital Humanities<ul>
+<li>suggestive patterns fit humanities perspective</li>
+</ul>
+</li>
+<li>Can be difficult to use well<ul>
+<li>Some guidelines, no guarantees</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="next">Next</h3>
+<ul>
+<li>30/09/2015:<ul>
+<li>Lab, work on projects</li>
+<li>Questions?</li>
+</ul>
+</li>
+<li>05/10/2015:<ul>
+<li>Portfolio, first version</li>
+<li>Lecture - visualisation</li>
+<li>Telling stories with data</li>
+<li>Reading material: <a href="http://llc.oxfordjournals.org/content/23/3/281.full">Jessop</a>, <a href="http://www.clir.org/pubs/resources/promoting-digital-scholarship-ii-clir-neh/stone11_11.pdf">Stone</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="extra-slides">Extra slides</h1>
+</section>
+    <section class="slide"><h3 id="considerations-1-2">Considerations 1/2</h3>
+<ul>
+<li>Number of documents: <ul>
+<li>at least 1000, preferably more</li>
+</ul>
+</li>
+<li>Selection of documents:<ul>
+<li>type dimension: which article types? which newspaper(s)?</li>
+<li>topical dimension: filtered by keywords?</li>
+<li>temporal dimension: beware language change!</li>
+<li>geographical dimension: beware language differences!</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="considerations-2-2">Considerations 2/2</h3>
+<ul>
+<li>Number of topics<ul>
+<li>depends on number of documents</li>
+<li>below 10,000 documents: 20-100 topics </li>
+<li>10,000 and more: 100-500 topics</li>
+</ul>
+</li>
+<li>Generic and domain-specific stopwords</li>
+<li>Units of analysis: words, n-grams, phrases</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="narrative-topic-models">Narrative Topic Models</h3>
+<ul>
+<li><a href="http://www.ehumanities.nl/computational-humanities/tunes-tales/">Tunes &amp; Tales project</a><ul>
+<li>Modelling Oral Transmission</li>
+<li>Folktales and Songs</li>
+<li>Folksong families (stemmata, similarity)</li>
+<li>Topic models to category tales according to narrative elements (Propp)</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="familiarity-with-corpus">Familiarity with Corpus</h3>
+<ul>
+<li>understanding topic requires understanding the corpus<ul>
+<li>modelling topics in British history texts is hard if you know little about British history</li>
+<li>inexact science: checking usefulness of topics requires corpus knowledge and creativity</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="lies-damned-lies-and-statistics">Lies, Damned Lies and Statistics</h3>
+<ul>
+<li>Many pretty pictures based on topic modelling<ul>
+<li>what do they mean?</li>
+</ul>
+</li>
+<li>Word distributions often seem incoherent<ul>
+<li>yet most informative topics often perform badly</li>
+<li>limited use as evidence, great for discovery (Ramsay)</li>
+<li>example of labelling topics<ul>
+<li><a href="http://www.ics.uci.edu/~newman/pubs/JASIST_Newman.pdf">Pennsylvania Gazette</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="guidelines">Guidelines</h3>
+<ul>
+<li>Corpus size: &gt;1000 documents</li>
+<li>Number of topics: <ul>
+<li>20-50 for small corpora (&lt;10kdocs), 50-200 for medium (&lt;100k docs), 200-500 for larger</li>
+<li>no clear criteria to determine number of topics</li>
+</ul>
+</li>
+<li>models: LSI, pLSI, LDA, pLSI-LDA, ...<ul>
+<li>Most used is LDA<ul>
+<li>can generalise to unseen documents</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="other-considerations">Other Considerations</h3>
+<ul>
+<li>Preprocessing<ul>
+<li>removal of stopwords, hapaxes (efficiency), punctuation</li>
+</ul>
+</li>
+<li>Document lengths<ul>
+<li>very large texts have many topics?</li>
+<li>large texts can be chunked</li>
+<li>docs of equal length help comparison</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="mixing-languages">Mixing Languages</h3>
+<ul>
+<li>E.g. non-English texts in mostly English corpus<ul>
+<li>models language instead of topics</li>
+</ul>
+</li>
+<li>Three topics modelled on 64,000 song lyrics:<ol>
+<li>baby like come oh yeah let know gonna m go never get one na re hey love ll wanna man</li>
+<li>get like baby know let go ll got gonna love back girl feel away want oh gotta time take hey</li>
+<li>na que de y like la m get el te re tu en mi ang yo un ya sa es</li>
+</ol>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="beyond-text">Beyond Text</h3>
+<ul>
+<li>In fact, you can use other data points than words<ul>
+<li><a href="http://sappingattention.blogspot.de/2012/11/when-you-have-mallet-everything-looks.html">Ben Schmidt uses lat/long coordinates of Whaling ships to model topics</a></li>
+<li>Topic model of coordinates can be plotted on a map for easy inspection</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><p>&quot;This is a case where I&#39;m really being saved by the restrictive feature space of data. If I were interpreting these MALLET results as text, I might notice it, for example, but start to tell a just-so story about how transatlantic shipping and Pacific whaling really are connected. (Which they are; but so is everything else.) The absurdity of doing that with geographic data like this is pretty clear; but interpretive leaps are extraordinarily easy to make with texts.&quot;</p>
+</section>
+    <section class="slide"><h3 id="sub-topic-modelling">Sub-Topic Modelling</h3>
+<ul>
+<li>Tangherlini &amp; Leonard use sub-topic modelling (STM)</li>
+<li>Use sub-corpus topics to &#39;trawl&#39; in larger corpus<ul>
+<li>generate topics on sub-corpus</li>
+<li>score docs in larger corpus</li>
+<li>more focus and control on topics</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="experimenting-with-stm">Experimenting with STM</h3>
+<ul>
+<li>Tangherlini &amp; Leonard (2013) ran 3 experiments<ol>
+<li>model topics on Darwin&#39;s books, look for topics in Danish literature</li>
+<li>model topics on genre subset, look for unknown works of that genres</li>
+<li>model topics on folklore, look for influences in other literature</li>
+</ol>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="control-over-topics">Control over Topics</h3>
+<ul>
+<li>How can you control topic models?<ul>
+<li>sub-topic modelling</li>
+<li>manual vocabulary</li>
+<li>filtering topics</li>
+</ul>
+</li>
+<li>Should you control topic models?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="topic-modelling-summary">Topic Modelling Summary</h3>
+<ul>
+<li>Very interesting technique for humanities<ul>
+<li>suggestive patterns good for interpretation</li>
+<li>but easy to see connections that aren’t there</li>
+<li>many examples of do’s and don’ts</li>
+<li>inexact science, but there are best practices</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Takes the last slide and places it at the front.
+ */
+function goBack() {
+  var wrapper = document.querySelector('#wrapper');
+  var lastSlide = wrapper.lastChild;
+  while (lastSlide != null && lastSlide.nodeType !== 1) {
+    lastSlide = lastSlide.previousSibling;
+  }
+
+  wrapper.removeChild(lastSlide);
+  wrapper.insertBefore(lastSlide, wrapper.firstChild);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Takes the first slide and places it at the end.
+ */
+function goForward() {
+  var wrapper = document.querySelector('#wrapper');
+  var firstSlide = wrapper.firstChild;
+  while (firstSlide != null && firstSlide.nodeType !== 1) {
+    firstSlide = firstSlide.nextSibling;
+  }
+
+  wrapper.removeChild(firstSlide);
+  wrapper.appendChild(firstSlide);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  window.history.replaceState({} , null, '#' + currentPage());
+}
+
+/**
+ * Returns the current page number of the presentation.
+ */
+function currentPage() {
+  return document.querySelector('#wrapper .slide').dataset.page;
+}
+
+/**
+ * Returns a NodeList of each .slide element.
+ */
+function allSlides() {
+  return document.querySelectorAll('#wrapper .slide');
+}
+
+/**
+ * Give each slide a "page" data attribute.
+ */
+function setPageNumbers() {
+  var wrapper = document.querySelector('#wrapper');
+  var pages   = wrapper.querySelectorAll('section');
+  var page;
+
+  for (var i = 0; i < pages.length; ++i) {
+    page = pages[i];
+    page.dataset.page = i;
+  }
+}
+
+/**
+ * Set the current progress indicator.
+ */
+function setCurrentProgress() {
+  var wrapper = document.querySelector('#wrapper');
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var pagesNumber    = wrapper.querySelectorAll('section').length;
+    var currentNumber  = parseInt(currentPage());
+    var currentPercent = pagesNumber === 1 ? 100 : 100 * currentNumber / (pagesNumber - 1);
+    progressBar.style.width = currentPercent.toString() + '%';
+  }
+}
+
+/**
+ * Go to the specified page of content.
+ */
+function goToPage(page) {
+  // Try to find the target slide.
+  var targetSlide = document.querySelector('#wrapper .slide[data-page="' + page + '"]');
+
+  // If it actually exists, go forward until we find it.
+  if (targetSlide) {
+    var numSlides = allSlides().length;
+
+    for (var i = 0; currentPage() != page && i < numSlides; i++) {
+      goForward();
+    }
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var currentPageLinks = document.querySelector('.slide').querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    allLinks[i].removeAttribute('tabindex');
+  }
+}
+
+window.onload = function () {
+
+  // Give each slide a "page" data attribute.
+  setPageNumbers();
+
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) goToPage(page);
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, enter, PgDn - FORWARD
+    if (kc == 37 || kc == 40 || kc == 8 || kc == 72 || kc == 74 || kc == 33) {
+      goBack();
+    } else if (kc == 38 || kc == 39 || kc == 13 || kc == 32 || kc == 75 || kc == 76 || kc == 34) {
+      goForward();
+    }
+  }
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      goForward();
+    }
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      goBack();
+    }
+  }
+
+}
+
+
+  </script>
+</body>
+</html>

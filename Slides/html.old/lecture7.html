@@ -1,0 +1,896 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Object to Data - Lecture 7</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  background-color: #f7f7f7;
+  font-size: 100%;
+}
+
+#wrapper {
+  width: 850px;
+  height: 600px;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+}
+
+.slide {
+  width: auto;
+  height: 540px;
+  padding: 30px;
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.controls .arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.controls .prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.controls .next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.controls .prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.controls .next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+.slide h1 {
+  font-size: 200%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 100px 0 0;
+}
+
+.slide h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+.slide h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+.slide ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.slide .author h1.name {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.slide .author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.1s ease-out;
+  -moz-transition: width 0.1s ease-out;
+  -o-transition: width 0.1s ease-out;
+  transition: width 0.1s ease-out;
+}
+
+@media (max-width: 850px) {
+  #wrapper {
+    width: auto;
+  }
+
+  body {
+    font-size: 70%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .slide h1 {
+    margin-top: 120px;
+  }
+
+  .controls .prev, .controls .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .controls .next, .controls .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  #wrapper {
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  .slide {
+    padding: 10px;
+    height: 340px;
+  }
+
+  .slide h1 {
+    margin-top: 50px;
+  }
+
+  .slide ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  #wrapper {
+    overflow: visible;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .slide {
+    border: 1px solid #222;
+    margin-bottom: 40px;
+    height: 3.5in;
+  }
+
+  .slide:nth-child(odd) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+*/
+
+code, pre {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: auto;
+  padding: 6px 10px;
+}
+
+code {
+  padding: 0 5px;
+}
+
+pre>code {
+  margin: 0; padding: 0;
+  border: none;
+  background: transparent;
+}
+
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+  color: #333;
+  font-weight: bold
+}
+
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+  color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14
+}
+
+pre .title,
+pre .id {
+  color: #900;
+  font-weight: bold
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+  font-weight: normal
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+  color: #008080
+}
+
+pre .regexp {
+  color: #009926
+}
+
+pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+  color: #990073
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+  color: #0086b3
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre .deletion {
+  background: #fdd
+}
+
+pre .addition {
+  background: #dfd
+}
+
+pre .diff .change {
+  background: #0086b3
+}
+
+pre .chunk {
+  color: #aaa
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+<div id="wrapper">
+    <section class="slide"><h1 id="from-object-to-data">From Object to Data</h1>
+<h2 id="marijn-koolen">Robin Boast, Alan Berg</h2>
+<h2 id="digital-humanities-minor-2015-2016">Information Culture, Digital Humanities Minor 2016/2017</h2>
+<h2 id="interpretation-in-data-driven-humanities-research">Interpretation in data-driven Humanities Research</h2>
+<h2 id="week-7-12-10-2015">Week 7 - 17/10/2015</h2>
+</section>
+    <section class="slide"><h3 id="programme">Programme</h3>
+<ol>
+<li>Digital Research &amp; Interpretation</li>
+<li>Big data &amp; Interpretation</li>
+<li>Collaboration &amp; Interpretation</li>
+</ol>
+</section>
+    <section class="slide"><h1 id="1-digital-research-interpretation">1. Digital Research &amp; Interpretation</h1>
+</section>
+    <section class="slide"><h3 id="humanities-interpretation">Humanities &amp; Interpretation</h3>
+<ul>
+<li><strong>Stanley Fish</strong> shows how <a href="http://opinionator.blogs.nytimes.com/2012/01/23/mind-your-ps-and-bs-the-digital-humanities-and-interpretation/?_php=true&amp;_type=blogs&amp;_r=0">traditional humanities research deals with statistical frequency and pattern</a><ul>
+<li>direction of inference is critical</li>
+<li>from interpretive hypothesis to formal pattern</li>
+</ul>
+</li>
+<li>Hermeneutic circle<ul>
+<li>understand/interpret through shared human nature</li>
+<li>circle from object to creator and situation and back again</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="digital-humanities-interpretation">Digital Humanities &amp; Interpretation</h3>
+<ul>
+<li><strong>Fish</strong>: In digital humanities it is the other way around<ul>
+<li>run the numbers, then think of interpretive hypothesis</li>
+<li>the tool dictates the method</li>
+<li>asserts correlation between formal feature and significance that is declared, not argued for</li>
+<li>frequency is not an argument (neither are tools)</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="digital-interpretation-">Digital Interpretation?</h3>
+<ul>
+<li>Does digital analysis exclude interpretive paradigm?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="digital-interpretation-">Digital Interpretation?</h3>
+<ul>
+<li>Does digital analysis exclude interpretive paradigm?</li>
+<li>Does it sacrifice significance, ambiguity, beauty?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="digital-interpretation-">Digital Interpretation?</h3>
+<ul>
+<li>Does digital analysis exclude interpretive paradigm?</li>
+<li>Does it sacrifice significance, ambiguity, beauty?</li>
+<li>Does digital transform/affect interpretation?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="digital-interpretation-">Digital Interpretation?</h3>
+<ul>
+<li>Does digital analysis exclude interpretive paradigm?</li>
+<li>Does it sacrifice significance, ambiguity, beauty?</li>
+<li>Does digital transform/affect interpretation?</li>
+<li>Can digital methods perform interpretation?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="patterns-interpretation-1-2-">Patterns &amp; Interpretation (1/2)</h3>
+<ul>
+<li><strong>Stanley Fish</strong>:<ul>
+<li>“Don’t we have to actually read the books, before saying what the patterns discovered in them mean?”</li>
+<li>nothing in the machinery authorises the leap from data to interpretation → you can leap anywhere</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="patterns-interpretation-2-2-">Patterns &amp; Interpretation (2/2)</h3>
+<ul>
+<li><strong>Stephen Ramsay</strong><ul>
+<li>“What licenses any leap? The text? Of course not. But why must ‘the data’ adhere to a requirement that we long ago disavowed for text?”</li>
+<li>“Why can’t data function within the same interpretative regime - and fulfil the same hermeneutical functions - as text?”</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="object-vs-data">Object vs. Data</h3>
+<ul>
+<li><strong>Ramsay</strong>:<ul>
+<li>“Text sometimes operates in the service of objectivity and empiricism, but sometimes not (in the humanities, we might say almost never). Might the same be true of data?”</li>
+<li>“Is there a humanistic way to generate and understand data that licenses the kind of leaps we want to make?”</li>
+</ul>
+</li>
+<li>Is text (object) fundamentally different from data?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="quantity-interpretation">Quantity &amp; Interpretation</h3>
+<ul>
+<li><strong>Fish</strong> attacks stylometry<ul>
+<li>“proponents of stylistics literally don’t know what they’re doing”</li>
+</ul>
+</li>
+<li>From statistical perspective (<strong>Liberman</strong>):<ul>
+<li>many interpretations are mere coincidences</li>
+<li>“a trivial application of statistical methods, humanistic or not, suggests that his idea is probably ‘false’, ‘noise’ and ‘mere play’</li>
+</ul>
+</li>
+<li>Should interpretations have statistical support?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="interaction">Interaction</h3>
+<ul>
+<li><strong>Ramsay</strong>: “... but if one concedes that reading is a process whereby <strong>patterns urge interpretations</strong> and <strong>interpretations bring forth patterns</strong> (a formulation that implies <strong>no natural sequence or direction</strong>), then we are halfway to saying why you might want to generate a computational program from a critical question or generate an interpretation from a computational procedure.”</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="interaction-hermeneutics">Interaction &amp; Hermeneutics</h3>
+<ul>
+<li><strong>Ramsay</strong>: “Why not do both? In fact, why not do both within tight, concentric loops of reading, hacking, thinking, and interpreting?”</li>
+<li>Back to the hermeneutic circle?</li>
+<li>Data-driven research transforms material<ul>
+<li>Interpretation of original objects vs. of data after parsing, filtering, visualising</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="2-big-data-interpretation">2. Big Data &amp; Interpretation</h1>
+</section>
+    <section class="slide"><h3 id="size-matters-">Size Matters?</h3>
+<ul>
+<li>Does interpretation change when we look at very big data sets?<ul>
+<li>difference in degree becomes difference in kind</li>
+<li>size determines level of analysis (micro vs. macro)</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="end-of-theory">End of Theory</h3>
+<ul>
+<li><strong>Chris Anderson</strong>:<ul>
+<li>big data often interpreted as having complete data (e.g. Google Books)</li>
+<li>correlation is all we need, causation is not important</li>
+<li>e.g. we no longer need theory</li>
+<li>but <a href="http://www.tylervigen.com/">correlation should be connection</a>?</li>
+<li><a href="http://www.culturomics.org/Resources/A-users-guide-to-culturomics">Culturomics</a> often <a href="http://www.newrepublic.com/article/117428/limits-digital-humanities-adam-kirsch">criticised</a> and <a href="http://xkcd.com/1007/">ridiculed</a></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="big-data">Big Data</h3>
+<ul>
+<li>When is data big data?<ul>
+<li>comp. scientists say it’s about terabytes or petabytes</li>
+<li>but what’s the issue with big data?</li>
+<li>too much to analyse manually</li>
+<li>hidding patterns or insights under the surface</li>
+<li>for many research questions, megabytes of data could be too much.</li>
+</ul>
+</li>
+<li>E.g. complex humanities objects, film/text/web site?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="challenging-analysis">Challenging Analysis</h3>
+<ul>
+<li>How similar/different are two:<ul>
+<li>films, songs, books, ...</li>
+</ul>
+</li>
+<li>In how many ways can you compare films?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="challenging-analysis">Challenging Analysis</h3>
+<ul>
+<li>How similar/different are two:<ul>
+<li>films, songs, books, ...</li>
+</ul>
+</li>
+<li>In how many ways can you compare films?</li>
+<li>Representing and parsing data require theory<ul>
+<li>e.g. must make assumptions on what meaningful units are there</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h1 id="3-collaboration-interpretation">3. Collaboration &amp; Interpretation</h1>
+</section>
+    <section class="slide"><h3 id="collaboration-humanities">Collaboration &amp; Humanities</h3>
+<ul>
+<li>Co-authored publications across disciplines<ul>
+<li>Science &amp; Engineering: ~80%</li>
+<li>Social Sciences: 51%</li>
+<li>Humanities: &lt; 10%</li>
+<li>source: Wuchty et al. (2007) “The increasing dominance of teams in the production of knowledge”</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="comparing-journals">Comparing Journals</h3>
+<ul>
+<li><strong>Lisa Spiro</strong> compared two journals between 2004 and 2008<ul>
+<li>American Literary History (ALH)</li>
+<li>Literary and Linguistic Computation (LLC)</li>
+<li>Collaboration in 2% of ALH articles, 48% in LLC articles</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="collaboration">Collaboration</h3>
+<ul>
+<li>Why do humanities scholars collaborate less frequently than other scientists?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="collaboration">Collaboration</h3>
+<ul>
+<li>Why do humanities scholars collaborate less frequently than other scientists?</li>
+<li>According to <strong>Spiro</strong>:<ul>
+<li>quantitative research (truth-finding paradigm) lends itself better to collaboration then interpretive research</li>
+<li>less recognition for collaboration in humanities</li>
+<li>Myth of lone genius</li>
+<li>Humanities work with existing data sources</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="quantification-interpretation">Quantification &amp; Interpretation</h3>
+<ul>
+<li><strong>Moretti</strong>: quantitative work is cooperation<ul>
+<li>it doesn’t matter who does the quantifying</li>
+<li>Unix commands give same outcome regardless of who executes them</li>
+</ul>
+</li>
+<li>But: 2 people do same quantitative analysis, get different answers<ul>
+<li>quantifying involves interpretation</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="criticising-quantification">Criticising Quantification</h3>
+<ul>
+<li>Two computers running same commands get different answers (or errors)<ul>
+<li>computers are interpreters (actually, it’s the software)</li>
+<li>implementation details matter!</li>
+<li>think of <em>grep -w</em></li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="core-questions">Core Questions</h3>
+<ul>
+<li><strong>Spiro</strong> identified four core questions:<ul>
+<li>Why are the digital humanities identified with collaboration?</li>
+<li>What form does collaboration in DH take?</li>
+<li>Why collaborate? What advantages does it offer?</li>
+<li>What are the challenges to collaboration?</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="challenges">Challenges</h3>
+<ul>
+<li><strong>Spiro</strong>:<ul>
+<li>Giving up control &amp; risking your own perspective being diminished</li>
+<li>Getting credit for collaborative work</li>
+<li>Communicating clearly (difficult in cross-disciplinary projects)</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="building-scholarship">Building &amp; Scholarship</h3>
+<ul>
+<li>Is building tools a form of scholarship?</li>
+<li>Are tool builders different scholars from tool users?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="making-vs-critiquing">Making vs. Critiquing</h3>
+<ul>
+<li><strong><a href="http://www.c21uwm.com/2013/01/09/dark-side-of-the-digital-humanities-part-2/">Grusin</a></strong>: focus on ‘making things’ takes away core humanities values, such as critiquing</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="making-vs-critiquing">Making vs. Critiquing</h3>
+<ul>
+<li><strong><a href="http://www.c21uwm.com/2013/01/09/dark-side-of-the-digital-humanities-part-2/">Grusin</a></strong>: focus on ‘making things’ takes away core humanities values, such as critiquing</li>
+<li>Is there a difference between <em>making</em> and <em>critiquing</em>?</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="making-vs-critiquing">Making vs. Critiquing</h3>
+<ul>
+<li><strong><a href="http://www.c21uwm.com/2013/01/09/dark-side-of-the-digital-humanities-part-2/">Grusin</a></strong>: focus on ‘making things’ takes away core humanities values, such as critiquing</li>
+<li>Is there a difference between <em>making</em> and <em>critiquing</em>?</li>
+<li>Critiquing is a form of making, like devising an algorithm or visualising data</li>
+<li>There is a multiplicity of builder roles (all use similar metaphors)</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="collaborative-interpretation-">Collaborative Interpretation?</h3>
+<ul>
+<li>Does making afford collaboration?</li>
+<li>Can interpretation be done collaboratively?<ul>
+<li>does collaborative interpretation make sense?</li>
+<li>(why) would this be difficult?</li>
+<li>or is it a matter of proper crediting?</li>
+<li>should individual interpretation be valued more?</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="evaluation">Evaluation</h3>
+<ul>
+<li>What are your thoughts on this course? <ul>
+<li>did it match expectations?</li>
+<li>what should stay? What should change?</li>
+<li>balance theory and practical?</li>
+<li>tempo, quality of tutorials</li>
+</ul>
+</li>
+</ul>
+</section>
+    <section class="slide"><h3 id="next">Next</h3>
+<ul>
+<li>Wednesday 14/10<ul>
+<li>final presentations (15 min)</li>
+<li>address question, approach, results</li>
+<li>afterwards, informal evaluation at Zeppos</li>
+</ul>
+</li>
+<li>Friday 23/10<ul>
+<li>deadline portfolios</li>
+<li>of course, submitting earlier is allowed</li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Takes the last slide and places it at the front.
+ */
+function goBack() {
+  var wrapper = document.querySelector('#wrapper');
+  var lastSlide = wrapper.lastChild;
+  while (lastSlide != null && lastSlide.nodeType !== 1) {
+    lastSlide = lastSlide.previousSibling;
+  }
+
+  wrapper.removeChild(lastSlide);
+  wrapper.insertBefore(lastSlide, wrapper.firstChild);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Takes the first slide and places it at the end.
+ */
+function goForward() {
+  var wrapper = document.querySelector('#wrapper');
+  var firstSlide = wrapper.firstChild;
+  while (firstSlide != null && firstSlide.nodeType !== 1) {
+    firstSlide = firstSlide.nextSibling;
+  }
+
+  wrapper.removeChild(firstSlide);
+  wrapper.appendChild(firstSlide);
+
+  setCurrentProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  window.history.replaceState({} , null, '#' + currentPage());
+}
+
+/**
+ * Returns the current page number of the presentation.
+ */
+function currentPage() {
+  return document.querySelector('#wrapper .slide').dataset.page;
+}
+
+/**
+ * Returns a NodeList of each .slide element.
+ */
+function allSlides() {
+  return document.querySelectorAll('#wrapper .slide');
+}
+
+/**
+ * Give each slide a "page" data attribute.
+ */
+function setPageNumbers() {
+  var wrapper = document.querySelector('#wrapper');
+  var pages   = wrapper.querySelectorAll('section');
+  var page;
+
+  for (var i = 0; i < pages.length; ++i) {
+    page = pages[i];
+    page.dataset.page = i;
+  }
+}
+
+/**
+ * Set the current progress indicator.
+ */
+function setCurrentProgress() {
+  var wrapper = document.querySelector('#wrapper');
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var pagesNumber    = wrapper.querySelectorAll('section').length;
+    var currentNumber  = parseInt(currentPage());
+    var currentPercent = pagesNumber === 1 ? 100 : 100 * currentNumber / (pagesNumber - 1);
+    progressBar.style.width = currentPercent.toString() + '%';
+  }
+}
+
+/**
+ * Go to the specified page of content.
+ */
+function goToPage(page) {
+  // Try to find the target slide.
+  var targetSlide = document.querySelector('#wrapper .slide[data-page="' + page + '"]');
+
+  // If it actually exists, go forward until we find it.
+  if (targetSlide) {
+    var numSlides = allSlides().length;
+
+    for (var i = 0; currentPage() != page && i < numSlides; i++) {
+      goForward();
+    }
+  }
+}
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var currentPageLinks = document.querySelector('.slide').querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    allLinks[i].removeAttribute('tabindex');
+  }
+}
+
+window.onload = function () {
+
+  // Give each slide a "page" data attribute.
+  setPageNumbers();
+
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) goToPage(page);
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, enter, PgDn - FORWARD
+    if (kc == 37 || kc == 40 || kc == 8 || kc == 72 || kc == 74 || kc == 33) {
+      goBack();
+    } else if (kc == 38 || kc == 39 || kc == 13 || kc == 32 || kc == 75 || kc == 76 || kc == 34) {
+      goForward();
+    }
+  }
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      goForward();
+    }
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      goBack();
+    }
+  }
+
+}
+
+
+  </script>
+</body>
+</html>

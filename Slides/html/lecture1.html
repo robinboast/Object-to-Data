@@ -1,0 +1,933 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Object to Data - Lecture 1</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  font-size: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: #f7f7f7;
+}
+
+.slide-content {
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  margin: 80px auto 0 auto;
+  padding: 30px;
+
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 300%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 170px 0 0;
+}
+
+h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.author h1 {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.05s ease-out;
+  -moz-transition: width 0.05s ease-out;
+  -o-transition: width 0.05s ease-out;
+  transition: width 0.05s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 850px) {
+
+  body {
+    font-size: 70%;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .prev, .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .next, .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  .slide-content {
+    padding: 10px;
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    border: 1px solid #222;
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="slide" id="slide-1">
+    <section class="slide-content"><h1 id="from-object-to-data">From Object to Data</h1>
+<h2 id="lecture-1-introduction">Lecture 1 - Introduction</h2>
+<h2 id="robin-boast-alan-berg">Robin Boast, Alan Berg</h2>
+<h2 id="information-culture-digital-humanities-minor-2016-2017">Information Culture, Digital Humanities Minor 2016/2017</h2>
+<h2 id="week-1-05-09-2015">Week 1 - 05/09/2015</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><h3 id="programme">Programme</h3>
+<ul>
+<li>Objects as Data</li>
+<li>Course Setup<ul>
+<li>Who&#39;s who?</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h1 id="part-1-objects-as-data">Part 1: Objects as Data</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h3 id="objects-as-data">Objects as Data</h3>
+<ul>
+<li>Object can be considered holistically<ul>
+<li>but also as data point</li>
+<li>or collection of data points</li>
+</ul>
+</li>
+<li>Object can be anything<ul>
+<li>textual, visual, auditive, conceptual</li>
+<li>or a mix of these</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="digital-objects">Digital Objects</h3>
+<ul>
+<li>Digitised vs. Born-Digital</li>
+<li>Digitised object is an index of original<ul>
+<li>consists of zeros and ones (not really)</li>
+<li>machine readable</li>
+</ul>
+</li>
+<li>Born-Digital is original (or is it?)<ul>
+<li>digital objects can be copied without loss of information</li>
+<li>distinction between original and copy?</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="data">Data</h3>
+<ul>
+<li>What is data?<ul>
+<li><a href="http://dictionary.reference.com/browse/data?s=t">dictionary</a>: &#39;Data is a plural of datum, which is originally a Latin noun meaning &quot;something given.&quot;&#39;</li>
+</ul>
+</li>
+<li>This course is liberal in interpreting objects and data<ul>
+<li>include events, people, practices</li>
+<li>anything that can be represented as data</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><h3 id="change-in-methodology">Change in Methodology</h3>
+<ul>
+<li>Analysis by interpretation: <a href="https://twp.duke.edu/uploads/assets/visual_analysis.pdf">Visual analysis in Art History</a></li>
+<li>Analysis by computer: <a href="http://blog.martinbellander.com/post/115411125748/the-colors-of-paintings-blue-is-the-new-orange">Color analysis of paintings</a>, <a href="http://www.technologyreview.com/view/538801/how-machine-vision-solved-one-of-the-great-mysteries-of-20th-century-surrealist-art/">computational analysis</a> of <a href="http://arxiv.org/abs/1506.04356">creativity</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h3 id="data-driven-research">Data-Driven Research</h3>
+<ul>
+<li>Different view on humanities material<ul>
+<li>way of thinking about object, method and research</li>
+</ul>
+</li>
+<li>Roles of data:<ol>
+<li>focus: subject of research</li>
+<li>support: part of argumentation</li>
+<li>illustration: shed light on research</li>
+<li>transformation: manipulable referents</li>
+</ol>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="experimentation">Experimentation</h3>
+<ul>
+<li>Empirical<ul>
+<li>interpretations naturally become hypotheses</li>
+<li>hypothesis, test, result conclusion</li>
+<li>measurable, repeatable (document steps)</li>
+<li>open to scrutiny and criticism, but also to collaboration</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="ecartico">Ecartico</h3>
+<ul>
+<li><a href="http://www.vondel.humanities.uva.nl/ecartico/">Biographical database on people involved cultural industries in the low countries</a><ul>
+<li>data-oriented perspective on art and cultural history</li>
+<li>visualisations of data points</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="namescape">Namescape</h3>
+<ul>
+<li><a href="http://blog.namescape.nl/">Mapping the Onymic Landscape</a><ul>
+<li>investigate use of names in novels</li>
+<li>many visualisation tools</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h3 id="storycenter">Storycenter</h3>
+<ul>
+<li>Measuring Emotion<ul>
+<li>Narrative Transportation in film</li>
+<li>data from interviews (transportation, suspense)</li>
+<li>data from face reader software: <a href="http://www.vicarvision.nl/facereader/online-facereader-demo">FaceReader</a></li>
+</ul>
+</li>
+<li>How does experience align with expression?</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h3 id="data-criticism">Data Criticism</h3>
+<ul>
+<li>Can data set provide answers?<ul>
+<li>depends<ul>
+<li>from question to data set</li>
+<li>from data set to question</li>
+</ul>
+</li>
+<li>need to understand data set (what&#39;s in there, what&#39;s not), methods and tools</li>
+</ul>
+</li>
+<li>Digital source criticism<ul>
+<li>very important to understand digital objects/data</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h3 id="what-is-the-question">What Is The Question</h3>
+<ul>
+<li><p>&quot;All data problems begin with a question and end with a narrative construct that provides a clear answer.&quot;</p>
+</li>
+<li><p>&quot;One of the most important (and least technical) skills in understanding data is asking good questions.&quot;</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h3 id="big-data-small-data">Big Data, Small Data</h3>
+<ul>
+<li>Size matters<ul>
+<li>determines possible analyses</li>
+<li>few data allow micro-analysis</li>
+<li>many data allow macro-analysis</li>
+<li>Very quality dependent</li>
+<li><a href="http://www.scottbot.net/HIAL/wp-content/uploads/2013/04/moretti_graphs_figure9_lowres1.jpg">Moretti&#39;s analysise of literary genres</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h3 id="interaction-models">Interaction Models</h3>
+<ul>
+<li>Bradley identifies 4 models:<ul>
+<li>conduit, transformation, markup, object manipulation</li>
+<li>where does digital, data-driven research fit?</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h3 id="digital-against-interpretation-">Digital Against Interpretation?</h3>
+<ul>
+<li>Digital research doesn&#39;t take away the magic and the wonderful, but adds to it!<ul>
+<li>no &#39;acts of sorcery&#39; (Bradley)</li>
+<li>each step requires interpretation</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h3 id="digital-against-interpretation-">Digital Against Interpretation?</h3>
+<ul>
+<li>Digital research doesn&#39;t take away the magic and the wonderful, but adds to it!<ul>
+<li>no &#39;acts of sorcery&#39; (Bradley)</li>
+<li>each step requires interpretation</li>
+<li>any research without interpretation is bad research</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h1 id="part-2-course-admin">Part 2: Course Admin</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h3 id="who-s-who-">Who&#39;s Who?</h3>
+<ul>
+<li>Introduce yourself<ul>
+<li>background: name, study, year, ...</li>
+<li>experience/interests in digital humanities</li>
+<li>experience/interests in data-driven research</li>
+<li>expectations about this course?</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h3 id="course-setup">Course Setup</h3>
+<ul>
+<li>Structure<ul>
+<li>7 weeks, lecture + lab sessions</li>
+<li>technical exercises</li>
+<li>data-driven research project</li>
+<li>build project portfolio</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h3 id="course-resources">Course Resources</h3>
+<ul>
+<li>We are not on BlackBoard<ul>
+<li>All course resources are on GitHub<ul>
+<li><a href="https://github.com/robinboast/Object-to-data">Course GitHub Repository</a></li>
+</ul>
+</li>
+<li>You will need a (free) GitHub account<ul>
+<li>Help for this in Lab 1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h3 id="week-by-week">Week By Week</h3>
+<ol>
+<li>Intro</li>
+<li>Acquiring Data</li>
+<li>Parsing and Filtering Data</li>
+<li>DH in Practice projects (T.B.A.)</li>
+<li>Transforming Data</li>
+<li>Visualising and Presenting Data</li>
+<li>Interpretation + Presentations</li>
+</ol>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-24">
+    <section class="slide-content"><h3 id="projects">Projects</h3>
+<ul>
+<li>Portfolio<ul>
+<li>full data-driven research project</li>
+<li>individual proposals (week 4),</li>
+<li>groups pick proposal as collaborative project</li>
+</ul>
+</li>
+<li>Available data:<ul>
+<li>data from <a href="http://developer.nytimes.com/io-docs">NY Times API</a> with query <a href="http://api.nytimes.com/svc/search/v2/articlesearch.json?q=humanities&amp;api-key=6c208c379cac770e9c0900819ad9ad74:10:67186206"><em>humanities</em></a></li>
+<li>Novels and reader reviews</li>
+<li>Rijksmusem object descriptions</li>
+</ul>
+</li>
+<li>Or gather your own</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><h3 id="grading">Grading</h3>
+<ul>
+<li>three grades:<ul>
+<li>hand in proposal: 21 Sept.</li>
+<li>hand in preliminary portfolio: 02 Oct.</li>
+<li>hand in final portfolio: 23 Oct.</li>
+</ul>
+</li>
+<li>final grade weighted average (20% +20% + 60%)<ul>
+<li>allowed to update everything for final portfolio</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-26">
+    <section class="slide-content"><h3 id="lab-sessions">Lab sessions</h3>
+<ul>
+<li>Wednesdays 15:00 - 17:00 in BG1 0.04<ul>
+<li>small assignments to introduce tools</li>
+<li>and working on portfolio</li>
+<li>proposals are individual, projects are collaborative</li>
+<li>I&#39;m available for questions, feedback</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-27">
+    <section class="slide-content"><h3 id="technicalities">Technicalities</h3>
+<ul>
+<li>We&#39;ll work with two tools, see <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/tools">course website</a>:<ul>
+<li>Unix command line tools<ul>
+<li>combining primitives (Unsworth)</li>
+</ul>
+</li>
+<li><a href="http://cran.xl-mirror.nl/">R</a> (plus <a href="https://www.rstudio.com/">RStudio</a>)</li>
+</ul>
+</li>
+<li>Another popular tool in Digital Humanities: <ul>
+<li><a href="http://fbkarsdorp.github.io/python-course/">Python</a> (but we’ll skip that)</li>
+</ul>
+</li>
+<li>We&#39;ll occasionally work with other tools<ul>
+<li>visualisation tools, text analysis tools</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-28">
+    <section class="slide-content"><h3 id="no-sugar-coating">No Sugar Coating</h3>
+<ul>
+<li>Get familiar with:<ul>
+<li>Unix command line tools</li>
+<li>data formats: JSON, XML, HTML, CSV</li>
+<li>constructing data processing pipelines</li>
+<li>scripting</li>
+</ul>
+</li>
+<li>Bring your own laptop<ul>
+<li>so you can work wherever, whenever</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-29">
+    <section class="slide-content"><h3 id="command-line">Command Line</h3>
+<ul>
+<li>Available for all Operating Systems<ul>
+<li>&#39;Terminal&#39; on Linux and Mac Os X</li>
+<li>bit hidden in Windows (please use <a href="http://www.cygwin.com/">Cygwin</a>)</li>
+<li><a href="http://cli.learncodethehardway.org/book/">Command Line Crash Course</a><ul>
+<li>ignore Powershell, use Cygwin</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-30">
+    <section class="slide-content"><h3 id="wednesday">Wednesday</h3>
+<ul>
+<li>Getting familiar with command line and data sets<ul>
+<li>Prepare: <a href="http://cli.learncodethehardway.org/book/">Command Line Crash Course</a></li>
+<li>Also look at <a href="http://www.cs.upc.edu/~padro/Unixforpoets.pdf">Unix for Poets</a></li>
+<li>download <a href="http://cleverdon.hum.uva.nl/marijn/nytimes/nytimes_API_data.zip">NY Times API data</a> and <a href="http://cleverdon.hum.uva.nl/marijn/OtD/guardian_API_data.zip">Guardian API data</a> from the course website and explore them</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-31">
+    <section class="slide-content"><h3 id="next-week">Next Week</h3>
+<ul>
+<li>Acquiring data<ul>
+<li>APIs, scraping, crowdsourcing</li>
+<li>read Ben Fry - <a href="https://docs.google.com/file/d/0Bw6gfqK2v6PjbXlwcDJFcXBYT3c">Seven stages of visualizing data</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  try {
+    window.history.replaceState({} , null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
+  }
+}
+
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+
+  </script>
+</body>
+</html>

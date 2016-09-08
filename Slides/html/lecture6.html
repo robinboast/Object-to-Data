@@ -1,0 +1,975 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Object to Data - Lecture 6</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  font-size: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: #f7f7f7;
+}
+
+.slide-content {
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  margin: 80px auto 0 auto;
+  padding: 30px;
+
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 300%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 170px 0 0;
+}
+
+h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.author h1 {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.05s ease-out;
+  -moz-transition: width 0.05s ease-out;
+  -o-transition: width 0.05s ease-out;
+  transition: width 0.05s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 850px) {
+
+  body {
+    font-size: 70%;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .prev, .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .next, .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  .slide-content {
+    padding: 10px;
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    border: 1px solid #222;
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="slide" id="slide-1">
+    <section class="slide-content"><h1 id="from-object-to-data">From Object to Data</h1>
+<h2 id="visualisation">Visualisation</h2>
+<h2 id="robin-boast-alan-berg">Robin Boast, Alan Berg</h2>
+<h2 id="information-culture-digital-humanities-minor-2016-2017">Information Culture, Digital Humanities Minor 2016/2017</h2>
+<h2 id="week-6-10-10-2015">Week 6 - 10/10/2015</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><h3 id="programme">Programme</h3>
+<ol>
+<li>Digital Visualisation</li>
+<li>Fallacies in visualisation</li>
+</ol>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h1 id="part-1-digital-visualisation">Part 1: Digital Visualisation</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h3 id="goals-of-using-visuals">Goals of Using Visuals</h3>
+<ul>
+<li><a href="http://www.wired.com/wp-content/uploads/2015/10/guns_terrorism_final-932x579.jpeg">Support</a></li>
+<li><a href="http://dh2011abstracts.stanford.edu/xtf/view?docId=tei/ab-168.xml;query=;brand=default">Demonstrate</a></li>
+<li><a href="http://image.slidesharecdn.com/vienna2011-january-110124045209-phpapp02/95/patterns-for-personalization-on-the-web-7-728.jpg?cb=1295918230">Illustrate</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="goals-of-using-visuals">Goals of Using Visuals</h3>
+<ul>
+<li><a href="http://www.wired.com/wp-content/uploads/2015/10/guns_terrorism_final-932x579.jpeg">Support</a></li>
+<li><a href="http://dh2011abstracts.stanford.edu/xtf/view?docId=tei/ab-168.xml;query=;brand=default">Demonstrate</a></li>
+<li><a href="http://image.slidesharecdn.com/vienna2011-january-110124045209-phpapp02/95/patterns-for-personalization-on-the-web-7-728.jpg?cb=1295918230">Illustrate</a><ul>
+<li>What is difference between illustration and visualisation?</li>
+</ul>
+</li>
+<li>Exploration vs. presentation</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="goal-">Goal?</h3>
+<p><img src="https://cdn0.vox-cdn.com/uploads/chorus_asset/file/4076080/donutspiracy.jpg" alt="Image not available"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><h3 id="types-of-visualisation">Types of Visualisation</h3>
+<ul>
+<li>Galleries of images</li>
+<li>Museums and collections of objects</li>
+<li>Film, tv, moving images</li>
+<li>Dramatic re-creations</li>
+<li>Maps and atlases</li>
+<li>Pictures of data</li>
+<li>Single images</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h3 id="digital-visualisation">Digital Visualisation</h3>
+<ul>
+<li>What’s difference between digital and non-digital visualisation?</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="digitality">Digitality</h3>
+<ul>
+<li>Affordance of digital methods<ul>
+<li>Digital visualisations can be interactive</li>
+<li>zoom in, filter, rotate</li>
+<li><a href="http://nbilenko.com/projects/hobbit.html">Characters in the Hobbit</a></li>
+<li>3D reconstructed, first-person interactive worlds</li>
+<li><a href="http://orbis.stanford.edu/">ORBIS</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="seven-stages">Seven Stages</h3>
+<ol>
+<li>Acquiring</li>
+<li>Parsing</li>
+<li>Filtering</li>
+<li>Mining</li>
+<li><strong>Representing</strong></li>
+<li><strong>Refining</strong></li>
+<li><strong>Interacting</strong></li>
+</ol>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="chicken-or-egg-">Chicken or Egg?</h3>
+<ul>
+<li>Story should determine visualisation</li>
+<li>But visualisation affects story</li>
+<li>Recall two perspectives<ul>
+<li>exploration</li>
+<li>presentation</li>
+</ul>
+</li>
+<li>non-linearity of steps<ul>
+<li>once you have story, choose visualisation</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h3 id="your-turn">Your Turn</h3>
+<ul>
+<li>Group assignment:<ul>
+<li>Make visualisation for your project</li>
+<li>Think about story you want to tell</li>
+<li>Think about elements to visualise</li>
+</ul>
+</li>
+<li>Take 10 minutes to sketch one or more visualisations</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h3 id="data-types">Data Types</h3>
+<ul>
+<li>Space</li>
+<li>Quantitative data</li>
+<li>Text</li>
+<li>Time</li>
+<li>3D visualisation</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h3 id="combining-data-types">Combining Data Types</h3>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Minard.png" alt="Image not available"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h3 id="story-in-visualisation">Story in Visualisation</h3>
+<ul>
+<li>How much of the story is in visualisation?<ul>
+<li>all 7 steps contribute to story</li>
+<li>to what extent do you need to know about steps leading up to visualisation?</li>
+<li><a href="https://books.google.com/ngrams/graph?content=lounging%2Cstrolling%2Clurching%2Cdodging%2Cwaddling%2Ctrudging&amp;year_start=1700&amp;year_end=2000&amp;corpus=0&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Clounging%3B%2Cc0%3B.t1%3B%2Cstrolling%3B%2Cc0%3B.t1%3B%2Clurching%3B%2Cc0%3B.t1%3B%2Cdodging%3B%2Cc0%3B.t1%3B%2Cwaddling%3B%2Cc0%3B.t1%3B%2Ctrudging%3B%2Cc0">walking on the edge</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h3 id="visualisation-tools-1-2-">Visualisation Tools (1/2)</h3>
+<ul>
+<li><a href="http://www-958.ibm.com/software/analytics/manyeyes/">Many Eyes</a> by IBM<ul>
+<li>online, have to register</li>
+<li>uploaded data becomes public data set</li>
+</ul>
+</li>
+<li><a href="http://app.raw.densitydesign.org/">Raw</a> by DensityDesign Lab<ul>
+<li>online, data stays offline</li>
+<li>open source on GitHub, can have local copy</li>
+</ul>
+</li>
+<li><a href="http://www.tableau.com/">Tableau</a><ul>
+<li>commercial, free trial, offline &amp; online</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h3 id="visualisation-tools-2-2-">Visualisation Tools (2/2)</h3>
+<ul>
+<li>Programmatic approach to visualisation<ul>
+<li><a href="http://trifacta.github.io/vega/">Vega</a>: online, open source, with editor</li>
+<li><a href="http://d3js.org/">D3.js</a>: online &amp; offline, open source</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h1 id="part-2-fallacies-in-visualisation">Part 2: Fallacies in Visualisation</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h3 id="overview">Overview</h3>
+<ul>
+<li>Understanding Process<ul>
+<li>where can errors/problems occur?</li>
+</ul>
+</li>
+<li>Understanding Experimentation<ul>
+<li>how to detect errors/problems?</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h3 id="understanding-process">Understanding Process</h3>
+<p><img src="http://humanities.uva.nl/~mkoolen1/materials/Visualisation_Antwerp_2015/images/visualizing_data.jpg" alt="Image not available"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h3 id="seven-steps">Seven Steps</h3>
+<ul>
+<li><a href="https://library.oreilly.com/book/9780596514556/visualizing-data/10.xhtml?ref=toc#process">visualization is tip of the iceberg</a><ol>
+<li>acquiring</li>
+<li>parsing</li>
+<li>filtering</li>
+<li>mining</li>
+<li>representing</li>
+<li>refining</li>
+<li>interacting</li>
+</ol>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h3 id="fallacy-of-irrelevance-">Fallacy of Irrelevance?</h3>
+<p><img src="http://ct.weirdnutdaily.com/ol/wn/sw/i38/2/8/4/wnd_ce29f39f819ba8310b7baa82a4a8233a.jpg" alt="Image not available"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h3 id="step-0-asking-questions">Step 0: Asking Questions</h3>
+<p>“The most important part of understanding data is identifying the question that you want to answer. Rather than thinking about the data that was collected, think about how it will be used and work backward to what was collected.” (Fry, 2007)</p>
+<ul>
+<li>What story should it tell?<ul>
+<li><a href="http://thebrownmap.nl/">The Brown Map</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-24">
+    <section class="slide-content"><h3 id="procedural-model">Procedural Model</h3>
+<ul>
+<li>Procedure for Visualization<ul>
+<li>systematic way of thinking through process</li>
+<li>Helps one thinking about data, method and goal</li>
+</ul>
+</li>
+<li>Fallacies can occur in each step</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><h3 id="step-1-acquiring">Step 1: Acquiring</h3>
+<ul>
+<li>Data criticism: what’s in, what’s missing<ul>
+<li><a href="http://ckcc.huygens.knaw.nl/epistolarium/">ePistolarium</a>, <a href="http://www.vondel.humanities.uva.nl/ecartico/">Ecartico</a></li>
+</ul>
+</li>
+<li>Data set may be contingent, incomplete, biased, ...<ul>
+<li>‘Visual sources present the viewer with a <strong>complete, and convincing, picture</strong> that is often derived from an <strong>incomplete record</strong> but the nature of the media used often <strong>requires that the gaps be filled</strong> during its creation and <strong>thus concealed</strong>.’ (Jessop, 2008, p.287)</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-26">
+    <section class="slide-content"><h3 id="step-2-parsing">Step 2: Parsing</h3>
+<ul>
+<li>Preparation criticism: what’s impact of e.g. systematic errors<ul>
+<li>Joanna Guldi studied <a href="https://books.google.com/ngrams/graph?content=lounging%2Cstrolling%2Clurching%2Cdodging%2Cwaddling%2Ctrudging&amp;year_start=1700&amp;year_end=2000&amp;corpus=0&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Clounging%3B%2Cc0%3B.t1%3B%2Cstrolling%3B%2Cc0%3B.t1%3B%2Clurching%3B%2Cc0%3B.t1%3B%2Cdodging%3B%2Cc0%3B.t1%3B%2Cwaddling%3B%2Cc0%3B.t1%3B%2Ctrudging%3B%2Cc0">use of variants of ‘to walk’</a></li>
+<li>First occurrence of <em>Absolute Musik</em></li>
+<li><a href="http://visualizer.namescape.nl/book/723">Recognition of names in novels</a></li>
+</ul>
+</li>
+<li>Parsing procedure determines units of analysis</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-27">
+    <section class="slide-content"><h3 id="step-3-filtering">Step 3: Filtering</h3>
+<ul>
+<li>Remove what is not needed</li>
+<li>Remove until the key message jumps out<ul>
+<li>but leave enough to understand/contextualise</li>
+<li>Visualization should be made as simple as possible, but no simpler</li>
+<li><a href="images/tube-map.jpg">London Tube Map</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-28">
+    <section class="slide-content"><h3 id="step-3-filtering">Step 3: Filtering</h3>
+<ul>
+<li>Remove what is not needed</li>
+<li>Remove until the key message jumps out<ul>
+<li>but leave enough to understand/contextualise</li>
+<li>Visualization should be made as simple as possible, but no simpler</li>
+<li><a href="images/tube-map.jpg">London Tube Map</a></li>
+<li>Distortion can be useful!</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-29">
+    <section class="slide-content"><h3 id="step-4-mining">Step 4: Mining</h3>
+<ul>
+<li>Aggregate/summarise:<ul>
+<li>show patterns of interest (mean, distribution, ...)</li>
+</ul>
+</li>
+<li>Don’t over-simplify<ul>
+<li>e.g. show only mean while distribution is important</li>
+</ul>
+</li>
+<li>First observed pattern may not be most interesting<ul>
+<li>timeline: aggregate per day/month/year/...</li>
+<li><a href="http://humanities.uva.nl/~mkoolen1/materials/Visualisation_Antwerp_2015/KB_topic_model_images.html">periodicity in newspaper topics</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-30">
+    <section class="slide-content"><h3 id="step-5-representing">Step 5: Representing</h3>
+<ul>
+<li>Size of effect in data vs. size of effect in visualization<ul>
+<li>what are units here: <a href="http://www.theguardian.com/news/datablog/gallery/2013/aug/01/16-useless-infographics#img-3">NSW recruiting nurses</a></li>
+<li>and size of bubbles here: <a href="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/05/viz8.jpg">Top 10 films by worldwide gross</a></li>
+</ul>
+</li>
+<li>Going against convention: <a href="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/05/viz2.jpg">Gun deaths in Florida</a> (<a href="http://www.businessinsider.in/This-Chart-Shows-What-Happened-To-Gun-Deaths-In-Florida-After-Stand-Your-Ground-Was-Enacted/articleshow/30635752.cms">source</a>)</li>
+<li>Explain representation: provide legend, caption (explain units, scales, etc)<ul>
+<li><a href="http://nbilenko.com/projects/narrative.html">Narrative structure</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-31">
+    <section class="slide-content"><h3 id="step-6-refining">Step 6: Refining</h3>
+<ul>
+<li>Calling attention to particular data through color, hierarchy, zoom, ...<ul>
+<li>typical ‘mistake’: <a href="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/05/viz3.jpg">truncating axes</a> (<a href="http://www.businessinsider.in/We-Fixed-Fox-News-Embarrassing-Obamacare-Chart/articleshow/33034053.cms">source</a>, <a href="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/05/viz4.jpg">non-truncated version</a>)</li>
+<li><a href="http://matt.might.net/articles/phd-school-in-pictures/">Zoom can be misleading</a></li>
+</ul>
+</li>
+<li>Focus should not hide relevant context</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-32">
+    <section class="slide-content"><h3 id="step-7-interacting">Step 7: Interacting</h3>
+<ul>
+<li>Adding interaction allows exploring data<ul>
+<li>New York Times <a href="http://projects.nytimes.com/guantanamo">Guantanamo Docket</a></li>
+<li>interactivity allows exploration of data and relations</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-33">
+    <section class="slide-content"><h3 id="non-linear-process">Non-Linear Process</h3>
+<p><img src="http://humanities.uva.nl/~mkoolen1/materials/Visualisation_Antwerp_2015/images/seven_stages.png" alt="Image not available"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-34">
+    <section class="slide-content"><h3 id="understanding-experimentation">Understanding Experimentation</h3>
+<ul>
+<li>Joanna Guldi could have discovered the problem with <em>strolling</em> through experimenting<ul>
+<li>try out different parameters, filters, representations</li>
+</ul>
+</li>
+<li>Each step (but especailly mining) involves many choices<ul>
+<li>try multiple options, explore stability and validity of pattern</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-35">
+    <section class="slide-content"><h3 id="criticizing-visualizations">Criticizing Visualizations</h3>
+<ul>
+<li>A beautiful fallacy in criticizing:<ul>
+<li><a href="http://www.newrepublic.com/article/117428/limits-digital-humanities-adam-kirsch">Adam Kirsch on the false promise of Digital Humanities</a></li>
+<li>Critized use of Google Ngram Viewer...</li>
+<li>... and Erez Aiden and Jean-Baptiste Michel’s <a href="https://books.google.com/ngrams/graph?content=1883%2C1910%2C1950&amp;year_start=1800&amp;year_end=2000&amp;corpus=15&amp;smoothing=0&amp;share=&amp;direct_url=t1%3B%2C1883%3B%2Cc0%3B.t1%3B%2C1910%3B%2Cc0%3B.t1%3B%2C1950%3B%2Cc0">forgetting curve</a></li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-36">
+    <section class="slide-content"><h3 id="criticizing-visualizations">Criticizing Visualizations</h3>
+<ul>
+<li>A beautiful fallacy in criticizing:<ul>
+<li><a href="http://www.newrepublic.com/article/117428/limits-digital-humanities-adam-kirsch">Adam Kirsch on the false promise of Digital Humanities</a></li>
+<li>Critized use of Google Ngram Viewer...</li>
+<li>... and Erez Aiden and Jean-Baptiste Michel’s <a href="https://books.google.com/ngrams/graph?content=1883%2C1910%2C1950&amp;year_start=1800&amp;year_end=2000&amp;corpus=15&amp;smoothing=0&amp;share=&amp;direct_url=t1%3B%2C1883%3B%2Cc0%3B.t1%3B%2C1910%3B%2Cc0%3B.t1%3B%2C1950%3B%2Cc0">forgetting curve</a></li>
+</ul>
+</li>
+<li>If you criticize a visualization, at least look at it!</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-37">
+    <section class="slide-content"><h3 id="wrap-up">Wrap Up</h3>
+<ul>
+<li>Understanding process helps avoiding and locating mistakes<ul>
+<li>7-step process</li>
+<li>but think about the <em>why</em></li>
+</ul>
+</li>
+<li>Experiment and consider alternatives at each step<ul>
+<li>criticize your decisions</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-38">
+    <section class="slide-content"><h3 id="visualisation-tutorials">Visualisation Tutorials</h3>
+<ul>
+<li><a href="https://www.datacamp.com/courses/ggvis-data-visualization-r-tutorial">Data visualisation in R</a></li>
+<li><a href="http://www.analyticsvidhya.com/blog/2015/07/guide-data-visualization-r/">Guide for visualisation types in R</a></li>
+<li>Inspirational website: <a href="http://www.informationisbeautiful.net/">Information is Beautiful</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-39">
+    <section class="slide-content"><h3 id="next">Next</h3>
+<ul>
+<li>07/10/2015<ul>
+<li>Lab: projects</li>
+</ul>
+</li>
+<li>12/10/2015<ul>
+<li>Lecture: interpretation in data-driven humanities research</li>
+</ul>
+</li>
+<li>14/10/2015<ul>
+<li>Lab: presentation &amp; drinks</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  try {
+    window.history.replaceState({} , null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
+  }
+}
+
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+
+  </script>
+</body>
+</html>

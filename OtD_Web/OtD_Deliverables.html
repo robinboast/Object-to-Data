@@ -1,0 +1,147 @@
+
+<html ng-app="marijn-teaching" class="ng-scope">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
+</style>
+	<meta charset="UTF-8&quot;">
+	<meta name="language" content="en">
+	<meta name="description" content="Teaching page of Object to Data Course, UvA">
+	<meta name="keywords" content="Academic courses, Teaching, University of Amsterdam, Digital Humanities, Information Retrieval">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Object to Data</title>
+	<link href="./OtD_DataSets_files/styles.css" type="text/css" rel="stylesheet">
+	<link href="./OtD_DataSets_files/bootstrap.min.css" type="text/css" rel="stylesheet">
+	<script src="./OtD_DataSets_files/jquery-1.11.1.min.js"></script>
+	<script src="./OtD_DataSets_files/bootstrap.min.js"></script>
+	<script src="./OtD_DataSets_files/tab.js"></script>
+	<script src="./OtD_DataSets_files/angular.js"></script>
+	<script src="./OtD_DataSets_files/angular-route.min.js"></script>
+	<script type="text/javascript" src="./OtD_DataSets_files/teaching.js"></script>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style>
+</head>
+<body ng-controller="MainCtrl" class="ng-scope">
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-8">
+			<div class="page" id="page-datasets">
+				<div class="navbar">
+					<h1 class="ng-binding">From Objects to Data (2016/2017)</h1>
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Home.html">overview</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Slides.html">slides</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Exercises.html">exercises</a></li>
+						<li role="presentation" class="active"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Deliverables.html">deliverables</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Tools.html">tools</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_DataSets.html">data sets</a></li>
+					</ul>
+				</div>
+
+
+	<div class="main" id"main-deliverables"="">
+		<h1>Deliverables</h1>
+
+		<div class="section" id="deliverables-requirements">
+			<h3>Requirements</h3>
+
+			<p>For this course, students are required to submit, individually, a proposal for a group project </p>
+			<p>During the second half of the course, groups (up to 4 students per group) choose one of their proposals, conduct their research project and present their findings during the final lab session. </p>
+			<p>Groups hand in a portfolio with all their project materials and a written report.</p>
+
+			<p>The project proposal should contain:</p>
+			<ul>
+				<li>two or more research questions regarding a data set (can be a data set used in the course or another data set of choice)</li>
+				<li>a high-level description of methods and steps to investigate this</li>
+				<li>a description of how results of investigation can answer or shed light on research questions</li>
+			</ul>
+			<p>The proposal is an individual assignment. Each student should hand in their own proposals, which should be no longer than 1 page A4</p>
+			<p>The portfolio should include:</p>
+			<ul>
+				<li>scripts that produce results from the original data set</li>
+				<li>a report containing:
+				<ol>
+					<li>explanation of your research question, approach, analysis and interpretation of the results</li>
+					<li>a reflection on lessons learned. This may include visualisations of the results.</li>
+				</ol>
+			</li></ul>
+
+			<p>The portfolio is a group assignment, in the form of a gitHub repository with separate files for scripts and documentation.</p>
+
+			<p>Report should not exceed 2500 words.</p>
+
+		</div>
+		<div class="section" id="deliverables-deadlines">
+			<h3>Deadlines</h3>
+
+			<p>There are three deadlines:
+			</p><!-- ngRepeat: deliverable in admin.deliverables --><ul ng-repeat="deliverable in admin.deliverables" class="ng-scope">
+				<li class="ng-binding">project proposal: 21/09/2015</li>
+			</ul><!-- end ngRepeat: deliverable in admin.deliverables --><ul ng-repeat="deliverable in admin.deliverables" class="ng-scope">
+				<li class="ng-binding">project portfolio, first version: 02/10/2015</li>
+			</ul><!-- end ngRepeat: deliverable in admin.deliverables --><ul ng-repeat="deliverable in admin.deliverables" class="ng-scope">
+				<li class="ng-binding">project portfolio, final version: 23/10/2015</li>
+			</ul><!-- end ngRepeat: deliverable in admin.deliverables -->
+			<p></p>
+
+			<p>For the final version, any part of the portfolio may be updated with respect to the first version.</p>
+
+			<h4>Submitting proposals and portfolios</h4>
+			<p>If you don't have a GitHub account yet, make one on <a href="https://github.com/">GitHub</a>. </p>
+			<p>Make a <a href="https://gist.github.com/">Gist</a> of your proposal (choose your favourite markup language for documentation) and send the URL of your gist to <a mailto="marijn.koolen@uva.nl">marijn.koolen@uva.nl</a>.</p>
+
+			<ul>
+				<li>I've made a short <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab5_git_repo">tutorial for making your first git repository for your project</a>. </li>
+				<li>The <a href="http://software-carpentry.org/">Software Carpentry</a> site has a very well-written <a href="http://swcarpentry.github.io/git-novice/">tutorial on Git and Github</a>. </li>
+				<li><a href="http://rogerdudler.github.io/git-guide/" target="_blank">Git tutorial</a> </li>
+				<li><a href="http://www.labnol.org/internet/github-gist-tutorial/28499/" target="_blank">Gist tutorial</a> </li>
+			</ul>
+			<p>Groups should submit their portfolios as a Git repository. Send the URL of your repository to <a mailto="marijn.koolen@uva.nl">marijn.koolen@uva.nl</a>.</p>
+			<p>Groups who create their own data set should also submit their data sets. Because these might be very big, please contact me to discuss how to transfer the data set.</p>
+
+		</div>
+		<div class="section" id="deliverables-grading">
+			<h3>Grading</h3>
+
+			<p>The grades of the proposal and the two portfolio versions together determine the final grade:
+
+			</p><ul>
+			<!-- ngRepeat: deliverable in admin.deliverables --><ul ng-repeat="deliverable in admin.deliverables" class="ng-scope">
+				<li class="ng-binding">project proposal - 20%</li>
+			</ul><!-- end ngRepeat: deliverable in admin.deliverables --><ul ng-repeat="deliverable in admin.deliverables" class="ng-scope">
+				<li class="ng-binding">project portfolio, first version - 20%</li>
+			</ul><!-- end ngRepeat: deliverable in admin.deliverables --><ul ng-repeat="deliverable in admin.deliverables" class="ng-scope">
+				<li class="ng-binding">project portfolio, final version - 60%</li>
+			</ul><!-- end ngRepeat: deliverable in admin.deliverables -->
+			</ul>
+			<p></p>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+</div>
+</div>
+
+
+		</div>
+
+	</div>
+
+
+
+</body></html>
