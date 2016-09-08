@@ -1,0 +1,340 @@
+
+<html ng-app="marijn-teaching" class="ng-scope">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
+</style>
+	<meta charset="UTF-8&quot;">
+	<meta name="language" content="en">
+	<meta name="description" content="Teaching page of Object to Data Course, UvA">
+	<meta name="keywords" content="Academic courses, Teaching, University of Amsterdam, Digital Humanities, Information Retrieval">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Object to Data</title>
+	<link href="./OtD_DataSets_files/styles.css" type="text/css" rel="stylesheet">
+	<link href="./OtD_DataSets_files/bootstrap.min.css" type="text/css" rel="stylesheet">
+	<script src="./OtD_DataSets_files/jquery-1.11.1.min.js"></script>
+	<script src="./OtD_DataSets_files/bootstrap.min.js"></script>
+	<script src="./OtD_DataSets_files/tab.js"></script>
+	<script src="./OtD_DataSets_files/angular.js"></script>
+	<script src="./OtD_DataSets_files/angular-route.min.js"></script>
+	<script type="text/javascript" src="./OtD_DataSets_files/teaching.js"></script>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style>
+</head>
+<body ng-controller="MainCtrl" class="ng-scope">
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-8">
+			<div class="page" id="page-datasets">
+				<div class="navbar">
+					<h1 class="ng-binding">From Objects to Data (2016/2017)</h1>
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Home.html">overview</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Slides.html">slides</a></li>
+						<li role="presentation" class="active"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Exercises.html">exercises</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Deliverables.html">deliverables</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Tools.html">tools</a></li>
+						<li role="presentation"><a href="http://www.rorofi.co.uk/OtD_Web/OtD_DataSets.html">data sets</a></li>
+					</ul>
+				</div>
+
+	<div class="main" id="main-exercises">
+		<h1>Weekly exercises</h1>
+		<div class="section" id="exercises-week1">
+			<!-- ngRepeat: week in exercises --><div>
+				<h3 class="ng-binding">Exercises week 1</h3>
+				<p class="ng-binding">Session: 02/09/2015</p>
+				<!-- ngSwitchWhen: yes --><div>
+					<!-- ngRepeat: exercise in week.exercises --><ul>
+						<h4 class="ng-binding">Learn to use the command line</h4>
+						<p class="ng-binding">Follow the command line tutorial by Zed Shaw to setup your command line environment and learn how to use it</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								The tutorial can be found here: 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://cli.learncodethehardway.org/book/" class="ng-binding">The Command Line Crash Course</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								Windows users should use Cygwin instead of Powershell. In the tutorial, there are separate instructions for Unix/Mac and Powershell. Cygwin users should stick to Unix/Mac instructions and skip the Powershell instructions. 
+								<!-- ngSwitchWhen: resource -->
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises --><ul>
+			</div><!-- end ngRepeat: week in exercises --><div>
+				<h3 class="ng-binding">Exercises week 2</h3>
+				<p class="ng-binding">Session: 09/09/2015</p>
+				<!-- ngSwitchWhen: yes --><div>
+						<h4 class="ng-binding">Learn to use command line tools for text analysis</h4>
+						<p class="ng-binding">Follow the command line tutorial by Kenneth Ward Church and get introduced to powerful tools like awk and sed that allow you to do amazing things with just a few commands.</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								The tutorial can be found here: 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://www.cs.upc.edu/~padro/Unixforpoets.pdf" class="ng-binding">Unix for Poets</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								The tutorial uses a version of the Book of Genesis as data (the first two lines of the text linked here are different from the one used in the tutorial, so tools might give slightly different output in places): 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://monolith.sourceforge.net/genesis.txt" class="ng-binding">Book of Genesis</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises --><ul>
+						<h4 class="ng-binding">Exploring film review data on the command line</h4>
+						<p class="ng-binding">The tutorial below takes you through an example of analysis and exploring data with basic command line tools.</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								The tutorial can be found here: 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab1_exercise3" class="ng-binding">Week 1 Exercise 3: Film reviews</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises -->
+				</div>
+				<!-- ngSwitchDefault:  -->
+			</div><!-- end ngRepeat: week in exercises --><div>
+				<h3 class="ng-binding">Exercises week 2</h3>
+				<p class="ng-binding">Session: 09/09/2015</p>
+				<!-- ngSwitchWhen: yes --><div>
+					<!-- ngRepeat: exercise in week.exercises --><ul>
+						<h4 class="ng-binding">Install jq</h4>
+						<p class="ng-binding">jq is small command line tool that can process JSON formatted data. Many APIs return their data in JSON format, a worldwide standard for exchanging data. With jq you can transform and extract information from JSON data. To install jq, there are different steps for Cygwin users and Unix/Linux/Mac users.</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								Cygwin users should be able to install jq with the following three commands: 1) 'wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-1.5/jq-1.5.tar.gz', 2) 'tar xzf jq-1.5.tar.gz' 3) 'cd jq-1.5; ./configure &amp;&amp; make &amp;&amp; cygstart --action=runas make install'. This will then download and install jq, which might take a few minutes.  
+								<!-- ngSwitchWhen: resource -->
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								Koding.com users should download the script file below (get_jq.sh), in cygwin move to the directory where jq is downloaded, and install with the following three commands: 1) 'wget http://humanities.uva.nl/~mkoolen1/teaching/data/FOtD/2015/scripts/get_jq.sh', 2) 'chmod u+x get_jq.sh' 3) 'sudo ./get_jq.sh'. This will then download and install jq, which might take a few minutes.  
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://humanities.uva.nl/~mkoolen1/teaching/data/FOtD/2015/scripts/get_jq.sh" class="ng-binding">get_jq.sh</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								Unix/Linux/Mac users can download a working 'binaries' version for their system from the jq website (OS X for Mac and Linux for Unix/Linux users). Move to the directory where you downloaded jq, change the filename (e.g. jq-osx-amd64 or jq-linux64) to just 'jq' (e.g. type 'mv jq-linux64 jq', and move the file to the folder /usr/local/bin with the command 'sudo mv jq /usr/local/bin'. The latter will require you to type your administrator password. 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="https://stedolan.github.io/jq/download/" class="ng-binding">jq download page</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								All users: on the command line, type 'jq' and press enter to check if jq is installed properly. If it works, you should see on your screen information on how to use jq. 
+								<!-- ngSwitchWhen: resource -->
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises --><ul>
+						<h4 class="ng-binding">Learn to harvest data from online sources</h4>
+						<p class="ng-binding">The Web is filled with interesting data for humanities research. Many institutions and companies provide public access to data through APIs and search services. The latter are fine for consulting search results one at a time, but if you want to analyse many items as a whole, APIs offer you an option to download multiple items in one or several steps. In this exercise you learn to gather data from external sources through command line tools.</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								The tutorial can be found here: 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab2_exercise2" class="ng-binding">Harvesting data from the NY Times API</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								Have a look at the following list of APIs. Perhaps there are some you want to use for your project later on. 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab2_apis" class="ng-binding">Some interesting APIs</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises -->
+				</div>
+				<!-- ngSwitchDefault:  -->
+			</div><!-- end ngRepeat: week in exercises --><div>
+				<h3 class="ng-binding">Exercises week 3</h3>
+				<p class="ng-binding">Session: 16/09/2015</p>
+				<!-- ngSwitchWhen: yes --><div>
+					<!-- ngRepeat: exercise in week.exercises --><ul>
+						<h4 class="ng-binding">Learn to use regular expressions</h4>
+						<p class="ng-binding">Regular expressions offer a very powerful way to search, select and transform patterns in data.</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								Follow the regular expression tutorial by William Turkel to learn the basics. 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://williamjturkel.net/2013/06/20/pattern-matching-and-permuted-term-indexing-with-command-line-tools-in-linux/" class="ng-binding">Pattern Matching and Permuted Term Indexing with Command Line Tools in Linux</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								Follow the regular expression tutorial by Zed Shaw to learn the basics. 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://regex.learncodethehardway.org/book/" class="ng-binding">Learn Regex The Hard Way</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								A few examples of how Regular Expressions (REs) can be useful for text analysis in for instance film reviews. 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab3_grep_commands" class="ng-binding">Regular Expressions for Text Analysis</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises --><ul>
+						<h4 class="ng-binding">Using RStudio for geocoding and mapping geopraphical data</h4>
+						<p class="ng-binding">R is a programming language for doing statistical data analysis. Seemingly far removed from the Humanities, but it is actually used in many Digital Humanities projects. Like the Unix command line tools and a programming language like Python, it offers many options for acquiring, selecting, filtering and visualizing data. Below are some tutorial to get you acquainted with R through the RStudio environment, with examples of textual and literary analysis, movie actor network analysis and geomapping and geocoding.</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								Download the R script below, start RStudio and open the script via 'File', 'New File', 'R script' and go through the steps in the script. Lines starting with '#' are comment lines that contain explanation of the script. You can execute each line with instructions in the script by placing the cursor on that line and clicking the 'Run' button on the top right corner of the script panel. 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://humanities.uva.nl/~mkoolen1/teaching/data/FOtD/2015/scripts/lab3_geocoding_nytimes.R" class="ng-binding">Using R to map NY Times reports on student protests</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								The following tutorial explains how to do text analysis on Shakespeare 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://www.r-bloggers.com/text-mining-the-complete-works-of-william-shakespeare/" class="ng-binding">Text Mining the Complete Shakespeare</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								Use the SPARQL plugin for R to get data from the Linked Open Data web about actors and directors in American films and generate network visualizations. Warning, this is somehwat advanced and requires the network tool Gephi next to R. 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://linkedscience.org/tools/sparql-package-for-r/sparql-package-for-r-gephi-movie-star-graph-visualization-tutorial/" class="ng-binding">SPARQL Package for R / Gephi � Movie star graph visualization Tutorial</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps --><li>
+								A tutorial for making more sophisticated maps 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://www.molecularecologist.com/2012/09/making-maps-with-r/" class="ng-binding">Making Maps with R</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises -->
+				</div>
+				<!-- ngSwitchDefault:  -->
+			</div><!-- end ngRepeat: week in exercises --><div>
+				<h3 class="ng-binding">Exercises week 5</h3>
+				<p class="ng-binding">Session: 30/09/2015</p>
+				<!-- ngSwitchWhen: yes --><div>
+					<!-- ngRepeat: exercise in week.exercises --><ul>
+						<h4 class="ng-binding">Learn to use GitHub</h4>
+						<p class="ng-binding">GitHub is a platform for storing repositories of documents. It's mainly used for version control of coding projects, but can be used for many other document types. It makes use of git, a distributed version control system that allows multiple users to share and synchronise their local copies of repositories. This allows easy collaboration and a reliable way of managing project documents such as scripts and documentation.</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								Follow the GitHub tutorial of the Software Carpentry workshops to learn the basics. 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://swcarpentry.github.io/git-novice/" class="ng-binding">Version Control with Git</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises --><ul>
+						<h4 class="ng-binding">Make a repository for your project</h4>
+						<p class="ng-binding">This is a short tutorial to help you setup a repository for your project</p>
+						<p>Goals:</p>
+						<ul>
+							<!-- ngRepeat: goal in exercise.goals --><li>
+						</ul>
+						<p>Steps:</p>
+						<ol>
+							<!-- ngRepeat: step in exercise.steps --><li>
+								The following few steps will help you setup a repository for your project 
+								<!-- ngSwitchWhen: resource --><div>
+									<a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab5_git_repo" class="ng-binding">Starting a git repository</a>
+								</div>
+								<!-- ngSwitchWhen: command -->
+								<!-- ngSwitchWhen: substeps -->
+							</li><!-- end ngRepeat: step in exercise.steps -->
+						</ol>
+					</ul><!-- end ngRepeat: exercise in week.exercises -->
+				</div>
+				<!-- ngSwitchDefault:  -->
+			</div><!-- end ngRepeat: week in exercises --> 
+			</br>
+			</br>
+			</br>
+			</br>
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+		</div>
+
+	</div>
+
+
+
+</body></html>
