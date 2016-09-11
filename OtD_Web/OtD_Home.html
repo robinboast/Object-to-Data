@@ -85,7 +85,7 @@
 					Alan Berg
 				</li><!-- end ngRepeat: teacher in admin.teachers -->
 			</ul>
-			<p>For questions, email <a mailto="marijn.koolen@uva.nl">marijn.koolen@uva.nl</a>.</p>
+			<p>For questions, email <a mailto="r.boast@uva.nl">r.boast@uva.nl</a>, or <a mailto="A.M.Berg@uva.nl">a.m.berg@uva.nl</a></p>
 		</div>
 		<div class="section" id="overview-grading">
 			<h2>Grading</h2>
@@ -123,7 +123,7 @@
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
 					<p class="ng-binding">Lecture: From Object to Data</p>
 					<ul>
-						<li class="ng-binding">Date: 31/08/2015</li>
+						<li class="ng-binding">Date: 05/09/2015</li>
 						<li>Reading: </li>
 						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
 							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
@@ -153,7 +153,7 @@
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
 					<p class="ng-binding">Lecture: Acquiring data: APIs</p>
 					<ul>
-						<li class="ng-binding">Date: 05/11/2015</li>
+						<li class="ng-binding">Date: 12/11/2015</li>
 						<li>Reading: </li>
 						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
 							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
@@ -181,7 +181,7 @@
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
 					<p class="ng-binding">Lecture: Parsing Data</p>
 					<ul>
-						<li class="ng-binding">Date: 14/09/2015</li>
+						<li class="ng-binding">Date: 19/09/2015</li>
 						<li>Reading: </li>
 						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
 							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
@@ -207,95 +207,49 @@
 			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
 				<h3 class="ng-binding">Week 4</h3>
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
-					<p class="ng-binding">Lab: Data structures and getting data</p>
+					<p class="ng-binding">Review of project proposals</p>
 					<ul>
-						<li class="ng-binding">Date: 29/10/2015</li>
-						<li>Reading: </li>
-						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
-							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
-								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/2012/06/10/learning-to-program/" target="_blank" class="ng-binding">Learning to Program</a></li>
-							</ul><!-- end ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
-								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/text/2011/01/11/on-building/" target="_blank" class="ng-binding">On Building</a></li>
-							</ul><!-- end ngRepeat: resource in session.reading -->
-						</div>
-						<!-- ngSwitchWhen: no -->
-						<!-- ngSwitchDefault:  -->
+						<li class="ng-binding">Date: 26/09/2015</li>
+							<li>No reading material</li>
 					</ul>
 				</div><!-- end ngRepeat: session in week.sessions -->
 				<li>Topics: </li>
 				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Datastructures</li>
+					<li class="ng-binding">Project Question</li>
 				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">APIs</li>
+					<li class="ng-binding">Data Set</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Methods</li>
+				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
+					<li class="ng-binding">Outcome</li>
 				</ul><!-- end ngRepeat: topic in week.topics -->
 				<li>Tools: </li>
-				<!-- ngRepeat: tool in week.tools -->
-			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				
+				<div ng-repeat="week in weeks" class="ng-scope">
 				<h3 class="ng-binding">Week 5</h3>
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
-					<p class="ng-binding">Lab: Introduction to coding</p>
+					<p class="ng-binding">To Be Announced</p>
 					<ul>
-						<li class="ng-binding">Date: 29/10/2015</li>
+						<li class="ng-binding">Date: 03/10/2015</li>
 						<li>Reading: </li>
-						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
-							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
-								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/2012/06/10/learning-to-program/" target="_blank" class="ng-binding">Learning to Program</a></li>
-							</ul><!-- end ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
-								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/text/2011/01/11/on-building/" target="_blank" class="ng-binding">On Building</a></li>
-							</ul><!-- end ngRepeat: resource in session.reading -->
-						</div>
-						<!-- ngSwitchWhen: no -->
-						<!-- ngSwitchDefault:  -->
+						<li>Topics: </li>
+						<li>Tools: </li>
 					</ul>
 				</div><!-- end ngRepeat: session in week.sessions -->
-				<li>Topics: </li>
-				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Introduction</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Course setup</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Using Koding, GitHub and Slack</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Create webpages with HTML and CSS</li>
-				</ul><!-- end ngRepeat: topic in week.topics -->
-				<li>Tools: </li>
-				<!-- ngRepeat: tool in week.tools -->
-			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+				
 				<h3 class="ng-binding">Week 6</h3>
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
-					<p class="ng-binding">Lab: Introduction to coding</p>
+					<p class="ng-binding">Lecture: Visualisation</p>
 					<ul>
-						<li class="ng-binding">Date: 29/10/2015</li>
+						<li class="ng-binding">Date: 10/10/2015</li>
 						<li>Reading: </li>
-						<!-- ngSwitchWhen: yes --><div ng-switch-when="yes" class="ng-scope">
-							<!-- ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
-								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/2012/06/10/learning-to-program/" target="_blank" class="ng-binding">Learning to Program</a></li>
-							</ul><!-- end ngRepeat: resource in session.reading --><ul ng-repeat="resource in session.reading" class="ng-scope">
-								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/text/2011/01/11/on-building/" target="_blank" class="ng-binding">On Building</a></li>
-							</ul><!-- end ngRepeat: resource in session.reading -->
-						</div>
-						<!-- ngSwitchWhen: no -->
-						<!-- ngSwitchDefault:  -->
+						<li>Topics: </li>
 					</ul>
-				</div><!-- end ngRepeat: session in week.sessions -->
-				<li>Topics: </li>
-				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Introduction</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Course setup</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Using Koding, GitHub and Slack</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Create webpages with HTML and CSS</li>
-				</ul><!-- end ngRepeat: topic in week.topics -->
-				<li>Tools: </li>
-				<!-- ngRepeat: tool in week.tools -->
-			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
 				<h3 class="ng-binding">Week 7</h3>
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
 					<p class="ng-binding">Lab: Student Presentations</p>
 					<ul>
-						<li class="ng-binding">Date: 10/12/2015</li>
+						<li class="ng-binding">Date: 17/12/2015</li>
 						<li>Reading: </li>
 						<!-- ngSwitchWhen: yes -->
 						<!-- ngSwitchWhen: no --><div ng-switch-when="no" class="ng-scope">

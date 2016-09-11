@@ -443,7 +443,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>Step 0: <strong>question</strong></li>
 <li>Step 1: <strong>acquiring data</strong></li>
 <li>Steps 2-4: parsing, filtering, mining </li>
-<li>Steps 5-7: representing, refining, interacting</li>
+<li>Steps 5-7: illustrating, refining, interacting</li>
 </ul>
 </li>
 </ul>
@@ -467,7 +467,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <div class="slide hidden" id="slide-9">
     <section class="slide-content"><h3 id="primitives">Primitives</h3>
 <ul>
-<li><strong>Unsworth</strong>: selecting, sampling, representing, annotating, comparing, discovering, referring, illustrating</li>
+<li>What exactly is a <strong>primitive</strong></li>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="primitives">Primitives</h3>
+<ul>
+<li>What exactly is a <strong>primitive</strong></li>
+<li><strong>Unsworth</strong>: selecting, sampling, representing (illustrating), annotating, comparing, discovering, referring, illustrating</li>
 <li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
 </ul>
 </section>
@@ -475,18 +482,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <div class="slide hidden" id="slide-10">
     <section class="slide-content"><h3 id="primitives">Primitives</h3>
 <ul>
-<li><strong>Unsworth</strong>: selecting, sampling, representing, annotating, comparing, discovering, referring, illustrating</li>
+<li><strong>Unsworth</strong>: selecting, sampling, representing (illustrating), annotating, comparing, discovering, referring, illustrating</li>
 <li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
-<li><strong>Fry</strong>: acquiring, parsing, filtering, mining, representing, refining, interacting</li>
+<li><strong>Fry</strong>: acquiring, parsing, filtering, mining, representing (illustrating), refining, interacting</li>
 </ul>
 </section>
   </div>
   <div class="slide hidden" id="slide-11">
     <section class="slide-content"><h3 id="primitives">Primitives</h3>
 <ul>
-<li><strong>Unsworth</strong>: selecting, sampling, representing, annotating, comparing, discovering, referring, illustrating</li>
+<li><strong>Unsworth</strong>: selecting, sampling, representing (illustrating), annotating, comparing, discovering, referring, illustrating</li>
 <li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
-<li><strong>Fry</strong>: acquiring, parsing, filtering, mining, representing, refining, interacting</li>
+<li><strong>Fry</strong>: acquiring, parsing, filtering, mining, representing (illustrating), refining, interacting</li>
 <li><strong>Unix</strong>: curl, wget, awk, sed, grep, find, sort, uniq</li>
 </ul>
 </section>
@@ -528,7 +535,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li><a href="https://books.google.com/ngrams/graph?content=pizza%2Chamburger%2Chot+dog&amp;year_start=1800&amp;year_end=2000&amp;corpus=15&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Cpizza%3B%2Cc0%3B.t1%3B%2Chamburger%3B%2Cc0%3B.t1%3B%2Chot%20dog%3B%2Cc0">Ngram Viewer</a> to study word usage over time</li>
 <li>Why is N-gram viewer a good/bad source for such studies?</li>
 <li>Joanna Guldi studied <a href="https://books.google.com/ngrams/graph?content=lounging%2Cstrolling%2Clurching%2Cdodging%2Cwaddling%2Ctrudging&amp;year_start=1700&amp;year_end=2000&amp;corpus=0&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Clounging%3B%2Cc0%3B.t1%3B%2Cstrolling%3B%2Cc0%3B.t1%3B%2Clurching%3B%2Cc0%3B.t1%3B%2Cdodging%3B%2Cc0%3B.t1%3B%2Cwaddling%3B%2Cc0%3B.t1%3B%2Ctrudging%3B%2Cc0">variants of &#39;to walk&#39; in literature of 1700-1900</a> </li>
-<li><a href="http://corpus.byu.edu/coha/">COHA</a> offers more control</li>
+<li><a href="http://corpus.byu.edu/coha/">COHA</a> (Corpus of Historical American English) offers more control</li>
 </ul>
 </li>
 </ul>
@@ -539,7 +546,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <ul>
 <li>Scholarly primitives<ul>
 <li>difference between selecting and sampling?</li>
-<li>related to another primitive: <em>representing</em></li>
+<li>related to another primitive: <em>illustrating, or demonstrating</em></li>
 </ul>
 </li>
 <li>How to select/sample paintings for the following question:<ul>
@@ -604,7 +611,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>Good behaviour:<ul>
 <li>limit bandwidth and requests/second</li>
 <li>sites have own rules on what is acceptable</li>
-<li>f.i. look at robots.txt (<a href="http://www.lyricsfreak.com/robots.txt">http://www.lyricsfreak.com/robots.txt</a>)</li>
+<li>e.g. look at robots.txt (<a href="http://www.lyricsfreak.com/robots.txt">http://www.lyricsfreak.com/robots.txt</a>)</li>
 <li>continued bad behaviour often results in blocked IP</li>
 </ul>
 </li>
@@ -613,8 +620,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </div>
   <div class="slide hidden" id="slide-21">
     <section class="slide-content"><h3 id="apis">APIs</h3>
+<p>Application Programming Interface</p>
 <ul>
-<li>programmatic access (preferred by most sites)<ul>
+<li>programmatic access (preferred by most sites)</li>
 <li>data returned in structured form (JSON, XML)</li>
 <li>example from <a href="https://www.rijksmuseum.nl/api/nl/collection/sk-c-5?format=json&amp;key=TZ6co7v8">Rijksmuseum</a></li>
 <li>request: URL with query parameters</li>
@@ -626,7 +634,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </section>
   </div>
   <div class="slide hidden" id="slide-22">
-    <section class="slide-content"><h3 id="application-programmers-interface">Application Programmers Interface</h3>
+    <section class="slide-content"><h3 id="application-programmers-interface">Application Programming Interface</h3>
 <ul>
 <li>Broad range of sources:<ul>
 <li><a href="http://developer.nytimes.com/docs">NY Times</a> (newspaper archive 1850--2014)</li>
@@ -679,14 +687,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <div class="slide hidden" id="slide-26">
     <section class="slide-content"><h3 id="storing-data">Storing Data</h3>
 <ul>
-<li>JSON:<ul>
+<li>JSON (JavaScript Object Notation):<ul>
 <li>online or offline database</li>
 <li>online DBs: <a href="http://redis.io/">Redis</a>, <a href="https://www.firebase.com/">Firebase</a></li>
 <li>or in files (use <a href="http://stedolan.github.io/jq/">jq</a> to parse from command line)</li>
 </ul>
 </li>
-<li>CSV</li>
-<li>XML/HTML, TXT</li>
+<li>CSV (comma separated values)</li>
+<li>XML/HTML (subsets of SGML), TXT</li>
 </ul>
 </section>
   </div>
@@ -737,7 +745,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>there is always a <em>root</em> element</li>
 <li>elements inside are descendents/children</li>
 <li>parent/child relationships form tree with branches and leaves</li>
-<li>JSON: <a href="https://www.rijksmuseum.nl/api/nl/collection/sk-c-5?format=json&amp;key=TZ6co7v8">artObject.makers[0].name</a></li>
+<li>JSON: <a href="https://en.wikipedia.org/wiki/JSON">wikipedia JSON examples</a></li>
 <li>XML: <a href="http://msdn.microsoft.com/en-us/library/hf9hbf87%28v=vs.110%29.aspx">/books/book/pubdate</a></li>
 </ul>
 </li>
@@ -749,9 +757,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <ul>
 <li>Rows and Columns<ul>
 <li>lines with field separators for Unix command line tools</li>
-<li>grep works on whole line</li>
-<li>awk can work in individal columns</li>
-<li>see last week’s <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab1_exercise3">tutorial on analysing film reviews</a></li>
+<li><strong><a href="http://www.panix.com/~elflord/unix/grep.html">grep</a></strong> works on whole line</li>
+<li><strong>awk</strong> can work in individal columns</li>
 </ul>
 </li>
 </ul>
@@ -761,14 +768,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section class="slide-content"><h3 id="next">Next</h3>
 <ul>
 <li>Week 2<ul>
-<li>09/09 No lab, <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab2_exercise2">tutorial online: scripting, iteration</a></li>
-<li>If installing doesn’t work: <a href="https://koding.com">Koding.com</a></li>
+<li>14/09 before lab, <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab2_exercise2">tutorial online: scripting, iteration</a></li>
 <li>Additional materials: <a href="http://programminghistorian.org/lessons/">Programming Historian</a>, <a href="http://williamjturkel.net/how-to/">Digital research with Unix command line tools</a> by William J, Turkel</li>
 </ul>
 </li>
 <li>Week 3<ul>
-<li>14/09 Parsing objects into sebments</li>
-<li>16/09 Lab: R, text analysis and mapping</li>
+<li>19/09 Parsing objects into sebments</li>
 </ul>
 </li>
 </ul>
