@@ -1,5 +1,5 @@
 title: Object to Data - Lecture 1
-output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/Objects_to_Data/Slides/html/lecture1.html
+output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/Objects_to_Data/Object-to-Data/Slides/html/lecture1.html
 
 --
 
