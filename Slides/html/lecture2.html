@@ -1,258 +1,258 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>Object to Data - Lecture 2</title>
-  <style type="text/css">
-    body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #222;
-  font-size: 100%;
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>Object to Data - Lecture 2</title>
+	<style type="text/css">
+		body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #222;
+	font-size: 100%;
 }
 
 .slide {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-  background-color: #f7f7f7;
+	position: absolute;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+	background-color: #f7f7f7;
 }
 
 .slide-content {
-  width: 800px;
-  height: 600px;
-  overflow: hidden;
-  margin: 80px auto 0 auto;
-  padding: 30px;
+	width: 800px;
+	height: 600px;
+	overflow: hidden;
+	margin: 80px auto 0 auto;
+	padding: 30px;
 
-  font-weight: 200;
-  font-size: 200%;
-  line-height: 1.375;
+	font-weight: 200;
+	font-size: 200%;
+	line-height: 1.375;
 }
 
 .controls {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
 }
 
 .arrow {
-  width: 0; height: 0;
-  border: 30px solid #333;
-  float: left;
-  margin-right: 30px;
+	width: 0; height: 0;
+	border: 30px solid #333;
+	float: left;
+	margin-right: 30px;
 
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .prev {
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
 
-  border-left-width: 0;
-  border-right-width: 50px;
+	border-left-width: 0;
+	border-right-width: 50px;
 }
 
 .next {
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	border-right-color: transparent;
 
-  border-left-width: 50px;
-  border-right-width: 0;
+	border-left-width: 50px;
+	border-right-width: 0;
 }
 
 .prev:hover {
-  border-right-color: #888;
-  cursor: pointer;
+	border-right-color: #888;
+	cursor: pointer;
 }
 
 .next:hover {
-  border-left-color: #888;
-  cursor: pointer;
+	border-left-color: #888;
+	cursor: pointer;
 }
 
 h1 {
-  font-size: 300%;
-  line-height: 1.2;
-  text-align: center;
-  margin: 170px 0 0;
+	font-size: 300%;
+	line-height: 1.2;
+	text-align: center;
+	margin: 170px 0 0;
 }
 
 h2 {
-  font-size: 100%;
-  line-height: 1.2;
-  margin: 5px 0;
-  text-align: center;
-  font-weight: 200;
+	font-size: 100%;
+	line-height: 1.2;
+	margin: 5px 0;
+	text-align: center;
+	font-weight: 200;
 }
 
 h3 {
-  font-size: 140%;
-  line-height: 1.2;
-  border-bottom: 1px solid #aaa;
-  margin: 0;
-  padding-bottom: 15px;
+	font-size: 140%;
+	line-height: 1.2;
+	border-bottom: 1px solid #aaa;
+	margin: 0;
+	padding-bottom: 15px;
 }
 
 ul {
-  padding: 20px 0 0 60px;
-  font-weight: 200;
-  line-height: 1.375;
+	padding: 20px 0 0 60px;
+	font-weight: 200;
+	line-height: 1.375;
 }
 
 .author h1 {
-  font-size: 170%;
-  font-weight: 200;
-  text-align: center;
-  margin-bottom: 30px;
+	font-size: 170%;
+	font-weight: 200;
+	text-align: center;
+	margin-bottom: 30px;
 }
 
 .author h3 {
-  font-weight: 100;
-  text-align: center;
-  font-size: 95%;
-  border: none;
+	font-weight: 100;
+	text-align: center;
+	font-size: 95%;
+	border: none;
 }
 
 a {
-  text-decoration: none;
-  color: #44a4dd;
+	text-decoration: none;
+	color: #44a4dd;
 }
 
 a:hover {
-  color: #66b5ff;
+	color: #66b5ff;
 }
 
 pre {
-  font-size: 60%;
-  line-height: 1.3;
+	font-size: 60%;
+	line-height: 1.3;
 }
 
 .progress {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
+	position: fixed;
+	top: 0; left: 0; right: 0;
+	height: 3px;
 }
 
 .progress-bar {
-  width: 0%;
-  height: 3px;
-  background-color: #b4b4b4;
+	width: 0%;
+	height: 3px;
+	background-color: #b4b4b4;
 
-  -webkit-transition: width 0.05s ease-out;
-  -moz-transition: width 0.05s ease-out;
-  -o-transition: width 0.05s ease-out;
-  transition: width 0.05s ease-out;
+	-webkit-transition: width 0.05s ease-out;
+	-moz-transition: width 0.05s ease-out;
+	-o-transition: width 0.05s ease-out;
+	transition: width 0.05s ease-out;
 }
 
 .hidden {
-  display: none;
+	display: none;
 }
 
 @media (max-width: 850px) {
 
-  body {
-    font-size: 70%;
-  }
+	body {
+		font-size: 70%;
+	}
 
-  .slide-content {
-    width: auto;
-  }
+	.slide-content {
+		width: auto;
+	}
 
-  img {
-    width: 100%;
-  }
+	img {
+		width: 100%;
+	}
 
-  h1 {
-    margin-top: 120px;
-  }
+	h1 {
+		margin-top: 120px;
+	}
 
-  .prev, .prev:hover {
-    border-right-color: rgba(135, 135, 135, 0.5);
-  }
+	.prev, .prev:hover {
+		border-right-color: rgba(135, 135, 135, 0.5);
+	}
 
-  .next, .next:hover {
-    border-left-color: rgba(135, 135, 135, 0.5);
-  }
+	.next, .next:hover {
+		border-left-color: rgba(135, 135, 135, 0.5);
+	}
 }
 
 @media (max-width: 480px) {
-  body {
-    font-size: 50%;
-    overflow: hidden;
-  }
+	body {
+		font-size: 50%;
+		overflow: hidden;
+	}
 
-  .slide-content {
-    padding: 10px;
-    margin-top: 10px;
-    height: 340px;
-  }
+	.slide-content {
+		padding: 10px;
+		margin-top: 10px;
+		height: 340px;
+	}
 
-  h1 {
-    margin-top: 50px;
-  }
+	h1 {
+		margin-top: 50px;
+	}
 
-  ul {
-    padding-left: 25px;
-  }
+	ul {
+		padding-left: 25px;
+	}
 }
 
 @media print {
-  * {
-    -webkit-print-color-adjust: exact;
-  }
+	* {
+		-webkit-print-color-adjust: exact;
+	}
 
-  @page {
-    size: letter;
-  }
+	@page {
+		size: letter;
+	}
 
-  .hidden {
-    display: inline;
-  }
+	.hidden {
+		display: inline;
+	}
 
-  html {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
+	html {
+		width: 100%;
+		height: 100%;
+		overflow: visible;
+	}
 
-  body {
-    margin: 0 auto !important;
-    border: 0;
-    padding: 0;
-    float: none !important;
-    overflow: visible;
-    background: none !important;
-    font-size: 52%;
-  }
+	body {
+		margin: 0 auto !important;
+		border: 0;
+		padding: 0;
+		float: none !important;
+		overflow: visible;
+		background: none !important;
+		font-size: 52%;
+	}
 
-  .progress, .controls {
-    display: none;
-  }
+	.progress, .controls {
+		display: none;
+	}
 
-  .slide {
-    position: static;
-  }
+	.slide {
+		position: static;
+	}
 
-  .slide-content {
-    border: 1px solid #222;
-    margin-top: 0;
-    margin-bottom: 40px;
-    height: 3.5in;
-    overflow: visible;
-  }
+	.slide-content {
+		border: 1px solid #222;
+		margin-top: 0;
+		margin-bottom: 40px;
+		height: 3.5in;
+		overflow: visible;
+	}
 
-  .slide:nth-child(even) {
-    /* 2 slides per page */
-    page-break-before: always;
-  }
+	.slide:nth-child(even) {
+		/* 2 slides per page */
+		page-break-before: always;
+	}
 }
 
 /*
@@ -262,24 +262,24 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 */
 
 .hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  color: #333;
-  background: #f8f8f8;
+	display: block;
+	overflow-x: auto;
+	padding: 0.5em;
+	color: #333;
+	background: #f8f8f8;
 }
 
 .hljs-comment,
 .hljs-quote {
-  color: #998;
-  font-style: italic;
+	color: #998;
+	font-style: italic;
 }
 
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
-  color: #333;
-  font-weight: bold;
+	color: #333;
+	font-weight: bold;
 }
 
 .hljs-number,
@@ -287,91 +287,102 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-variable,
 .hljs-template-variable,
 .hljs-tag .hljs-attr {
-  color: #008080;
+	color: #008080;
 }
 
 .hljs-string,
 .hljs-doctag {
-  color: #d14;
+	color: #d14;
 }
 
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
-  color: #900;
-  font-weight: bold;
+	color: #900;
+	font-weight: bold;
 }
 
 .hljs-subst {
-  font-weight: normal;
+	font-weight: normal;
 }
 
 .hljs-type,
 .hljs-class .hljs-title {
-  color: #458;
-  font-weight: bold;
+	color: #458;
+	font-weight: bold;
 }
 
 .hljs-tag,
 .hljs-name,
 .hljs-attribute {
-  color: #000080;
-  font-weight: normal;
+	color: #000080;
+	font-weight: normal;
 }
 
 .hljs-regexp,
 .hljs-link {
-  color: #009926;
+	color: #009926;
 }
 
 .hljs-symbol,
 .hljs-bullet {
-  color: #990073;
+	color: #990073;
 }
 
 .hljs-built_in,
 .hljs-builtin-name {
-  color: #0086b3;
+	color: #0086b3;
 }
 
 .hljs-meta {
-  color: #999;
-  font-weight: bold;
+	color: #999;
+	font-weight: bold;
 }
 
 .hljs-deletion {
-  background: #fdd;
+	background: #fdd;
 }
 
 .hljs-addition {
-  background: #dfd;
+	background: #dfd;
 }
 
 .hljs-emphasis {
-  font-style: italic;
+	font-style: italic;
 }
 
 .hljs-strong {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 
-  </style>
+	</style>
 </head>
 <body>
-    <div class="progress">
-    <div class="progress-bar"></div>
-  </div>
+		<div class="progress">
+		<div class="progress-bar"></div>
+	</div>
 
-  <div class="slide" id="slide-1">
-    <section class="slide-content"><h1 id="from-object-to-data">From Object to Data</h1>
+	<div class="slide" id="slide-1">
+		<section class="slide-content"><h1 id="from-object-to-data">From Object to Data</h1>
 <h2 id="robin-boast-alan-berg">Robin Boast, Alan Berg</h2>
 <h2 id="information-culture-digital-humanities-minor-2016-2017">Information Culture, Digital Humanities Minor 2016/2017</h2>
 <h2 id="week-2-12-09-2015">Week 2 - 12/09/2015</h2>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-2">
-    <section class="slide-content"><h3 id="today">Today</h3>
+	</div>
+	<div class="slide hidden" id="slide-2">
+		<section class="slide-content"><h3 id="today">Resources?</h3>
+<ul>
+<li>Have you all ...<ul>
+<li>Created a GitHub Account?</li>
+</ul>
+</br>
+<li><a href="http://www.rorofi.co.uk/OtD_Web/OtD_Home.html">Our web pages</a></li>
+</ul>
+</section>
+	</div>
+	<div class="slide hidden" id="slide-2">
+		<section class="slide-content"><h3 id="today">Today</h3>
 <ul>
 <li>Part 1:<ul>
 <li>Fry&#39;s Seven Steps</li>
@@ -386,9 +397,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-3">
-    <section class="slide-content"><h3 id="question">Question</h3>
+	</div>
+	<div class="slide hidden" id="slide-3">
+		<section class="slide-content"><h3 id="question">Question</h3>
 <ul>
 <li>Question from Honours student at DH course:<ul>
 <li>Did painters paint outdoors more after invention of paint tubes?</li>
@@ -397,9 +408,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>How would you go about answering this?</li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-4">
-    <section class="slide-content"><h3 id="what-is-the-question">What Is The Question</h3>
+	</div>
+	<div class="slide hidden" id="slide-4">
+		<section class="slide-content"><h3 id="what-is-the-question">What Is The Question</h3>
 <ul>
 <li>Ben Fry:<ul>
 <li>&quot;All data problems begin with a question and end with a narrative construct that provides a clear answer.&quot;</li>
@@ -407,9 +418,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-5">
-    <section class="slide-content"><h3 id="what-is-the-question">What Is The Question</h3>
+	</div>
+	<div class="slide hidden" id="slide-5">
+		<section class="slide-content"><h3 id="what-is-the-question">What Is The Question</h3>
 <ul>
 <li>Ben Fry:<ul>
 <li>&quot;All data problems begin with a question and end with a narrative construct that provides a clear answer.&quot;</li>
@@ -418,9 +429,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-6">
-    <section class="slide-content"><h3 id="from-question-to-narrative">From Question to Narrative</h3>
+	</div>
+	<div class="slide hidden" id="slide-6">
+		<section class="slide-content"><h3 id="from-question-to-narrative">From Question to Narrative</h3>
 <ul>
 <li>This is the hard part<ul>
 <li>think of necessary steps</li>
@@ -435,9 +446,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-7">
-    <section class="slide-content"><h3 id="algorithmic-thinking">Algorithmic Thinking</h3>
+	</div>
+	<div class="slide hidden" id="slide-7">
+		<section class="slide-content"><h3 id="algorithmic-thinking">Algorithmic Thinking</h3>
 <ul>
 <li>Seven steps according to Fry<ul>
 <li>Step 0: <strong>question</strong></li>
@@ -448,9 +459,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-8">
-    <section class="slide-content"><h3 id="questions-primitives-narratives">Questions, Primitives, Narratives</h3>
+	</div>
+	<div class="slide hidden" id="slide-8">
+		<section class="slide-content"><h3 id="questions-primitives-narratives">Questions, Primitives, Narratives</h3>
 <ul>
 <li>Question from Honours student at DH course:<ul>
 <li>Did painters paint outdoors more after invention of paint tubes?</li>
@@ -463,33 +474,33 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-9">
-    <section class="slide-content"><h3 id="primitives">Primitives</h3>
+	</div>
+	<div class="slide hidden" id="slide-9">
+		<section class="slide-content"><h3 id="primitives">Primitives</h3>
 <ul>
 <li>What exactly is a <strong>primitive</strong></li>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-9">
-    <section class="slide-content"><h3 id="primitives">Primitives</h3>
+	</div>
+	<div class="slide hidden" id="slide-9">
+		<section class="slide-content"><h3 id="primitives">Primitives</h3>
 <ul>
 <li>What exactly is a <strong>primitive</strong></li>
 <li><strong>Unsworth</strong>: selecting, sampling, representing (illustrating), annotating, comparing, discovering, referring, illustrating</li>
 <li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-10">
-    <section class="slide-content"><h3 id="primitives">Primitives</h3>
+	</div>
+	<div class="slide hidden" id="slide-10">
+		<section class="slide-content"><h3 id="primitives">Primitives</h3>
 <ul>
 <li><strong>Unsworth</strong>: selecting, sampling, representing (illustrating), annotating, comparing, discovering, referring, illustrating</li>
 <li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
 <li><strong>Fry</strong>: acquiring, parsing, filtering, mining, representing (illustrating), refining, interacting</li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-11">
-    <section class="slide-content"><h3 id="primitives">Primitives</h3>
+	</div>
+	<div class="slide hidden" id="slide-11">
+		<section class="slide-content"><h3 id="primitives">Primitives</h3>
 <ul>
 <li><strong>Unsworth</strong>: selecting, sampling, representing (illustrating), annotating, comparing, discovering, referring, illustrating</li>
 <li><strong>Bradley</strong>: collecting, structuring, selecting, filtering, annotating, transforming</li>
@@ -497,9 +508,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li><strong>Unix</strong>: curl, wget, awk, sed, grep, find, sort, uniq</li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-12">
-    <section class="slide-content"><h3 id="source-criticism">Source Criticism</h3>
+	</div>
+	<div class="slide hidden" id="slide-12">
+		<section class="slide-content"><h3 id="source-criticism">Source Criticism</h3>
 <ul>
 <li>Source: <ul>
 <li>materials you study</li>
@@ -516,9 +527,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-13">
-    <section class="slide-content"><h3 id="google-n-gram-viewer">Google N-gram Viewer</h3>
+	</div>
+	<div class="slide hidden" id="slide-13">
+		<section class="slide-content"><h3 id="google-n-gram-viewer">Google N-gram Viewer</h3>
 <ul>
 <li>Google Books corpus reflects cultural history<ul>
 <li><a href="https://books.google.com/ngrams/graph?content=pizza%2Chamburger%2Chot+dog&amp;year_start=1800&amp;year_end=2000&amp;corpus=15&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Cpizza%3B%2Cc0%3B.t1%3B%2Chamburger%3B%2Cc0%3B.t1%3B%2Chot%20dog%3B%2Cc0">Ngram Viewer</a> to study word usage over time</li>
@@ -527,9 +538,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-14">
-    <section class="slide-content"><h3 id="google-n-gram-viewer">Google N-gram Viewer</h3>
+	</div>
+	<div class="slide hidden" id="slide-14">
+		<section class="slide-content"><h3 id="google-n-gram-viewer">Google N-gram Viewer</h3>
 <ul>
 <li>Google Books corpus reflects cultural history<ul>
 <li><a href="https://books.google.com/ngrams/graph?content=pizza%2Chamburger%2Chot+dog&amp;year_start=1800&amp;year_end=2000&amp;corpus=15&amp;smoothing=3&amp;share=&amp;direct_url=t1%3B%2Cpizza%3B%2Cc0%3B.t1%3B%2Chamburger%3B%2Cc0%3B.t1%3B%2Chot%20dog%3B%2Cc0">Ngram Viewer</a> to study word usage over time</li>
@@ -540,9 +551,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-15">
-    <section class="slide-content"><h3 id="selecting-sampling">Selecting &amp; Sampling</h3>
+	</div>
+	<div class="slide hidden" id="slide-15">
+		<section class="slide-content"><h3 id="selecting-sampling">Selecting &amp; Sampling</h3>
 <ul>
 <li>Scholarly primitives<ul>
 <li>difference between selecting and sampling?</li>
@@ -555,9 +566,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-16">
-    <section class="slide-content"><h3 id="selection-problem">Selection Problem</h3>
+	</div>
+	<div class="slide hidden" id="slide-16">
+		<section class="slide-content"><h3 id="selection-problem">Selection Problem</h3>
 <ul>
 <li><a href="http://ckcc.huygens.knaw.nl/epistolarium/#">ePistolarium</a><ul>
 <li>investigate circulation of knowledge in network of 17th scientiests</li>
@@ -567,13 +578,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-17">
-    <section class="slide-content"><h1 id="part-2-acquiring-data">Part 2: Acquiring Data</h1>
+	</div>
+	<div class="slide hidden" id="slide-17">
+		<section class="slide-content"><h1 id="part-2-acquiring-data">Part 2: Acquiring Data</h1>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-18">
-    <section class="slide-content"><h3 id="getting-data">Getting Data</h3>
+	</div>
+	<div class="slide hidden" id="slide-18">
+		<section class="slide-content"><h3 id="getting-data">Getting Data</h3>
 <ul>
 <li>Many methods<ul>
 <li>download packaged data set</li>
@@ -586,9 +597,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-19">
-    <section class="slide-content"><h3 id="web-scraping">Web Scraping</h3>
+	</div>
+	<div class="slide hidden" id="slide-19">
+		<section class="slide-content"><h3 id="web-scraping">Web Scraping</h3>
 <ul>
 <li>Scraping<ul>
 <li>The &#39;old way&#39;, but...</li>
@@ -604,9 +615,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-20">
-    <section class="slide-content"><h3 id="scraping-etiquette">Scraping Etiquette</h3>
+	</div>
+	<div class="slide hidden" id="slide-20">
+		<section class="slide-content"><h3 id="scraping-etiquette">Scraping Etiquette</h3>
 <ul>
 <li>Good behaviour:<ul>
 <li>limit bandwidth and requests/second</li>
@@ -617,9 +628,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-21">
-    <section class="slide-content"><h3 id="apis">APIs</h3>
+	</div>
+	<div class="slide hidden" id="slide-21">
+		<section class="slide-content"><h3 id="apis">APIs</h3>
 <p>Application Programming Interface</p>
 <ul>
 <li>programmatic access (preferred by most sites)</li>
@@ -632,9 +643,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-22">
-    <section class="slide-content"><h3 id="application-programmers-interface">Application Programming Interface</h3>
+	</div>
+	<div class="slide hidden" id="slide-22">
+		<section class="slide-content"><h3 id="application-programmers-interface">Application Programming Interface</h3>
 <ul>
 <li>Broad range of sources:<ul>
 <li><a href="http://developer.nytimes.com/docs">NY Times</a> (newspaper archive 1850--2014)</li>
@@ -647,9 +658,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-23">
-    <section class="slide-content"><h3 id="koninklijke-bibliotheek">Koninklijke Bibliotheek</h3>
+	</div>
+	<div class="slide hidden" id="slide-23">
+		<section class="slide-content"><h3 id="koninklijke-bibliotheek">Koninklijke Bibliotheek</h3>
 <ul>
 <li><a href="http://www.loc.gov/standards/sru/">SRU</a> (Search/Retrieve via URL)<ul>
 <li><a href="http://www.earlydutchbooksonline.nl/en/edbo">Early Dutch Books Online</a></li>
@@ -658,9 +669,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-24">
-    <section class="slide-content"><h3 id="command-line-interface">Command Line Interface</h3>
+	</div>
+	<div class="slide hidden" id="slide-24">
+		<section class="slide-content"><h3 id="command-line-interface">Command Line Interface</h3>
 <ul>
 <li>The terminal is an API<ul>
 <li>interface to applications and data on your computer</li>
@@ -669,9 +680,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-25">
-    <section class="slide-content"><h3 id="crowdsourcing">Crowdsourcing</h3>
+	</div>
+	<div class="slide hidden" id="slide-25">
+		<section class="slide-content"><h3 id="crowdsourcing">Crowdsourcing</h3>
 <ul>
 <li>let crowd create data around objects<ul>
 <li>gather annotations, links</li>
@@ -683,9 +694,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-26">
-    <section class="slide-content"><h3 id="storing-data">Storing Data</h3>
+	</div>
+	<div class="slide hidden" id="slide-26">
+		<section class="slide-content"><h3 id="storing-data">Storing Data</h3>
 <ul>
 <li>JSON (JavaScript Object Notation):<ul>
 <li>online or offline database</li>
@@ -697,9 +708,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>XML/HTML (subsets of SGML), TXT</li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-27">
-    <section class="slide-content"><h3 id="data-structures">Data Structures</h3>
+	</div>
+	<div class="slide hidden" id="slide-27">
+		<section class="slide-content"><h3 id="data-structures">Data Structures</h3>
 <ul>
 <li>Tree-based formats<ul>
 <li><a href="http://msdn.microsoft.com/en-us/library/hf9hbf87%28v=vs.110%29.aspx">XML</a>, <a href="http://www.clearboth.org/wp-content/uploads/2011/06/A-visual-DOM-tree-representation-of-an-HTML-document.gif">HTML</a>, <a href="https://www.rijksmuseum.nl/api/nl/collection/sk-c-5?format=json&amp;key=hA5lUwJV">JSON</a>, Books, films?</li>
@@ -719,9 +730,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-28">
-    <section class="slide-content"><h3 id="navigating-trees">Navigating Trees</h3>
+	</div>
+	<div class="slide hidden" id="slide-28">
+		<section class="slide-content"><h3 id="navigating-trees">Navigating Trees</h3>
 <ul>
 <li>Folder structure on hard drive is a tree<ul>
 <li><em>cd</em> command: jump from branch to branch</li>
@@ -737,9 +748,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>Hyperlinks allow jumping, connect branches in same or different tree</li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-29">
-    <section class="slide-content"><h3 id="paths-in-json-xml-html">Paths in JSON/XML/HTML</h3>
+	</div>
+	<div class="slide hidden" id="slide-29">
+		<section class="slide-content"><h3 id="paths-in-json-xml-html">Paths in JSON/XML/HTML</h3>
 <ul>
 <li>How do you refer to elements in JSON or XML data?<ul>
 <li>there is always a <em>root</em> element</li>
@@ -751,9 +762,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-30">
-    <section class="slide-content"><h3 id="csv-tsv">CSV/TSV</h3>
+	</div>
+	<div class="slide hidden" id="slide-30">
+		<section class="slide-content"><h3 id="csv-tsv">CSV/TSV</h3>
 <ul>
 <li>Rows and Columns<ul>
 <li>lines with field separators for Unix command line tools</li>
@@ -763,9 +774,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
-  <div class="slide hidden" id="slide-31">
-    <section class="slide-content"><h3 id="next">Next</h3>
+	</div>
+	<div class="slide hidden" id="slide-31">
+		<section class="slide-content"><h3 id="next">Next</h3>
 <ul>
 <li>Week 2<ul>
 <li>14/09 before lab, <a href="http://humanities.uva.nl/~mkoolen1/teaching/#/FOtD/2015/exercises/lab2_exercise2">tutorial online: scripting, iteration</a></li>
@@ -778,20 +789,20 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 </ul>
 </section>
-  </div>
+	</div>
 
-  <div class="controls">
-    <div class="arrow prev"></div>
-    <div class="arrow next"></div>
-  </div>
+	<div class="controls">
+		<div class="arrow prev"></div>
+		<div class="arrow next"></div>
+	</div>
 
 
-  <script type="text/javascript">
-    /**
+	<script type="text/javascript">
+		/**
  * Returns the current page number of the presentation.
  */
 function currentPosition() {
-  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+	return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
 }
 
 
@@ -800,21 +811,21 @@ function currentPosition() {
  * If n is negative, we will navigate in reverse
  */
 function navigate(n) {
-  var position = currentPosition();
-  var numSlides = document.getElementsByClassName('slide').length;
+	var position = currentPosition();
+	var numSlides = document.getElementsByClassName('slide').length;
 
-  /* Positions are 1-indexed, so we need to add and subtract 1 */
-  var nextPosition = (position - 1 + n) % numSlides + 1;
+	/* Positions are 1-indexed, so we need to add and subtract 1 */
+	var nextPosition = (position - 1 + n) % numSlides + 1;
 
-  /* Normalize nextPosition in-case of a negative modulo result */
-  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+	/* Normalize nextPosition in-case of a negative modulo result */
+	nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
 
-  document.getElementById('slide-' + position).classList.add('hidden');
-  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+	document.getElementById('slide-' + position).classList.add('hidden');
+	document.getElementById('slide-' + nextPosition).classList.remove('hidden');
 
-  updateProgress();
-  updateURL();
-  updateTabIndex();
+	updateProgress();
+	updateURL();
+	updateTabIndex();
 }
 
 
@@ -822,11 +833,11 @@ function navigate(n) {
  * Updates the current URL to include a hashtag of the current page number.
  */
 function updateURL() {
-  try {
-    window.history.replaceState({} , null, '#' + currentPosition());
-  } catch (e) {
-    window.location.hash = currentPosition();
-  }
+	try {
+		window.history.replaceState({} , null, '#' + currentPosition());
+	} catch (e) {
+		window.location.hash = currentPosition();
+	}
 }
 
 
@@ -834,14 +845,14 @@ function updateURL() {
  * Sets the progress indicator.
  */
 function updateProgress() {
-  var progressBar = document.querySelector('.progress-bar');
+	var progressBar = document.querySelector('.progress-bar');
 
-  if (progressBar !== null) {
-    var numSlides = document.getElementsByClassName('slide').length;
-    var position = currentPosition() - 1;
-    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
-    progressBar.style.width = percent.toString() + '%';
-  }
+	if (progressBar !== null) {
+		var numSlides = document.getElementsByClassName('slide').length;
+		var position = currentPosition() - 1;
+		var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+		progressBar.style.width = percent.toString() + '%';
+	}
 }
 
 
@@ -851,28 +862,28 @@ function updateProgress() {
  * out of control.
  */
 function updateTabIndex() {
-  var allLinks = document.querySelectorAll('.slide a');
-  var position = currentPosition();
-  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
-  var i;
+	var allLinks = document.querySelectorAll('.slide a');
+	var position = currentPosition();
+	var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+	var i;
 
-  for (i = 0; i < allLinks.length; i++) {
-    allLinks[i].setAttribute('tabindex', -1);
-  }
+	for (i = 0; i < allLinks.length; i++) {
+		allLinks[i].setAttribute('tabindex', -1);
+	}
 
-  for (i = 0; i < currentPageLinks.length; i++) {
-    currentPageLinks[i].removeAttribute('tabindex');
-  }
+	for (i = 0; i < currentPageLinks.length; i++) {
+		currentPageLinks[i].removeAttribute('tabindex');
+	}
 }
 
 /**
  * Determines whether or not we are currently in full screen mode
  */
 function isFullScreen() {
-  return document.fullscreenElement ||
-         document.mozFullScreenElement ||
-         document.webkitFullscreenElement ||
-         document.msFullscreenElement;
+	return document.fullscreenElement ||
+		     document.mozFullScreenElement ||
+		     document.webkitFullscreenElement ||
+		     document.msFullscreenElement;
 }
 
 /**
@@ -880,64 +891,64 @@ function isFullScreen() {
  * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
  */
 function toggleFullScreen() {
-  /* Convenient renames */
-  var docElem = document.documentElement;
-  var doc = document;
+	/* Convenient renames */
+	var docElem = document.documentElement;
+	var doc = document;
 
-  docElem.requestFullscreen =
-      docElem.requestFullscreen ||
-      docElem.msRequestFullscreen ||
-      docElem.mozRequestFullScreen ||
-      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+	docElem.requestFullscreen =
+		  docElem.requestFullscreen ||
+		  docElem.msRequestFullscreen ||
+		  docElem.mozRequestFullScreen ||
+		  docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
 
-  doc.exitFullscreen =
-      doc.exitFullscreen ||
-      doc.msExitFullscreen ||
-      doc.mozCancelFullScreen ||
-      doc.webkitExitFullscreen;
+	doc.exitFullscreen =
+		  doc.exitFullscreen ||
+		  doc.msExitFullscreen ||
+		  doc.mozCancelFullScreen ||
+		  doc.webkitExitFullscreen;
 
-  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+	isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Update the tabindex to prevent weird slide transitioning
-  updateTabIndex();
+	// Update the tabindex to prevent weird slide transitioning
+	updateTabIndex();
 
-  // If the location hash specifies a page number, go to it.
-  var page = window.location.hash.slice(1);
-  if (page) {
-    navigate(parseInt(page) - 1);
-  }
+	// If the location hash specifies a page number, go to it.
+	var page = window.location.hash.slice(1);
+	if (page) {
+		navigate(parseInt(page) - 1);
+	}
 
-  document.onkeydown = function (e) {
-    var kc = e.keyCode;
+	document.onkeydown = function (e) {
+		var kc = e.keyCode;
 
-    // left, down, H, J, backspace, PgUp - BACK
-    // up, right, K, L, space, PgDn - FORWARD
-    // enter - FULLSCREEN
-    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
-      navigate(-1);
-    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
-      navigate(1);
-    } else if (kc === 13) {
-      toggleFullScreen();
-    }
-  };
+		// left, down, H, J, backspace, PgUp - BACK
+		// up, right, K, L, space, PgDn - FORWARD
+		// enter - FULLSCREEN
+		if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+		  navigate(-1);
+		} else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+		  navigate(1);
+		} else if (kc === 13) {
+		  toggleFullScreen();
+		}
+	};
 
-  if (document.querySelector('.next') && document.querySelector('.prev')) {
-    document.querySelector('.next').onclick = function (e) {
-      e.preventDefault();
-      navigate(1);
-    };
+	if (document.querySelector('.next') && document.querySelector('.prev')) {
+		document.querySelector('.next').onclick = function (e) {
+		  e.preventDefault();
+		  navigate(1);
+		};
 
-    document.querySelector('.prev').onclick = function (e) {
-      e.preventDefault();
-      navigate(-1);
-    };
-  }
+		document.querySelector('.prev').onclick = function (e) {
+		  e.preventDefault();
+		  navigate(-1);
+		};
+	}
 });
 
 
-  </script>
+	</script>
 </body>
 </html>
