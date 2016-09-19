@@ -1,5 +1,5 @@
 title: Object to Data - Lecture 3
-output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/Objects_to_Data/Slides/html/lecture3.html
+output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/Objects_to_Data/Object-to-Data/Slides/html/lecture3.html
 
 --
 
@@ -26,20 +26,10 @@ output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/
 
 ### Tutorials
 
-+ What did people find in the Lost In Translation reviews?
-+ Problems in the API tutorial?
-
---
-
-### Tutorials
-
-+ What did people find in the Lost In Translation reviews?
-+ Problems in the API tutorial?
-+ This week: R tutorials
-	+ General R tutorial: [DataCamp](https://www.datacamp.com/)
-	+ Geocoding: [R and Google Map Making](https://rpubs.com/nickbearman/r-google-map-making)
-	+ Text Analysis: [Statistical Methods for Studying Literature Using R](http://www.chlt.org/StatisticalMethods/)
-	+ Advanced: [Stylometry in R](https://sites.google.com/site/computationalstylistics/home)
++ Mark Down Language
++ UNIX for POETs
++ Scraping exercise
++ Swirl
 
 --
 
@@ -65,6 +55,19 @@ output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/
     + meaningful unit isn’t stable unit, depends on interpretation
 + Which Unix tools perform parsing?
 
+--
+
+### Parsing
+
++ Segmenting data into meaningful units
+	+ [removing irrelevant data](http://cdn.londonandpartners.com/images/explorer-map/tubemap-2012-12.png)
+	+ many decisions (and interpretations)
+	+ consequences? justifications?
+    + meaningful unit isn’t stable unit, depends on interpretation
++ Which Unix tools perform parsing?
+	+ GREP
+	+ AWK
+	+ [Perl](http://perl-begin.org/learn/) (not UNIX, but a programming language)
 --
 
 ### Parsing and Hermeneutics
@@ -102,6 +105,31 @@ output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/
     + meaning added with field names
 	+ easy for machines to read
 + Tools allow easy manipulation
+
+--
+
+### Parsing Structured Data
+
++ Example of Parsing Data?
+
+--
+
+### Parsing Structured Data
+
++ Databases
+    + data with fields and values
+    + meaning added with field names
+	+ easy for machines to read
++ Querying
+	+ Library Catalogue
+
+--
+
+### Parsing Structured Data
+
++ Highly structured data
++ Limited to field context search (not really)
++ Also limited questions
 
 --
 
@@ -186,17 +214,6 @@ output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/
 
 --
 
-### Algorithms
-
-+ **Hockey**: provide concrete evidence for/against hypotheses/interpretations
-+ **Ramsay**: provide perspective for making hypotheses/interpretations
-    + interpretation occurs in between most/all computational steps
-    + concrete evidence rarely proves anything
-    + proving is rarely the goal in humanities
-    + operatives: *challenge*, *modify*, *contend with* 
-
---
-
 ### Data mining
 
 + searching for suggestive patterns?
@@ -204,15 +221,6 @@ output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/
     + inexact science
     + topic modelling (week 5)
 + [Author profiling](http://watson-pi-demo.mybluemix.net/)
-
---
-
-### Connecting the Levels
-
-+ ‘How do low-level matters of dramaturgy relate to high-level matters of genre?’
-+ How do low-level structural features relate to high-level categorisations?
-    + somewhere we make the jump from *something given* to *something understood*
-	+ from *data* to *interpretation*
 
 --
 
