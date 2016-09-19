@@ -1,0 +1,566 @@
+http://api.nytimes.com/svc/search/v2/articlesearch.json?q=humanities&sort=newest&api-key=(your-key)
+
+{
+  "response": {
+    "meta": {
+      "hits": 13617,
+      "time": 95,
+      "offset": 0
+    },
+    "docs": [
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9E0DEFDA1E39E033A05752C0A9679C946792D6CF",
+        "snippet": "Despite this highly scientific age, enrollment of prospective teachers in the sciences and mathematics is critically low. Kent State University's College of Education (Ohio) reports that with almost twice the ...",
+        "lead_paragraph": "Despite this highly scientific age, enrollment of prospective teachers in the sciences and mathematics is critically low. Kent State University's College of Education (Ohio) reports that with almost twice the ...",
+        "abstract": "Dr MacIntosh made chmn",
+        "print_page": "E7",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "EDUCATION NEWS; Varied Activity on the Campus And in the Classrooms KENT--Teachers COLLEGE Entrance--Chairman SYRACUSE--Japanese MICHIGAN--Gifted Students HOOD--Buildings CORNELL--Teacher Program STEVENS--Engineering NEW YORK--Enrollments COOPER UNION--Lectures SPRINGFIELD--Revisions. EDUCATION--In Brief"
+        },
+        "keywords": [
+          {
+            "name": "glocations",
+            "value": "UNITED STATES"
+          },
+          {
+            "name": "glocations",
+            "value": "NEW YORK STATE"
+          },
+          {
+            "name": "organizations",
+            "value": "SPRINGFIELD COLLEGE"
+          },
+          {
+            "name": "organizations",
+            "value": "HOOD COLLEGE"
+          },
+          {
+            "name": "organizations",
+            "value": "KENT STATE UNIV."
+          },
+          {
+            "name": "organizations",
+            "value": "COLLEGE ENTRANCE EXAMINATION BOARD"
+          },
+          {
+            "name": "subject",
+            "value": "TEACHERS AND SCHOOL SYSTEM EMPLOYES"
+          },
+          {
+            "name": "subject",
+            "value": "TRAINING"
+          },
+          {
+            "name": "subject",
+            "value": "COLLEGES AND UNIVERSITIES"
+          }
+        ],
+        "pub_date": "1956-01-01T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": null,
+        "type_of_material": "Article",
+        "_id": "4fc3c4ca45c1498b0d84b100",
+        "word_count": 645,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9E05E4D91139E033A05752C0A9679C946792D6CF",
+        "snippet": "PRINCETON, N.J., Dec. 31-- People are turning more and more from printed information to pictures, it was reported here today at the fifth conference of the Association of Princeton Graduate Alumni.",
+        "lead_paragraph": "PRINCETON, N.J., Dec. 31-- People are turning more and more from printed information to pictures, it was reported here today at the fifth conference of the Association of Princeton Graduate Alumni.",
+        "abstract": "Grad Alumni Assn conf",
+        "print_page": "34",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "PICTURES HELD TO RIVAL WORDS; Princeton Meeting Hears a Plea to End 'Snobbery' on Cultural Use of TV Television as Art Medium Permanence of Film Library"
+        },
+        "keywords": [
+          {
+            "name": "glocations",
+            "value": "US"
+          },
+          {
+            "name": "glocations",
+            "value": "UNITED STATES"
+          },
+          {
+            "name": "glocations",
+            "value": "UNITED STATES"
+          },
+          {
+            "name": "organizations",
+            "value": "PRINCETON UNIV."
+          },
+          {
+            "name": "subject",
+            "value": "CULTURE"
+          },
+          {
+            "name": "subject",
+            "value": "RADIO AND TELEVISION"
+          },
+          {
+            "name": "subject",
+            "value": "COLOR TELEVISION"
+          },
+          {
+            "name": "subject",
+            "value": "RADIO AND TELEVISION"
+          },
+          {
+            "name": "subject",
+            "value": "EDUCATION"
+          },
+          {
+            "name": "subject",
+            "value": "ART"
+          },
+          {
+            "name": "subject",
+            "value": "EDUCATION AND SCHOOLS"
+          },
+          {
+            "name": "subject",
+            "value": "PRINTING AND ALLIED TRADES"
+          }
+        ],
+        "pub_date": "1956-01-01T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": {
+          "person": [
+            {
+              "firstname": "Robert",
+              "middlename": "K.",
+              "lastname": "PLUMB",
+              "rank": 1,
+              "role": "reported",
+              "organization": ""
+            }
+          ],
+          "original": "By ROBERT K. PLUMB Special to The New York Times"
+        },
+        "type_of_material": "Article",
+        "_id": "4fc3d32345c1498b0d88e600",
+        "word_count": 568,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9900EED8113DE03BBC4A53DFB766838D649EDE",
+        "snippet": "The Soviet Union plans to spend almost 20 per cent more for scientific research this year than it did in 1955.",
+        "lead_paragraph": "The Soviet Union plans to spend almost 20 per cent more for scientific research this year than it did in 1955.",
+        "abstract": "Prof W N Locke says US lost 5 yrs and $200,000 on elec circuit research by overlooking article in '50 Soviet pub solving problem",
+        "print_page": "3",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "SOVIET EXPANDING SCIENCE RESEARCH; '56 Budget Gives 20% More Than in '55--Specific Case of Lead Over U.S. Cited Soviet Advance Cited"
+        },
+        "keywords": [
+          {
+            "name": "glocations",
+            "value": "USSR"
+          },
+          {
+            "name": "glocations",
+            "value": "UNITED STATES"
+          },
+          {
+            "name": "subject",
+            "value": "SCIENCE AND SCIENTISTS"
+          },
+          {
+            "name": "subject",
+            "value": "SCIENCE AND SCIENTISTS"
+          },
+          {
+            "name": "subject",
+            "value": "ELECTRIC LIGHT AND POWER"
+          },
+          {
+            "name": "subject",
+            "value": "MISCELLANEOUS SECTION"
+          }
+        ],
+        "pub_date": "1956-01-02T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": {
+          "person": [
+            {
+              "organization": "",
+              "role": "reported",
+              "rank": 1,
+              "firstname": "Harry",
+              "lastname": "SCHWARTZ"
+            }
+          ],
+          "original": "By HARRY SCHWARTZ"
+        },
+        "type_of_material": "Article",
+        "_id": "4fc3d15d45c1498b0d88671d",
+        "word_count": 459,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9E07E2D81738E033A05756C0A9679C946792D6CF",
+        "snippet": "A School for Advanced Study is to be established at the Massachusetts Institute of Technology. It will be similar in objectives to the Institute for Advanced Study at Princeton, ...  N.J., but structurally different.",
+        "lead_paragraph": "A School for Advanced Study is to be established at the Massachusetts Institute of Technology. It will be similar in objectives to the Institute for Advanced Study at Princeton, ... N.J., but structurally different.",
+        "abstract": "pres Killian on plans for School for Advanced Study, alumni dinner, NYC; Prof Buerger, who suggested plan, named dir and Prof; staff will consist 1st only of dir and sec; School will offer extension of undergrad and grad programs; profs on School staff to remain on MIT faculties; Killian, Buerger hope for center and housing facilities for fellows, guests; Killian, others hail late Dr Compton",
+        "print_page": "1",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "M.I.T. to Establish School For Studies on High Level; New School to Meet Trend M.I.T. WILL START ADVANCED SCHOOL To Start With Staff of Two"
+        },
+        "keywords": [
+          {
+            "name": "glocations",
+            "value": "UNITED STATES"
+          },
+          {
+            "name": "organizations",
+            "value": "SECURITY COUNCIL, NATIONAL"
+          },
+          {
+            "name": "organizations",
+            "value": "MASSACHUSETTS INSTITUTE OF TECHNOLOGY"
+          }
+        ],
+        "pub_date": "1956-01-05T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": {
+          "person": [
+            {
+              "organization": "",
+              "role": "reported",
+              "rank": 1,
+              "firstname": "Russell",
+              "lastname": "PORTER"
+            }
+          ],
+          "original": "By RUSSELL PORTER"
+        },
+        "type_of_material": "Front Page",
+        "_id": "4fc3c1e045c1498b0d83d449",
+        "word_count": 1101,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9D05E2D61E3DE03BBC4F53DFB766838D649EDE",
+        "snippet": null,
+        "lead_paragraph": null,
+        "abstract": null,
+        "print_page": "11",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "Student Leader Wins Princetonian Award",
+          "kicker": "1"
+        },
+        "keywords": [],
+        "pub_date": "1956-01-07T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": {
+          "person": [
+            {
+              "organization": "",
+              "role": "reported",
+              "rank": 1
+            }
+          ],
+          "original": "Special to The New York Times"
+        },
+        "type_of_material": "Article",
+        "_id": "4fc3d15645c1498b0d885c16",
+        "word_count": 160,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9B0CE1DF1F3DE03BBC4053DFB766838D649EDE",
+        "snippet": "In practically all of the many year-end lists of the leading news stories of 1955, the Salk anti-polio vaccine ranked close to the top. This is as it should be, for there has been no medical development of the past several decades in which the public...",
+        "lead_paragraph": "In practically all of the many year-end lists of the leading news stories of 1955, the Salk anti-polio vaccine ranked close to the top. This is as it should be, for there has been no medical development of the past several decades in which the public has been more concerned than the fight against polio.",
+        "abstract": "Dr Rusk on support given by March of Dimes, on benefits gained from program",
+        "print_page": "66",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "'Dimes' Pay a Dividend; A Survey of Medical Boons Received From Professional Education Program Not Restricted in Field Appraisal of Talents Given"
+        },
+        "keywords": [
+          {
+            "name": "subject",
+            "value": "INFANTILE PARALYSIS (POLIOMYELITIS)"
+          },
+          {
+            "name": "subject",
+            "value": "INFANTILE PARALYSIS (POLIOMYELITIS)"
+          },
+          {
+            "name": "subject",
+            "value": "PROFESSIONAL EDUC"
+          }
+        ],
+        "pub_date": "1956-01-08T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": {
+          "person": [
+            {
+              "qualifier": "M.D",
+              "firstname": "Howard",
+              "middlename": "A.",
+              "lastname": "RUSK",
+              "rank": 1,
+              "role": "reported",
+              "organization": ""
+            }
+          ],
+          "original": "By HOWARD A. RUSK, M.D"
+        },
+        "type_of_material": "Article",
+        "_id": "4fc3d32245c1498b0d88e568",
+        "word_count": 763,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9C0DE7D7163CE03BBC4951DFB766838D649EDE",
+        "snippet": "E B Glick lr favoring doctoral program proposes Univ of City of NY",
+        "lead_paragraph": null,
+        "abstract": "E B Glick lr favoring doctoral program proposes Univ of City of NY",
+        "print_page": "20",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "Letters to The Times; Regulating Natural Gas Exemption as Competitive Industry From Federal Rate Fixing Asked Factors in Discovery Control Over Increases Cost to Consumers Opposition to Bill Praised Doctoral Program Urged Grouping of City Colleges into a University is Suggested P.P.R. for New York City Our City's Buses"
+        },
+        "keywords": [
+          {
+            "name": "glocations",
+            "value": "NEW YORK STATE"
+          },
+          {
+            "name": "glocations",
+            "value": "NEW YORK CITY"
+          },
+          {
+            "name": "subject",
+            "value": "ELECTIONS"
+          },
+          {
+            "name": "subject",
+            "value": "VOTERS AND VOTING"
+          },
+          {
+            "name": "subject",
+            "value": "GAS, ILLUMINATING AND NATURAL"
+          },
+          {
+            "name": "subject",
+            "value": "COLLEGES AND UNIVERSITIES"
+          },
+          {
+            "name": "subject",
+            "value": "MUNIC COLLS"
+          }
+        ],
+        "pub_date": "1956-01-21T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": {
+          "person": [
+            {
+              "organization": "",
+              "role": "reported",
+              "rank": 1
+            }
+          ],
+          "original": "FRANK M. PORTER,PAUL H. DOUGLAS,EDWARD B. GLICK,MARGOT GAYLE,J.J. O'NEILL"
+        },
+        "type_of_material": "Letter",
+        "_id": "4fc3b85845c1498b0d81209b",
+        "word_count": 1668,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9503EFD7163CE03BBC4B51DFB766838D649EDE",
+        "snippet": "Columbia College announced yesterday the first major extension in its pioneer program of general education.",
+        "lead_paragraph": "Columbia College announced yesterday the first major extension in its pioneer program of general education.",
+        "abstract": "Deans Chamberlain, McKnight note development of Oriental studies program to parallel that in Western civilization, annual rept",
+        "print_page": "27",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "COLUMBIA OFFERS ORIENTAL COURSE; New Undergraduate Study Will Parallel Program in Western Civilization"
+        },
+        "keywords": [
+          {
+            "name": "persons",
+            "value": "CHAMBERLAIN, LAWRENCE H."
+          },
+          {
+            "name": "organizations",
+            "value": "COLUMBIA UNIVERSITY"
+          },
+          {
+            "name": "subject",
+            "value": "AREA STUDIES"
+          }
+        ],
+        "pub_date": "1956-01-23T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": null,
+        "type_of_material": "Article",
+        "_id": "4fc3c7f545c1498b0d859bbf",
+        "word_count": 387,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9E00E1DB173CE03BBC4C53DFB466838D649EDE",
+        "snippet": "K Herbert lr on comment",
+        "lead_paragraph": null,
+        "abstract": "K Herbert lr on comment",
+        "print_page": "18",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "Letters to The Times; Natural Gas Bill Discussed Harris-Fulbright Deemed Protection Against Property Confiscation Producers' Bargaining Position Opposition to Legislation Comments on Truman Queried Reinterpreting the Classics Attention Is Called to Soviet Work in Introducing Marxist View Jobs Done by Military Personnel"
+        },
+        "keywords": [
+          {
+            "name": "persons",
+            "value": "TRUMAN, HARRY S."
+          },
+          {
+            "name": "glocations",
+            "value": "UNION OF SOVIET SOCIALIST REPUBLICS"
+          },
+          {
+            "name": "subject",
+            "value": "NEW YORK TIMES"
+          },
+          {
+            "name": "subject",
+            "value": "GAS, ILLUMINATING AND NATURAL"
+          },
+          {
+            "name": "subject",
+            "value": "EDUCATION AND SCHOOLS"
+          }
+        ],
+        "pub_date": "1956-02-04T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": {
+          "person": [
+            {
+              "firstname": "Joseph",
+              "middlename": "E.",
+              "lastname": "BLUDWORTH",
+              "rank": 1,
+              "role": "reported",
+              "organization": ""
+            },
+            {
+              "organization": "",
+              "role": "reported",
+              "rank": 2
+            }
+          ],
+          "original": "JOSEPH E. BLUDWORTH,D.H. SANDERS,J.E. HEYKE, President.GEORGE H. MONROE.KENVIN HERBERT,WILLIAM MCCRACKEN"
+        },
+        "type_of_material": "Letter",
+        "_id": "4fc3c08345c1498b0d838311",
+        "word_count": 1573,
+        "slideshow_credits": null
+      },
+      {
+        "web_url": "http://query.nytimes.com/gst/abstract.html?res=9406E5D91131E23BBC4D53DFB466838D649EDE",
+        "snippet": "MORE than 400 art historians, critics, museum  officials and educators excitedly exchanged theories at the annual conference of the College Art Association in Pittsburgh last week. The organization, which has 2,500 ...",
+        "lead_paragraph": "MORE than 400 art historians, critics, museum officials and educators excitedly exchanged theories at the annual conference of the College Art Association in Pittsburgh last week. The organization, which has 2,500 ...",
+        "abstract": "Coll Art Assn conv participants exch views on controversial issues; W Seitz paper 'Monet and Abstract Painting' discussed",
+        "print_page": "125",
+        "blog": [],
+        "source": "The New York Times",
+        "multimedia": [],
+        "headline": {
+          "main": "MODERN PROBLEMS; Educators, Museum Officials, Critics Discuss Controversial Issues Monet and Abstraction A New Technique"
+        },
+        "keywords": [
+          {
+            "name": "subject",
+            "value": "ART"
+          },
+          {
+            "name": "subject",
+            "value": "EDUCATION AND SCHOOLS"
+          },
+          {
+            "name": "subject",
+            "value": "ART"
+          },
+          {
+            "name": "subject",
+            "value": "MISCELLANEOUS NEWS AND ARTICLES"
+          }
+        ],
+        "pub_date": "1956-02-05T00:00:00Z",
+        "document_type": "article",
+        "news_desk": null,
+        "section_name": null,
+        "subsection_name": null,
+        "byline": {
+          "person": [
+            {
+              "organization": "",
+              "role": "reported",
+              "rank": 1,
+              "firstname": "Dore",
+              "lastname": "ASHTON"
+            }
+          ],
+          "original": "By DORE ASHTON"
+        },
+        "type_of_material": "Article",
+        "_id": "4fc3c7f245c1498b0d859768",
+        "word_count": 1036,
+        "slideshow_credits": null
+      }
+    ]
+  },
+  "status": "OK",
+  "copyright": "Copyright (c) 2013 The New York Times Company.  All Rights Reserved."
+}
