@@ -255,6 +255,6 @@ output: /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/
 + Wednesday 16/09/2014:
 	+ R tutorials, mapping, geocoding, text analysis
 + Monday 21/09/2014:
-    + Introducing DH projects: Charles van den Heuvel
+    + Review of your proposed projects
 
 
