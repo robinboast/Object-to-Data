@@ -188,69 +188,50 @@
 								<li class="ng-binding">Stephen Ramsay - <a href="http://stephenramsay.us/2009/10/17/humanities-apis/" target="_blank" class="ng-binding">Humanities APIs</a></li>
 							</ul><!-- end ngRepeat: resource in session.reading -->
 						</div>
-						<!-- ngSwitchWhen: no -->
-						<!-- ngSwitchDefault:  -->
 					</ul>
+					<p>Lab: Parsing Data</p>
 				</div><!-- end ngRepeat: session in week.sessions -->
-				<li>Topics: </li>
-				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Introduction</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Course setup</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Using Koding, GitHub and Slack</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Create webpages with HTML and CSS</li>
-				</ul><!-- end ngRepeat: topic in week.topics -->
-				<li>Tools: </li>
-				<!-- ngRepeat: tool in week.tools -->
-			</div><!-- end ngRepeat: week in weeks --><div ng-repeat="week in weeks" class="ng-scope">
+
+			<div ng-repeat="week in weeks" class="ng-scope">
 				<h3 class="ng-binding">Week 4</h3>
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
-					<p class="ng-binding">Review of project proposals</p>
+					<p class="ng-binding">Review of project proposals</br>Both Monday and Wednesday</p>
 					<ul>
-						<li class="ng-binding">Date: 26/09/2015</li>
+						<li class="ng-binding">Date: 26/09/2015 and 28/09/2016</li>
 							<li>No reading material</li>
 					</ul>
 				</div><!-- end ngRepeat: session in week.sessions -->
-				<li>Topics: </li>
-				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Project Question</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Data Set</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Methods</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Outcome</li>
-				</ul><!-- end ngRepeat: topic in week.topics -->
-				<li>Tools: </li>
 				
-				<div ng-repeat="week in weeks" class="ng-scope">
 				<h3 class="ng-binding">Week 5</h3>
-				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
-					<p class="ng-binding">To Be Announced</p>
-					<ul>
-						<li class="ng-binding">Date: 03/10/2015</li>
-						<li>Reading: </li>
-						<li>Topics: </li>
-						<li>Tools: </li>
-					</ul>
-				</div><!-- end ngRepeat: session in week.sessions -->
-				
-				<h3 class="ng-binding">Week 6</h3>
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
 					<p class="ng-binding">Lecture: Visualisation</p>
 					<ul>
-						<li class="ng-binding">Date: 10/10/2015</li>
+						<li class="ng-binding">Date: 03/10/2015</li>
 						<li>Reading: </li>
-						<li>Topics: </li>
+						<ul>
+							<li>UCLA Center for Digital Humanities  <a href="http://dh101.humanities.ucla.edu/?page_id=40" target="_blank" >Visualisation Page 1</a></li>
+							<li>UCLA Center for Digital Humanities  <a href="http://dh101.humanities.ucla.edu/?page_id=46" target="_blank" >Visualisation Page 2</a></li>
+						</ul>
 					</ul>
+					<p>Lab: Visualisation</p>
+				</div><!-- end ngRepeat: session in week.sessions -->
+
+				<div ng-repeat="week in weeks" class="ng-scope">
+				<h3 class="ng-binding">Week 6</h3>
+				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
+					<p class="ng-binding">Lecture: Topic Modelling</p>
+					<ul>
+						<li class="ng-binding">Date: 10/10/2015</li>
+						<li>No reading material</li>
+					</ul>
+					<p>Lab: Questions and Support for Presentations</p>
+				</div><!-- end ngRepeat: session in week.sessions -->
+					
 				<h3 class="ng-binding">Week 7</h3>
 				<!-- ngRepeat: session in week.sessions --><div ng-repeat="session in week.sessions" ng-switch="" on="session.hasReading" class="ng-scope">
-					<p class="ng-binding">Lab: Student Presentations</p>
+					<p class="ng-binding">Lab: Student Presentations</br>Both Monday and Wednesday</p>
 					<ul>
-						<li class="ng-binding">Date: 17/12/2015</li>
-						<li>Reading: </li>
+						<li class="ng-binding">Date: 17/10/2015 and 19/10/2016</li>
 						<!-- ngSwitchWhen: yes -->
 						<!-- ngSwitchWhen: no --><div ng-switch-when="no" class="ng-scope">
 							<li>No reading material</li>
@@ -258,18 +239,8 @@
 						<!-- ngSwitchDefault:  -->
 					</ul>
 				</div><!-- end ngRepeat: session in week.sessions -->
-				<li>Topics: </li>
-				<!-- ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Interpretation of data vs. interpretation of objects</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Digital Hermeneutics</li>
-				</ul><!-- end ngRepeat: topic in week.topics --><ul ng-repeat="topic in week.topics" class="ng-scope">
-					<li class="ng-binding">Project presentations</li>
-				</ul><!-- end ngRepeat: topic in week.topics -->
-				<li>Tools: </li>
-				<!-- ngRepeat: tool in week.tools -->
 			</div><!-- end ngRepeat: week in weeks -->
-		</div>
+		</div></br></br></br>
 		<div class="section" id="overview-reading">
 			<h2 id="more-reading-material">More reading material</h2>
 			<p>Technical</p>
