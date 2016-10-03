@@ -1,5 +1,5 @@
 title: Object to Data - Lecture 6
-output:  /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/Objects_to_Data/Slides/html/lecture6.html
+output:  /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching/Objects_to_Data/Object-to-Data/Slides/html/lecture5.html
 
 --
 
@@ -7,7 +7,7 @@ output:  /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching
 ## Visualisation
 ## Robin Boast, Alan Berg
 ## Information Culture, Digital Humanities Minor 2016/2017
-## Week 6 - 10/10/2015
+## Week 5 - 03/10/2015
 
 --
 
@@ -27,16 +27,6 @@ output:  /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching
 + [Support](http://www.wired.com/wp-content/uploads/2015/10/guns_terrorism_final-932x579.jpeg)
 + [Demonstrate](http://dh2011abstracts.stanford.edu/xtf/view?docId=tei/ab-168.xml;query=;brand=default)
 + [Illustrate](http://image.slidesharecdn.com/vienna2011-january-110124045209-phpapp02/95/patterns-for-personalization-on-the-web-7-728.jpg?cb=1295918230)
-
---
-
-### Goals of Using Visuals
-
-+ [Support](http://www.wired.com/wp-content/uploads/2015/10/guns_terrorism_final-932x579.jpeg)
-+ [Demonstrate](http://dh2011abstracts.stanford.edu/xtf/view?docId=tei/ab-168.xml;query=;brand=default)
-+ [Illustrate](http://image.slidesharecdn.com/vienna2011-january-110124045209-phpapp02/95/patterns-for-personalization-on-the-web-7-728.jpg?cb=1295918230)
-	+ What is difference between illustration and visualisation?
-+ Exploration vs. presentation
 
 --
 
@@ -345,10 +335,6 @@ output:  /Users/robinboast/UvA_Teaching/Media_and_Information/2016-2017_Teaching
 
 ### Next
 
-+ 07/10/2015
++ 05/10/2015
 	+ Lab: projects
-+ 12/10/2015
-	+ Lecture: interpretation in data-driven humanities research
-+ 14/10/2015
-	+ Lab: presentation & drinks
 
